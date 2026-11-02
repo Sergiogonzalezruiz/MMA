@@ -1,0 +1,33 @@
+# Cada lunes comprueba que los vídeos siguen existiendo y se pueden incrustar.
+# Si hay vídeos rotos, abre un aviso (issue) en el repositorio con la lista.
+# También se puede lanzar a mano: pestaña Actions → Comprobar vídeos → Run workflow.
+name: Comprobar vídeos
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  videos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Comprobar vídeos
+        id: comprobar
+        run: |
+          set +e
+          node scripts/comprobar-videos.js > informe.md
+          echo "codigo=$?" >> "$GITHUB_OUTPUT"
+          cat informe.md
+      - name: Abrir aviso si hay vídeos rotos
+        if: steps.comprobar.outputs.codigo == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create videos --color B60205 --description "Vídeos caídos" --force || true
+          gh issue create --title "Vídeos caídos ($(date +%F))" --body-file informe.md --label videos

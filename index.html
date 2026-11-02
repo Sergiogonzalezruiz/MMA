@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Mapa MMA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* Layout: cabecera con las tres secciones; cada sección con pestañas Técnicas / Entrenar / Ruta; fichas con el vídeo arriba */
+:root{
+  --bg:#eef1f0; --surface:#ffffff; --surface-2:#e3e8e6; --line:#cfd6d3;
+  --ink:#16202c; --muted:#5a6672;
+  --head-bg:#16202c; --head-fg:#eef1f0;
+  --box:#c0392b; --box-soft:#f8e0dc;
+  --lu:#9a6400; --lu-soft:#f6ead0;
+  --su:#1f3fbf; --su-soft:#dfe5fb;
+  --ok:#2f6b4f; --ok-soft:#dcebe3;
+  --acc:var(--su); --acc-soft:var(--su-soft);
+  --display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:10px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f141a; --surface:#171e26; --surface-2:#1f2832; --line:#2c3743;
+  --ink:#e7ecef; --muted:#97a3ae; --head-bg:#0a0e13; --head-fg:#e7ecef;
+  --box:#ff8a7a; --box-soft:#3a1e1a; --lu:#f0c060; --lu-soft:#3a2e12;
+  --su:#8ea4ff; --su-soft:#1f2a55; --ok:#6fc29b; --ok-soft:#173328;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0f141a; --surface:#171e26; --surface-2:#1f2832; --line:#2c3743;
+  --ink:#e7ecef; --muted:#97a3ae; --head-bg:#0a0e13; --head-fg:#e7ecef;
+  --box:#ff8a7a; --box-soft:#3a1e1a; --lu:#f0c060; --lu-soft:#3a2e12;
+  --su:#8ea4ff; --su-soft:#1f2a55; --ok:#6fc29b; --ok-soft:#173328;
+  color-scheme:dark;
+}
+[data-sec="boxeo"]{--acc:var(--box);--acc-soft:var(--box-soft)}
+[data-sec="lucha"]{--acc:var(--lu);--acc-soft:var(--lu-soft)}
+[data-sec="suelo"]{--acc:var(--su);--acc-soft:var(--su-soft)}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--acc)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+
+/* ---------- Cabecera ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--head-bg)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--head-bg);color:var(--head-fg);
+  padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap}
+.brand{font:700 25px/1 var(--display);letter-spacing:.03em;text-transform:uppercase;color:var(--head-fg);text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.bars{display:inline-flex;gap:3px}
+.bars i{display:block;width:6px;height:18px;border-radius:2px}
+.bars i:nth-child(1){background:var(--box)} .bars i:nth-child(2){background:var(--lu)} .bars i:nth-child(3){background:var(--su)}
+nav.main{display:flex;gap:2px}
+nav.main a{color:color-mix(in srgb,var(--head-fg) 72%,transparent);text-decoration:none;font:600 17px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;padding:9px 11px;border-radius:7px;border-bottom:3px solid transparent}
+nav.main a:hover{color:var(--head-fg);background:color-mix(in srgb,var(--head-fg) 10%,transparent)}
+nav.main a.on{color:var(--head-fg)}
+nav.main a.on[data-s="boxeo"]{border-color:var(--box)} nav.main a.on[data-s="lucha"]{border-color:var(--lu)} nav.main a.on[data-s="suelo"]{border-color:var(--su)} nav.main a.on[data-s="plan"],nav.main a.on[data-s="guia"]{border-color:var(--ok)}
+.search{position:relative;flex:1;min-width:200px;max-width:380px;margin-left:auto}
+.search input{width:100%;border:0;border-radius:8px;padding:9px 12px;background:color-mix(in srgb,var(--head-fg) 14%,var(--head-bg));color:var(--head-fg);font:inherit}
+.search input::placeholder{color:color-mix(in srgb,var(--head-fg) 55%,transparent)}
+.results{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 12px 30px rgb(0 0 0/.18);max-height:60vh;overflow:auto;padding:6px}
+.results a{display:block;padding:8px 10px;border-radius:6px;text-decoration:none;color:var(--ink)}
+.results a:hover,.results a.sel{background:var(--surface-2)}
+.results small{color:var(--muted)}
+
+/* ---------- Estructura ---------- */
+main{max-width:1180px;margin:0 auto;padding-block:26px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font:700 clamp(36px,5.5vw,56px)/1 var(--display);text-transform:uppercase;letter-spacing:.01em;margin:0;text-wrap:balance}
+h2{font:700 24px/1.1 var(--display);text-transform:uppercase;letter-spacing:.03em;margin:0 0 12px;text-wrap:balance}
+h3{font:700 19px/1.1 var(--display);text-transform:uppercase;letter-spacing:.04em;margin:0 0 8px}
+.eyebrow{font:600 14px/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:8px}
+.crumb{font:600 14px/1.3 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;gap:8px;flex-wrap:wrap}
+.crumb a{color:var(--muted);text-decoration:none}
+.crumb a:hover{color:var(--acc)}
+.lead{max-width:68ch;font-size:17px;margin:14px 0 0}
+.muted{color:var(--muted)}
+.names{color:var(--muted);margin:8px 0 0;display:flex;flex-wrap:wrap;gap:4px 14px;font-size:15px}
+.names b{font:600 12px/1 var(--display);letter-spacing:.1em;color:var(--muted);margin-right:4px}
+.section{margin-top:34px}
+.note{background:var(--surface);border-left:4px solid var(--acc);border-radius:0 8px 8px 0;padding:11px 14px;margin-top:18px;max-width:78ch;font-size:15px}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font:600 13px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;padding:6px 9px;border-radius:5px;background:var(--surface-2);color:var(--ink);text-decoration:none;white-space:nowrap}
+.chip.acc{background:var(--acc-soft);color:var(--acc)}
+.chip.mma{background:var(--box-soft);color:var(--box)}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}
+.chip.warn{background:var(--lu-soft);color:var(--lu)}
+a.chip:hover{outline:1px solid currentColor}
+
+/* ---------- Pestañas ---------- */
+.tabs{display:flex;gap:4px;margin-top:22px;border-bottom:2px solid var(--line);overflow-x:auto}
+.tabs a,.tabs button{border:0;background:none;padding:10px 16px;font:700 18px/1 var(--display);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;text-decoration:none;white-space:nowrap}
+.tabs .on,.tabs [aria-selected="true"]{color:var(--ink);border-color:var(--acc)}
+
+/* ---------- Tarjetas ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.tcard{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px;text-decoration:none;color:var(--ink);transition:border-color .15s}
+.tcard:hover{border-color:var(--acc)}
+.thumb{aspect-ratio:16/9;max-width:100%;border-radius:6px;background:var(--surface-2) center/cover no-repeat;position:relative}
+.thumb.play::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-35%,-50%);border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent;filter:drop-shadow(0 1px 3px rgb(0 0 0/.6))}
+.thumb.none{display:flex;align-items:center;justify-content:center;color:var(--muted);font:600 13px var(--display);letter-spacing:.1em;text-transform:uppercase}
+.tcard strong{font:700 20px/1.1 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.tcard small{color:var(--muted)}
+.tcard .chips{margin-top:2px}
+.nums{display:flex;gap:4px}
+.num{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--bg);font:700 15px/1 var(--display)}
+.nums.big .num{min-width:40px;height:40px;font-size:22px}
+
+/* ---------- Portada ---------- */
+.mapbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:18px;overflow-x:auto}
+.mapbox svg{display:block;width:100%;min-width:640px;height:auto}
+.node rect{fill:var(--surface);stroke:var(--ink);stroke-width:1.5}
+.node text{fill:var(--ink);font:700 16px var(--display);text-transform:uppercase;letter-spacing:.04em}
+.node .cnt{fill:var(--muted);font:500 13px var(--body);text-transform:none;letter-spacing:0}
+.node.link{cursor:pointer}
+.node.link:hover rect,.node.link:focus rect{fill:var(--acc-soft);stroke:var(--acc)}
+.node.pronto rect{fill:none;stroke:var(--line);stroke-dasharray:5 4}
+.node.pronto text{fill:var(--muted)}
+.node .band{stroke:none}
+.edge{stroke:var(--muted);stroke-width:1.6;fill:none}
+.secs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+.sec{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--acc);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.sec h2{margin:0;font-size:32px}
+.sec p{margin:0;color:var(--muted)}
+.sec .links{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.btn{display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--surface);padding:7px 11px;border-radius:7px;cursor:pointer;font-size:15px;text-decoration:none;color:var(--ink);font-variant-numeric:tabular-nums}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.solid{background:var(--acc);border-color:var(--acc);color:#fff}
+.btn[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+.today{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;justify-content:space-between;background:var(--ok-soft);border-radius:12px;padding:16px 18px;margin-top:14px}
+.today p{margin:0;max-width:62ch}
+
+/* ---------- Ficha y vídeo ---------- */
+.player-wrap{margin-top:20px;background:#000;border-radius:12px 12px 0 0;overflow:hidden}
+.player{position:relative;aspect-ratio:16/9;max-width:100%}
+.player iframe,.player > div{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vmsg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;text-align:center;padding:20px;background:#111}
+.vmsg a{color:#9fb2ff}
+.vbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:10px 12px;background:var(--surface);border:1px solid var(--line);border-top:0;border-radius:0 0 12px 12px}
+.vbar .grp{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.vbar .lbl{font:600 12px/1 var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.vbar .btn{font-size:14px;padding:6px 10px}
+.credit{margin-left:auto;color:var(--muted);font-size:14px}
+.novideo{margin-top:20px;border:2px dashed var(--line);border-radius:12px;padding:28px;text-align:center;color:var(--muted)}
+.cols{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:30px;margin-top:26px}
+.block{margin-bottom:26px}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:10px}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start}
+ol.steps li::before{content:counter(s);font:700 18px/30px var(--display);text-align:center;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--bg)}
+ul.plain{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+ul.err li::marker{color:var(--box)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.panel + .panel{margin-top:8px}
+.panel .k{font:600 12px/1 var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.react{display:flex;flex-direction:column;gap:8px}
+.react .si{color:var(--muted);font-size:14px}
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.flow .pos{font:700 17px/1.1 var(--display);text-transform:uppercase;letter-spacing:.03em;color:var(--ink);text-decoration:none}
+.flow .pos small{display:block;font:500 13px var(--body);color:var(--muted);text-transform:none;letter-spacing:0}
+.linklist{display:flex;flex-wrap:wrap;gap:6px}
+.linklist a{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:6px 10px;text-decoration:none;color:var(--ink);font-size:15px}
+.linklist a:hover{border-color:var(--acc);color:var(--acc)}
+.banner{background:var(--lu-soft);color:var(--lu);border-radius:10px;padding:12px 14px;margin-bottom:18px;font-size:15px}
+.banner code{background:color-mix(in srgb,var(--lu) 15%,transparent);padding:1px 5px;border-radius:4px}
+
+/* ---------- Ruta ---------- */
+.level{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px}
+.level header{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.level header h2{margin:0}
+.level .que{margin:0 0 12px;max-width:75ch}
+.checks{list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:6px}
+.checks li{display:grid;grid-template-columns:20px 1fr;gap:8px}
+.checks li::before{content:"";width:14px;height:14px;border:2px solid var(--ok);border-radius:3px;margin-top:4px}
+.jju{display:grid;gap:12px;margin-top:14px}
+.jpart{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.jpart header{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:10px}
+.jcaps{display:flex;flex-wrap:wrap;gap:8px}
+.jcap{border:1px solid var(--line);border-left-width:4px;border-radius:7px;padding:7px 10px;background:var(--bg);font-size:15px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.jcap small{color:var(--muted)}
+.jcap a{font-size:14px}
+.jcap.prioridad{border-left-color:var(--ok)} .jcap.mantener{border-left-color:var(--su)} .jcap.adaptar{border-left-color:var(--lu)} .jcap.gi{border-left-color:var(--muted);opacity:.75} .jcap.mma{border-left-color:var(--box)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;color:var(--muted);font-size:14px;margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:2px;display:inline-block}
+
+/* ---------- Plan ---------- */
+.blocks{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.pblock{display:grid;grid-template-columns:90px minmax(0,1fr);gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px}
+.pblock .min{font:700 30px/1 var(--display);font-variant-numeric:tabular-nums}
+.pblock .min small{display:block;font:600 12px var(--display);letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.pblock p{margin:4px 0 8px}
+.week{width:100%;border-collapse:collapse;background:var(--surface);border-radius:10px;overflow:hidden}
+.week td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+.week tr:first-child td{border-top:0}
+.week td:first-child{font:700 17px var(--display);text-transform:uppercase;letter-spacing:.05em;width:120px}
+
+/* ---------- Guía ---------- */
+.glayout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:32px;margin-top:22px}
+.gnav{position:sticky;top:84px;align-self:start;display:flex;flex-direction:column;gap:2px}
+.gnav a{display:block;padding:7px 10px;border-radius:7px;text-decoration:none;color:var(--ink);font-size:15px}
+.gnav a:hover{background:var(--surface-2)}
+.gnav a.on{background:var(--ok);color:#fff}
+.gnav .sep{height:1px;background:var(--line);margin:8px 4px}
+.gbody{min-width:0;max-width:820px}
+.gbody h3{margin:26px 0 10px;font-size:21px}
+.gbody p,.gbody li{max-width:72ch}
+.gbody ul{padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.glead{font-size:17px;margin-top:0}
+.gsmall{font-size:14px;color:var(--muted)}
+.tw{overflow-x:auto;max-width:100%;margin:6px 0}
+.tw .gt{margin:0}
+.gsteps{margin:0;padding:0;list-style:none;counter-reset:g;display:flex;flex-direction:column;gap:16px}
+.gsteps > li{counter-increment:g;position:relative;padding-left:46px;min-height:32px;padding-top:4px}
+.gsteps > li::before{content:counter(g);position:absolute;left:0;top:0;font:700 18px/32px var(--display);text-align:center;width:32px;height:32px;border-radius:50%;background:var(--ok);color:#fff}
+.gsteps ul{margin:6px 0}
+.gt{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);font-size:15px;margin:6px 0}
+.gt th,.gt td{padding:9px 12px;text-align:left;vertical-align:top;border-top:1px solid var(--line)}
+.gt thead th{border-top:0;font:600 13px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--surface-2)}
+code{font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--surface-2);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+.prompt{position:relative;margin:10px 0 4px;background:var(--head-bg);border-radius:10px;padding:30px 14px 12px;color:var(--head-fg)}
+.prompt::before{content:attr(data-label);position:absolute;top:8px;left:14px;font:600 11px var(--display);letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb,var(--head-fg) 60%,transparent)}
+.prompt pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.prompt .copy{position:absolute;top:6px;right:8px;border:1px solid color-mix(in srgb,var(--head-fg) 30%,transparent);background:transparent;color:var(--head-fg);border-radius:6px;padding:3px 9px;font-size:13px;cursor:pointer}
+.prompt .copy:hover{background:color-mix(in srgb,var(--head-fg) 12%,transparent)}
+.tip{background:var(--ok-soft);border-radius:10px;padding:12px 14px;margin:16px 0;font-size:15px}
+.gpager{display:flex;justify-content:space-between;gap:12px;margin-top:34px;flex-wrap:wrap}
+.gcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:18px}
+.gcard{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:6px}
+.gcard:hover{border-color:var(--ok)}
+.gcard strong{font:700 19px/1.1 var(--display);text-transform:uppercase;letter-spacing:.03em}
+.gcard span{color:var(--muted);font-size:15px}
+
+/* ---------- Qué falta ---------- */
+.huecos{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.hueco{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px}
+.hueco .big{font:700 22px/1.1 var(--display);margin:4px 0 6px}
+.hueco p{margin:0;color:var(--muted);font-size:14px}
+.hueco details{margin-top:8px;font-size:14px}
+.hueco summary{cursor:pointer;color:var(--ok)}
+.hueco ul{margin:6px 0 0;padding-left:18px;max-height:220px;overflow:auto}
+.ptable td.pts{font:700 20px var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ptable td small{color:var(--muted)}
+.filters{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin:10px 0 12px}
+.filters label{font-size:14px;color:var(--muted);display:flex;gap:6px;align-items:center}
+.filters select{font:inherit;padding:5px 8px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.unrev{display:inline-flex;align-items:center;gap:6px;font:600 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--lu);background:var(--lu-soft);padding:4px 8px;border-radius:5px;text-decoration:none}
+
+@media (max-width:860px){
+  .glayout{grid-template-columns:minmax(0,1fr);gap:14px}
+  .gnav{position:static;flex-direction:row;overflow-x:auto;gap:6px;padding-bottom:4px}
+  .gnav a{white-space:nowrap;background:var(--surface);border:1px solid var(--line)}
+  .gnav .sep{display:none}
+  .secs{grid-template-columns:minmax(0,1fr)}
+  .cols{grid-template-columns:minmax(0,1fr)}
+  .credit{margin-left:0;width:100%}
+  .search{max-width:none;order:3;flex-basis:100%}
+  nav.main{margin-left:auto}
+  nav.main a{padding:8px 7px;font-size:15px}
+  .brand span.t{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#inicio"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="t">Mapa MMA</span></a>
+    <nav class="main" id="nav" aria-label="Secciones">
+      <a href="#boxeo" data-s="boxeo">Boxeo</a>
+      <a href="#lucha" data-s="lucha">Lucha</a>
+      <a href="#suelo" data-s="suelo">Suelo</a>
+      <a href="#plan" data-s="plan">Plan</a>
+      <a href="#guia" data-s="guia">Guía</a>
+    </nav>
+    <div class="search">
+      <input id="q" type="search" placeholder="Buscar: jab, sprawl, o-uchi, mataleón…" autocomplete="off" aria-label="Buscar">
+      <div class="results" id="results" hidden></div>
+    </div>
+  </div>
+</header>
+
+<main id="main"></main>
+
+<script src="datos-comun.js"></script>
+<script src="datos-boxeo.js"></script>
+<script src="datos-lucha.js"></script>
+<script src="datos-suelo.js"></script>
+<script src="pendientes.js"></script>
+<script src="huecos-calc.js"></script>
+<script src="guia.js"></script>
+<script>
+(() => {
+const D = window.MMA;
+const F = Object.fromEntries(D.FICHAS.map(f => [f.id, f]));
+const S = Object.fromEntries(D.SECCIONES.map(s => [s.id, s]));
+const P = Object.fromEntries(D.POSICIONES.map(p => [p.id, p]));
+const FA = Object.fromEntries(D.FASES.map(f => [f.id, f]));
+const JJ = Object.fromEntries(D.JJU.flatMap(p => p.caps.map(c => [c.id, { ...c, parte: p.parte }])));
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+
+const MMA_TXT = { "muy alta": "MMA ★★★", "alta": "MMA ★★", "media": "MMA ★", "baja": "MMA –" };
+const SOLO_TXT = { si: "Solo en casa", parcial: "Solo: el patrón", no: "Con compañero" };
+const GI_TXT = { ambos: "Gi y no-gi", gi: "Solo gi", nogi: "No-gi" };
+const LADOS = { arriba: "Arriba", abajo: "Abajo", neutral: "" };
+const CASA = ["esterilla", "goma", "cuerda", "pelota", "espejo", "comba", "cinta", "pared"];
+const FUERA = ["saco", "companero", "tatami"];
+const catName = f => f.tipo === "drill" ? "Drill" : (S[f.seccion].categorias.find(c => c.id === f.cat)?.n ?? f.cat);
+const posLabel = (pos, lado) => `${P[pos]?.es ?? pos}${lado && LADOS[lado] ? " · " + LADOS[lado] : ""}`;
+const thumb = id => `https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
+const setSec = s => { if (s) document.body.dataset.sec = s; else delete document.body.dataset.sec; };
+
+/* ---------- Piezas ---------- */
+const nums = (g, big) => g?.length ? `<span class="nums${big ? " big" : ""}" aria-label="Golpes ${g.join("-")}">${g.map(n => `<span class="num">${n}</span>`).join("")}</span>` : "";
+const chips = f => `<div class="chips">
+  ${f.tipo === "drill" ? `<span class="chip acc">Drill</span>` : ""}
+  <span class="chip">${D.NIVELES[f.nivel]}</span>
+  <span class="chip mma">${MMA_TXT[f.mma] ?? ""}</span>
+  <span class="chip ${f.solo === "si" ? "ok" : f.solo === "parcial" ? "warn" : ""}">${SOLO_TXT[f.solo]}</span>
+  ${f.gi && f.gi !== "ambos" ? `<span class="chip">${GI_TXT[f.gi]}</span>` : ""}</div>`;
+const card = f => `<a class="tcard" href="#f-${f.id}" data-sec="${f.seccion}">
+  ${f.videos.length ? `<div class="thumb play" style="background-image:url('${thumb(f.videos[0].id)}')"></div>` : `<div class="thumb none">Vídeo pendiente</div>`}
+  <strong>${esc(f.es)}</strong>
+  <small>${esc(f.en)}${f.jp ? " · " + esc(f.jp) : ""}${f.dosis ? " · " + esc(f.dosis) : ""}</small>
+  ${nums(f.golpes)}${chips(f)}</a>`;
+const grid = list => list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<p class="muted">Todavía no hay fichas aquí.</p>`;
+const names = o => `<p class="names">
+  ${o.en ? `<span><b>EN</b>${esc(o.en)}</span>` : ""}
+  ${o.jp ? `<span><b>JP</b>${esc(o.jp)}</span>` : ""}
+  ${o.pt ? `<span><b>PT</b>${esc(o.pt)}</span>` : ""}
+  ${o.alias?.length ? `<span><b>También</b>${esc(o.alias.join(", "))}</span>` : ""}</p>`;
+const fileBanner = () => location.protocol === "file:" ? `<div class="banner">Has abierto la web como archivo y así YouTube no reproduce los vídeos (error 153). Ábrela con un servidor: en esta carpeta ejecuta <code>python3 -m http.server</code> y entra en <code>http://localhost:8000</code>. Más en LEEME.md.</div>` : "";
+const bindGo = () => $$("[data-go]").forEach(g => {
+  g.addEventListener("click", () => location.hash = g.dataset.go);
+  g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); location.hash = g.dataset.go; } });
+});
+
+/* ---------- Grafo SVG genérico ---------- */
+function grafo({ nodos, aristas, W = 220, H = 56, vb, label }) {
+  const clip = (x, y, ux, uy) => { const s = Math.min((W / 2 + 4) / Math.abs(ux || 1e-9), (H / 2 + 4) / Math.abs(uy || 1e-9)); return [x + ux * s, y + uy * s]; };
+  const set = new Set(aristas.map(([a, b]) => a + ">" + b));
+  const edges = aristas.map(([a, b, title]) => {
+    const A = nodos[a], B = nodos[b]; if (!A || !B) return "";
+    const off = set.has(b + ">" + a) ? 9 : 0;
+    const dx = B.x - A.x, dy = B.y - A.y, len = Math.hypot(dx, dy), ux = dx / len, uy = dy / len;
+    const nx = -uy * off, ny = ux * off;
+    const [sx, sy] = clip(A.x + nx, A.y + ny, ux, uy), [ex, ey] = clip(B.x + nx, B.y + ny, -ux, -uy);
+    return `<path class="edge" d="M${sx},${sy} L${ex},${ey}" marker-end="url(#ah)">${title ? `<title>${esc(title)}</title>` : ""}</path>`;
+  }).join("");
+  const nodes = Object.entries(nodos).map(([id, n]) => `<g class="node ${n.pronto ? "pronto" : "link"}" ${n.pronto ? "" : `tabindex="0" role="link" data-go="${n.go}" aria-label="${esc(n.t)}"`}>
+      <rect x="${n.x - W / 2}" y="${n.y - H / 2}" width="${W}" height="${H}" rx="8"/>
+      ${n.color ? `<rect class="band" x="${n.x - W / 2 + 1}" y="${n.y - H / 2 + 1}" width="5" height="${H - 2}" rx="2" style="fill:${n.color}"/>` : ""}
+      <text x="${n.x}" y="${n.y + (n.sub ? 0 : 6)}" text-anchor="middle">${esc(n.t)}</text>
+      ${n.sub ? `<text class="cnt" x="${n.x}" y="${n.y + 18}" text-anchor="middle">${esc(n.sub)}</text>` : ""}</g>`).join("");
+  return `<div class="mapbox"><svg viewBox="${vb}" role="img" aria-label="${esc(label)}">
+    <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--muted)"/></marker></defs>
+    ${edges}${nodes}</svg></div>`;
+}
+
+/* ---------- Portada ---------- */
+function renderInicio() {
+  setSec(null);
+  const nodos = Object.fromEntries(D.FASES.map(f => {
+    const n = D.FICHAS.filter(x => x.fases.includes(f.id)).length;
+    return [f.id, { x: f.x, y: f.y, t: f.n, sub: `${n} fichas`, go: "#fase-" + f.id }];
+  }));
+  const count = (s, t) => D.FICHAS.filter(f => f.seccion === s && f.tipo === t).length;
+  $("#main").innerHTML = `${fileBanner()}
+    <h1>Mapa MMA</h1>
+    <p class="lead">Técnicas, drills y rutas de aprendizaje de boxeo, lucha y suelo, pensados para MMA y para entrenar en casa. Cada ficha lleva su vídeo.</p>
+    <div class="section"><h2>Mapa del combate</h2>
+      <p class="muted" style="margin:-4px 0 0;max-width:70ch">Las fases de una pelea y cómo se pasa de una a otra. Toca una fase para ver todo lo que tienes para ella, de las tres secciones.</p>
+      ${grafo({ nodos, aristas: D.TRANSICIONES, vb: "0 0 820 400", label: "Mapa del combate" })}</div>
+    <div class="section"><h2>Secciones</h2><div class="secs">
+      ${D.SECCIONES.map(s => `<article class="sec" data-sec="${s.id}">
+        <div class="eyebrow">${esc(s.grupo)}</div><h2>${esc(s.nombre)}</h2><p>${esc(s.desc)}</p>
+        <p><strong style="color:var(--ink)">${count(s.id, "tecnica")}</strong> técnicas · <strong style="color:var(--ink)">${count(s.id, "drill")}</strong> drills</p>
+        <div class="links"><a class="btn solid" href="#${s.id}">Técnicas</a><a class="btn" href="#${s.id}-entrenar">Entrenar</a><a class="btn" href="#${s.id}-ruta">Ruta</a></div>
+      </article>`).join("")}</div>
+      <div class="today"><p><strong>Entrenar hoy en casa:</strong> sesión de 60–70 min que recorre las tres secciones, y una semana tipo.</p><a class="btn" href="#plan">Ver el plan</a></div>
+      <div class="today" style="background:var(--surface-2)"><p><strong>Mantener y ampliar:</strong> la guía explica paso a paso cómo seguir añadiendo contenido con Claude Code, y «Qué falta» dice qué toca después.</p><div class="links" style="display:flex;gap:6px"><a class="btn" href="#guia">Guía</a><a class="btn" href="#falta">Qué falta</a></div></div>
+    </div>`;
+  bindGo();
+}
+
+/* ---------- Sección ---------- */
+const NODOS_SUELO = {
+  "mariposa": [130, 50], "guardia-cerrada": [410, 50], "guardias-abiertas": [690, 50],
+  "media-guardia": [130, 175], "rodilla-vientre": [410, 175], "montada": [690, 175],
+  "cien-kilos": [130, 300], "tortuga": [410, 300], "espalda": [690, 300]
+};
+function mapaSuelo() {
+  const nodos = Object.fromEntries(Object.entries(NODOS_SUELO).map(([id, [x, y]]) => {
+    const p = P[id]; const n = D.FICHAS.filter(f => f.desde?.pos === id).length;
+    return [id, { x, y, t: p.es.split(" y ")[0], sub: p.pronto ? "" : `${n} ${n === 1 ? "técnica" : "técnicas"}`, pronto: p.pronto, go: "#p-" + id }];
+  }));
+  const pares = {};
+  D.FICHAS.forEach(f => { if (f.desde && f.hasta && f.desde.pos !== f.hasta.pos && NODOS_SUELO[f.desde.pos] && NODOS_SUELO[f.hasta.pos]) (pares[f.desde.pos + ">" + f.hasta.pos] ??= []).push(f.es); });
+  const aristas = Object.entries(pares).map(([k, v]) => [...k.split(">"), v.join(", ")]);
+  return grafo({ nodos, aristas, W: 210, H: 50, vb: "0 0 820 350", label: "Mapa de posiciones de suelo" }) +
+    `<div class="legend"><span>Toca una posición para verla desde arriba y desde abajo</span><span>Caja discontinua: próximamente</span></div>`;
+}
+
+function renderSeccion(id, tab = "tecnicas") {
+  const s = S[id]; setSec(id);
+  const fichas = D.FICHAS.filter(f => f.seccion === id);
+  const tabs = [["tecnicas", "Técnicas", `#${id}`], ["entrenar", "Entrenar", `#${id}-entrenar`], ["ruta", "Ruta", `#${id}-ruta`]];
+  let body = "";
+  if (tab === "tecnicas") {
+    body = (id === "suelo" ? `<div class="section"><h2>Posiciones</h2>${mapaSuelo()}</div>` : "") +
+      `<div class="note">${esc(s.nota)}</div>` +
+      s.categorias.map(c => { const l = fichas.filter(f => f.tipo === "tecnica" && f.cat === c.id); return l.length ? `<div class="section"><h2>${esc(c.n)}</h2>${grid(l)}</div>` : ""; }).join("") +
+      (id === "suelo" ? `<div class="section"><h2>Movimientos base</h2>${grid(fichas.filter(f => f.cat === "movimiento"))}</div>` : "");
+  } else if (tab === "entrenar") {
+    const drills = fichas.filter(f => f.tipo === "drill");
+    const g1 = drills.filter(f => f.material.every(m => m === "ninguno"));
+    const g3 = drills.filter(f => f.material.some(m => FUERA.includes(m)));
+    const g2 = drills.filter(f => !g1.includes(f) && !g3.includes(f));
+    const solos = fichas.filter(f => f.tipo === "tecnica" && f.solo === "si");
+    body = `<p class="lead">Drills para mejorar entrenando solo. Cada ficha dice cuántas rondas, con qué material y cuándo lo has superado.</p>
+      ${g1.length ? `<div class="section"><h2>Sin material</h2>${grid(g1)}</div>` : ""}
+      ${g2.length ? `<div class="section"><h2>Con material de casa</h2>${grid(g2)}</div>` : ""}
+      ${g3.length ? `<div class="section"><h2>Con compañero o gimnasio</h2>${grid(g3)}</div>` : ""}
+      ${solos.length ? `<div class="section"><h2>Técnicas que puedes trabajar solo</h2><p class="muted" style="margin-top:-4px">En sombra o frente al espejo.</p>${grid(solos)}</div>` : ""}
+      <div class="today"><p>¿Quieres una sesión completa que combine las tres secciones?</p><a class="btn" href="#plan">Ver el plan de casa</a></div>`;
+  } else {
+    body = Object.entries(s.ruta).map(([n, r]) => `<section class="level">
+        <header><span class="chip acc">${D.NIVELES[n]}</span><h2>${esc(r.cuando)}</h2></header>
+        <p class="que">${esc(r.que)}</p>
+        <h3>Pasas de nivel cuando</h3><ul class="checks">${r.criterio.map(c => `<li><span>${esc(c)}</span></li>`).join("")}</ul>
+        ${grid(fichas.filter(f => f.nivel === n))}</section>`).join("") + (id === "suelo" ? renderJJU() : "");
+  }
+  $("#main").innerHTML = `${fileBanner()}
+    <div class="eyebrow">${esc(s.grupo)}</div><h1>${esc(s.nombre)}</h1>
+    <p class="lead">${esc(s.desc)}</p>
+    <nav class="tabs" aria-label="Pestañas">${tabs.map(([k, t, h]) => `<a href="${h}" class="${k === tab ? "on" : ""}">${t}</a>`).join("")}</nav>
+    ${body}`;
+  bindGo();
+}
+
+function renderJJU() {
+  const E = { prioridad: "Prioridad MMA", mantener: "Se mantiene", adaptar: "Adaptar a no-gi", gi: "Solo gi", mma: "Añadido para MMA" };
+  return `<div class="section"><h2>Jiu-Jitsu University adaptado a MMA</h2>
+    <p class="muted" style="margin-top:-4px;max-width:72ch">El orden del libro de Saulo Ribeiro (cada parte, un cinturón), marcando qué se queda, qué hay que adaptar sin gi y qué hay que añadir para MMA.</p>
+    <div class="legend">${Object.entries(E).map(([k, v]) => `<span><i style="background:var(${({ prioridad: "--ok", mantener: "--su", adaptar: "--lu", gi: "--muted", mma: "--box" })[k]})"></i>${v}</span>`).join("")}</div>
+    <div class="jju">${D.JJU.map(p => `<div class="jpart"><header><h3 style="margin:0">${esc(p.parte)}</h3><span class="chip">${esc(p.cinturon)}</span></header>
+      <div class="jcaps">${p.caps.map(c => { const fs = D.FICHAS.filter(f => f.jju === c.id);
+        return `<div class="jcap ${c.e}"><span>${esc(c.n)}</span>${c.nota ? `<small>${esc(c.nota)}</small>` : ""}${fs.map(f => `<a href="#f-${f.id}">${esc(f.es)}</a>`).join("")}</div>`; }).join("")}</div></div>`).join("")}</div></div>`;
+}
+
+/* ---------- Posición de suelo ---------- */
+function renderPos(id, ladoSel) {
+  const p = P[id]; if (!p || p.pronto) return renderSeccion("suelo");
+  setSec("suelo");
+  const lados = Object.keys(p.lados);
+  const lado = lados.includes(ladoSel) ? ladoSel : lados[0];
+  const desde = D.FICHAS.filter(f => f.desde?.pos === id && f.desde.lado === lado);
+  const llegan = D.FICHAS.filter(f => f.hasta?.pos === id && f.hasta.lado === lado);
+  const cats = S.suelo.categorias;
+  $("#main").innerHTML = `${fileBanner()}
+    <div class="crumb"><a href="#suelo">Suelo</a><span>/</span><span>Posición</span></div>
+    <h1>${esc(p.es)}</h1>${names(p)}
+    <p class="lead">${esc(p.desc)}</p>
+    ${lados.length > 1 ? `<div class="tabs" role="tablist">${lados.map(l => `<button role="tab" aria-selected="${l === lado}" data-lado="${l}">${LADOS[l]}</button>`).join("")}</div>` : ""}
+    <div class="note"><strong>Objetivo${LADOS[lado] ? " " + LADOS[lado].toLowerCase() : ""}:</strong> ${esc(p.lados[lado])}</div>
+    ${desde.length ? cats.map(c => { const l = desde.filter(f => f.cat === c.id); return l.length ? `<div class="section"><h2>${esc(c.n)}</h2>${grid(l)}</div>` : ""; }).join("")
+      : `<div class="section"><p class="muted">Todavía no hay técnicas desde aquí.</p></div>`}
+    ${llegan.length ? `<div class="section"><h2>Cómo llegas aquí</h2><div class="linklist">${llegan.map(f => `<a href="#f-${f.id}">${esc(f.es)} <small>· desde ${esc(posLabel(f.desde.pos, f.desde.lado))}</small></a>`).join("")}</div></div>` : ""}`;
+  $$("[data-lado]").forEach(b => b.addEventListener("click", () => renderPos(id, b.dataset.lado)));
+}
+
+/* ---------- Fase del combate ---------- */
+function renderFase(id) {
+  const fa = FA[id]; if (!fa) return renderInicio();
+  setSec(null);
+  const de = D.TRANSICIONES.filter(([a]) => a === id).map(([, b]) => FA[b]);
+  const a = D.TRANSICIONES.filter(([, b]) => b === id).map(([x]) => FA[x]);
+  $("#main").innerHTML = `${fileBanner()}
+    <div class="crumb"><a href="#inicio">Mapa del combate</a><span>/</span><span>Fase</span></div>
+    <h1>${esc(fa.n)}</h1><p class="lead">${esc(fa.d)}</p>
+    <div class="chips">${a.map(x => `<a class="chip" href="#fase-${x.id}">← ${esc(x.n)}</a>`).join("")}${de.map(x => `<a class="chip acc" href="#fase-${x.id}">${esc(x.n)} →</a>`).join("")}</div>
+    ${D.SECCIONES.map(s => { const l = D.FICHAS.filter(f => f.seccion === s.id && f.fases.includes(id)); return l.length ? `<div class="section" data-sec="${s.id}"><div class="eyebrow">${esc(s.grupo)}</div><h2>${esc(s.nombre)}</h2>${grid(l)}</div>` : ""; }).join("")}`;
+}
+
+/* ---------- Plan ---------- */
+function renderPlan() {
+  setSec(null);
+  const pl = D.PLAN;
+  const total = pl.sesion.reduce((a, b) => a + b.min, 0);
+  $("#main").innerHTML = `${fileBanner()}
+    <div class="eyebrow" style="color:var(--ok)">Entrenar solo en casa</div><h1>Plan</h1>
+    <p class="lead">Una sesión de unos ${total} minutos que recorre las tres secciones, la semana tipo y cómo compensar lo que se pierde entrenando sin compañero.</p>
+    <div class="section"><h2>Sesión tipo</h2><div class="blocks">
+      ${pl.sesion.map(b => `<div class="pblock"><div class="min">${b.min}<small>min</small></div><div><h3>${esc(b.t)}</h3><p>${esc(b.txt)}</p>
+        ${b.fichas.length ? `<div class="linklist">${b.fichas.filter(i => F[i]).map(i => `<a href="#f-${i}">${esc(F[i].es)}</a>`).join("")}</div>` : ""}</div></div>`).join("")}</div></div>
+    <div class="section"><h2>Semana tipo</h2><div style="overflow-x:auto"><table class="week"><tbody>
+      ${pl.semana.map(d => `<tr><td>${esc(d.d)}</td><td>${esc(d.t)}</td></tr>`).join("")}</tbody></table></div></div>
+    <div class="section"><h2>Lo que se pierde entrenando solo</h2>
+      ${pl.solo.map(([k, v]) => `<div class="panel"><div class="k">${esc(k)}</div>${esc(v)}</div>`).join("")}</div>`;
+}
+
+/* ---------- Guía ---------- */
+function bindCopy() {
+  $$(".prompt").forEach(p => {
+    if (p.querySelector(".copy")) return;
+    const b = document.createElement("button");
+    b.className = "copy"; b.type = "button"; b.textContent = "Copiar";
+    b.addEventListener("click", async () => {
+      const pre = p.querySelector("pre");
+      try { await navigator.clipboard.writeText(pre.innerText); b.textContent = "Copiado"; }
+      catch { const r = document.createRange(); r.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Seleccionado: Ctrl+C"; }
+      setTimeout(() => { b.textContent = "Copiar"; }, 1800);
+    });
+    p.appendChild(b);
+  });
+}
+
+function wrapTables() {
+  $$("table.gt").forEach(t => { if (t.parentElement.classList.contains("tw")) return; const d = document.createElement("div"); d.className = "tw"; t.replaceWith(d); d.appendChild(t); });
+}
+
+function renderGuia(id) {
+  setSec(null);
+  const G = D.GUIA || [];
+  const g = G.find(x => x.id === id);
+  const nav = `<nav class="gnav" aria-label="Secciones de la guía">
+    <a href="#falta">Qué falta</a><div class="sep"></div>
+    ${G.map(x => `<a href="#guia-${x.id}" class="${g && x.id === g.id ? "on" : ""}">${esc(x.t)}</a>`).join("")}</nav>`;
+  let body;
+  if (!g) {
+    body = `<div class="gcards" style="margin-top:0">${G.map(x => `<a class="gcard" href="#guia-${x.id}"><strong>${esc(x.t)}</strong><span>${esc(x.r)}</span></a>`).join("")}</div>`;
+  } else {
+    const i = G.indexOf(g);
+    const html = typeof g.html === "function" ? g.html(D) : g.html;
+    body = `<h2 style="font-size:32px;margin-bottom:6px">${esc(g.t)}</h2><p class="gsmall" style="margin-top:0">${esc(g.r)}</p>${html}
+      <div class="gpager">${i > 0 ? `<a class="btn" href="#guia-${G[i - 1].id}">← ${esc(G[i - 1].t)}</a>` : "<span></span>"}${i < G.length - 1 ? `<a class="btn" href="#guia-${G[i + 1].id}">${esc(G[i + 1].t)} →</a>` : ""}</div>`;
+  }
+  $("#main").innerHTML = `${fileBanner()}
+    <div class="eyebrow" style="color:var(--ok)">Mantener y ampliar</div><h1>Guía</h1>
+    ${g ? "" : `<p class="lead">Todo lo necesario para seguir ampliando la web por tu cuenta con Claude Code: montarlo, añadir tandas, decidir qué entra, revisar vídeos y arreglar problemas. Empieza por «Empieza aquí».</p>`}
+    <div class="glayout">${nav}<div class="gbody">${body}</div></div>`;
+  bindCopy(); wrapTables();
+}
+
+/* ---------- Qué falta ---------- */
+let filtros = { sec: "", est: "abiertos" };
+function renderFalta() {
+  setSec(null);
+  const secN = id => S[id]?.nombre ?? id;
+  const plan = [...new Set((D.PENDIENTES || []).filter(p => p.estado === "planificada" && p.tanda).map(p => p.tanda))].sort((a, b) => a - b);
+  const sig = plan[0];
+  const CORTO = { mma: "MMA", hueco: "Hueco", solo: "Solo", conecta: "Conecta", interes: "Interés" };
+  const desglose = p => D.CRITERIOS.map(c => `${CORTO[c.k] ?? c.k} ${p[c.k]}`).join(" · ");
+  const mini = l => `<table class="gt ptable"><thead><tr><th>Puntos</th><th>Pendiente</th><th>Sección</th></tr></thead><tbody>
+    ${l.map(p => `<tr><td class="pts">${p.puntos}</td><td><b>${esc(p.es)}</b><br><small>${esc(desglose(p))}</small></td><td>${secN(p.seccion)}</td></tr>`).join("")}</tbody></table>`;
+  const huecos = D.calcularHuecos();
+  $("#main").innerHTML = `${fileBanner()}
+    <div class="crumb"><a href="#guia">Guía</a><span>/</span><span>Qué falta</span></div>
+    <h1>Qué falta</h1>
+    <p class="lead">Calculado a partir de los datos cada vez que abres la página. De aquí sale cada tanda. Cómo funciona: <a href="#guia-que-anadir">Decidir qué añadir</a>.</p>
+    ${sig ? `<div class="section"><h2>Siguiente tanda: la ${sig}</h2>${mini(D.pendientesOrdenados(p => p.tanda === sig))}
+      <div class="prompt" data-label="Escríbelo en Claude Code"><pre>/tanda ${sig}</pre></div>
+      <p class="gsmall">Proceso completo en <a href="#guia-tanda">Añadir una tanda</a>.</p></div>` : ""}
+    <div class="section"><h2>Propuesta por puntuación</h2>
+      <p class="muted" style="margin-top:-4px">Las 10 con más puntos sin publicar, como mucho 4 por sección. Es lo que usa <code>/tanda</code> sin número.</p>
+      ${mini(D.proponerTanda())}</div>
+    <div class="section"><h2>Huecos</h2><div class="huecos">
+      ${huecos.map(h => `<div class="hueco"><h3 style="margin:0">${esc(h.titulo)}</h3><div class="big">${esc(h.resumen)}</div><p>${esc(h.como)}</p>
+        ${h.items.length ? `<details><summary>Ver ${h.items.length}</summary><ul>${h.items.map(i => `<li>${i.href ? `<a href="${i.href}">${esc(i.txt)}</a>` : esc(i.txt)}</li>`).join("")}</ul></details>` : ""}</div>`).join("")}
+    </div></div>
+    <div class="section"><h2>Todos los pendientes</h2>
+      <div class="filters">
+        <label for="fsec">Sección <select id="fsec"><option value="">Todas</option>${D.SECCIONES.map(s => `<option value="${s.id}">${s.nombre}</option>`).join("")}</select></label>
+        <label for="fest">Estado <select id="fest"><option value="abiertos">Sin publicar</option>${Object.entries(D.ESTADOS).map(([k, v]) => `<option value="${k}">${v}</option>`).join("")}<option value="todos">Todos</option></select></label>
+        <span class="gsmall" id="fcount"></span>
+      </div>
+      <div id="ptable"></div>
+      <div class="prompt" data-label="Para apuntar una idea nueva"><pre>/pendiente </pre></div></div>`;
+  const draw = () => {
+    const l = D.pendientesOrdenados(p => (!filtros.sec || p.seccion === filtros.sec) &&
+      (filtros.est === "todos" || (filtros.est === "abiertos" ? p.estado !== "publicada" : p.estado === filtros.est)));
+    $("#fcount").textContent = `${l.length} pendientes`;
+    setTimeout(wrapTables);
+    $("#ptable").innerHTML = `<table class="gt ptable"><thead><tr><th>Puntos</th><th>Pendiente</th><th>Sección</th><th>Fuente</th><th>Tanda</th><th>Estado</th></tr></thead><tbody>
+      ${l.map(p => `<tr><td class="pts">${p.puntos}</td><td><b>${esc(p.es)}</b>${p.nota ? `<br><small>${esc(p.nota)}</small>` : ""}<br><small>${esc(desglose(p))} · <code>${p.id}</code></small></td>
+        <td>${secN(p.seccion)}</td><td>${esc(p.fuente)}</td><td>${p.tanda ?? "—"}</td><td>${D.ESTADOS[p.estado]}${p.ficha && F[p.ficha] ? ` · <a href="#f-${p.ficha}">ver</a>` : ""}</td></tr>`).join("")}</tbody></table>`;
+  };
+  $("#fsec").value = filtros.sec; $("#fest").value = filtros.est;
+  $("#fsec").addEventListener("change", e => { filtros.sec = e.target.value; draw(); });
+  $("#fest").addEventListener("change", e => { filtros.est = e.target.value; draw(); });
+  draw(); bindCopy(); wrapTables();
+}
+
+/* ---------- Ficha ---------- */
+let player = null, cur = null, loop = false, rate = 1;
+
+function renderFicha(id) {
+  const f = F[id]; if (!f) return renderInicio();
+  const s = S[f.seccion]; setSec(f.seccion);
+  const vs = f.videos;
+  const v0 = vs[0];
+  const crumbCat = f.tipo === "drill" ? `<a href="#${s.id}-entrenar">Entrenar</a>` : `<a href="#${s.id}">${esc(catName(f))}</a>`;
+  const material = f.material.map(m => D.MATERIAL[m]).join(" · ");
+  $("#main").innerHTML = `${fileBanner()}
+    <div class="crumb"><a href="#${s.id}">${esc(s.nombre)}</a><span>/</span>${crumbCat}${f.desde && f.desde.pos !== "base" ? `<span>/</span><a href="#p-${f.desde.pos}">${esc(posLabel(f.desde.pos, f.desde.lado))}</a>` : ""}</div>
+    <h1>${esc(f.es)}</h1>${names(f)}
+    ${f.golpes ? `<div style="margin-top:12px">${nums(f.golpes, true)}</div>` : ""}
+    ${chips(f)}
+    ${v0 ? `<div class="player-wrap"><div class="player" id="player"></div></div>
+    <div class="vbar">
+      ${vs.length > 1 ? `<div class="grp"><span class="lbl">Vídeo</span>${vs.map((v, i) => `<button class="btn" data-v="${i}" aria-pressed="${i === 0}">${esc(v.etiqueta || (i === 0 ? "Principal" : "Alternativo " + i))}</button>`).join("")}</div>` : ""}
+      <div class="grp" id="segs"></div>
+      <div class="grp"><span class="lbl">Velocidad</span>${[0.5, 0.75, 1].map(r => `<button class="btn" data-rate="${r}" aria-pressed="${r === rate}">${r}×</button>`).join("")}</div>
+      <div class="grp"><button class="btn" id="loopBtn" aria-pressed="${loop}">Repetir en bucle</button></div>
+      <span class="credit" id="credit"></span>
+    </div>` : `<div class="novideo">Vídeo pendiente. Añádelo en el archivo de datos de ${esc(s.nombre.toLowerCase())}.</div>`}
+
+    <div class="cols">
+      <div>
+        <div class="block"><h2>Para qué sirve</h2><p style="margin:0;max-width:65ch">${esc(f.objetivo)}</p></div>
+        <div class="block"><h2>${f.tipo === "drill" ? "Cómo se hace" : "Pasos"}</h2><ol class="steps">${f.pasos.map(x => `<li><span>${esc(x)}</span></li>`).join("")}</ol></div>
+        ${f.detalles?.length ? `<div class="block"><h2>Detalles clave</h2><ul class="plain">${f.detalles.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
+        ${f.errores?.length ? `<div class="block"><h2>Errores típicos</h2><ul class="plain err">${f.errores.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
+      </div>
+      <div>
+        ${f.dosis || f.criterio ? `<div class="block"><h2>Dosis</h2>
+          ${f.dosis ? `<div class="panel"><div class="k">Rondas y tiempo</div>${esc(f.dosis)}</div>` : ""}
+          ${f.criterio ? `<div class="panel"><div class="k">Lo has superado cuando</div>${esc(f.criterio)}</div>` : ""}</div>` : ""}
+        <div class="block"><h2>En MMA</h2>
+          ${f.mmaNota ? `<div class="panel"><div class="k">${MMA_TXT[f.mma]}</div>${esc(f.mmaNota)}</div>` : ""}
+          <div class="panel"><div class="k">Material</div>${esc(material)}${f.solo !== "si" ? `<br><span class="muted">${f.solo === "parcial" ? "Solo puedes trabajar el patrón; la técnica completa necesita compañero." : "Necesita compañero para practicarla de verdad."}</span>` : ""}</div>
+          <div class="panel"><div class="k">Fases del combate</div><div class="linklist" style="margin-top:4px">${f.fases.map(x => `<a href="#fase-${x}">${esc(FA[x].n)}</a>`).join("")}</div></div>
+          ${f.jju && JJ[f.jju] ? `<div class="panel"><div class="k">Jiu-Jitsu University</div>${esc(JJ[f.jju].parte)} · ${esc(JJ[f.jju].n)} <a href="#suelo-ruta">ver</a></div>` : ""}
+        </div>
+        ${f.desde && f.desde.pos !== "base" ? `<div class="block"><h2>De dónde a dónde</h2><div class="panel flow">
+          <a class="pos" href="#p-${f.desde.pos}">${esc(P[f.desde.pos].es)}<small>${LADOS[f.desde.lado] || ""}</small></a><span class="muted" aria-hidden="true">→</span>
+          ${f.hasta ? `<a class="pos" href="#p-${f.hasta.pos}">${esc(P[f.hasta.pos].es)}<small>${LADOS[f.hasta.lado] || ""}</small></a>` : `<span class="pos">${f.cat === "sumision" ? "Sumisión" : "—"}</span>`}</div></div>` : ""}
+        ${f.reacciones?.length ? `<div class="block"><h2>Si el rival reacciona</h2><div class="react">${f.reacciones.map(r => `<div class="panel"><div class="si">Si ${esc(r.si.charAt(0).toLowerCase() + r.si.slice(1))}…</div>${r.ref && F[r.ref] ? `<a href="#f-${r.ref}">${esc(r.txt || F[r.ref].es)} →</a>` : esc(r.txt)}</div>`).join("")}</div></div>` : ""}
+        ${f.combina?.length ? `<div class="block"><h2>Encadena con</h2><div class="linklist">${f.combina.filter(c => F[c]).map(c => `<a href="#f-${c}" data-sec="${F[c].seccion}">${esc(F[c].es)}${F[c].seccion !== f.seccion ? ` <small>· ${esc(S[F[c].seccion].nombre)}</small>` : ""}</a>`).join("")}</div></div>` : ""}
+      </div>
+    </div>`;
+
+  if (!v0) return;
+  const segOf = (v, i) => v.segmentos ? { ...v, inicio: v.segmentos[i].inicio, fin: v.segmentos[i].fin } : v;
+  const drawSegs = v => {
+    const g = $("#segs"); if (!g) return;
+    g.innerHTML = v.segmentos ? `<span class="lbl">Partes</span>${v.segmentos.map((s, i) => `<button class="btn" data-seg="${i}" aria-pressed="${i === 0}">${esc(s.t)}</button>`).join("")}` : "";
+    g.hidden = !v.segmentos;
+    $$("[data-seg]").forEach(b => b.addEventListener("click", () => {
+      $$("[data-seg]").forEach(x => x.setAttribute("aria-pressed", x === b));
+      playSegment(segOf(v, +b.dataset.seg));
+    }));
+  };
+  drawSegs(v0); mountPlayer(segOf(v0, 0));
+  $$("[data-v]").forEach(b => b.addEventListener("click", () => {
+    $$("[data-v]").forEach(x => x.setAttribute("aria-pressed", x === b));
+    const v = vs[+b.dataset.v]; drawSegs(v); mountPlayer(segOf(v, 0));
+  }));
+  $$("[data-rate]").forEach(b => b.addEventListener("click", () => {
+    rate = +b.dataset.rate;
+    $$("[data-rate]").forEach(x => x.setAttribute("aria-pressed", x === b));
+    try { player?.setPlaybackRate?.(rate); } catch {}
+  }));
+  $("#loopBtn").addEventListener("click", e => { loop = !loop; e.currentTarget.setAttribute("aria-pressed", loop); });
+}
+
+/* ---------- Reproductor de YouTube ---------- */
+let ytApi = null;
+function loadYT() {
+  if (ytApi) return ytApi;
+  ytApi = new Promise((res, rej) => {
+    if (window.YT?.Player) return res(window.YT);
+    const prev = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => { prev?.(); res(window.YT); };
+    const s = document.createElement("script");
+    s.src = "https://www.youtube.com/iframe_api";
+    s.onerror = () => rej(new Error("api"));
+    document.head.appendChild(s);
+    setTimeout(() => rej(new Error("timeout")), 8000);
+  });
+  ytApi.catch(() => { ytApi = null; });
+  return ytApi;
+}
+const ytUrl = v => `https://www.youtube.com/watch?v=${v.id}${v.inicio ? "&t=" + v.inicio + "s" : ""}`;
+function setCredit(v) {
+  const c = $("#credit");
+  if (c) c.innerHTML = `${v.verificado ? "" : `<a class="unrev" href="#guia-videos" title="Todavía no lo has revisado">Sin revisar</a> `}${esc(v.instructor || "")}${v.canal && v.canal !== v.instructor ? " · " + esc(v.canal) : ""}${v.idioma === "es" ? " · en español" : ""} · <a href="${ytUrl(v)}" target="_blank" rel="noopener">Abrir en YouTube</a>`;
+}
+async function mountPlayer(v) {
+  cur = v; setCredit(v);
+  const box = $("#player"); if (!box) return;
+  try { player?.destroy?.(); } catch {}
+  player = null;
+  box.innerHTML = `<div id="yt"></div>`;
+  try {
+    const YT = await loadYT();
+    if (cur !== v || !document.getElementById("yt")) return;
+    const pv = { rel: 0, playsinline: 1, modestbranding: 1, start: v.inicio || 0 };
+    if (v.fin) pv.end = v.fin;
+    if (location.protocol.startsWith("http")) pv.origin = location.origin;
+    player = new YT.Player("yt", {
+      host: "https://www.youtube-nocookie.com",
+      videoId: v.id, playerVars: pv,
+      events: {
+        onReady: e => { try { e.target.setPlaybackRate(rate); } catch {} },
+        onStateChange: e => {
+          if (e.data === YT.PlayerState.ENDED && loop && cur) e.target.loadVideoById({ videoId: cur.id, startSeconds: cur.inicio || 0, ...(cur.fin ? { endSeconds: cur.fin } : {}) });
+          if (e.data === YT.PlayerState.PLAYING) { try { e.target.setPlaybackRate(rate); } catch {} }
+        },
+        onError: e => showError(v, e.data)
+      }
+    });
+  } catch {
+    const q = new URLSearchParams({ rel: 0, playsinline: 1, start: v.inicio || 0 });
+    if (v.fin) q.set("end", v.fin);
+    box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${v.id}?${q}" title="Vídeo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+  }
+}
+function playSegment(v) {
+  cur = v;
+  if (player?.loadVideoById) { player.loadVideoById({ videoId: v.id, startSeconds: v.inicio || 0, ...(v.fin ? { endSeconds: v.fin } : {}) }); setCredit(v); }
+  else mountPlayer(v);
+}
+function showError(v, code) {
+  const box = $("#player"); if (!box) return;
+  const why = code === 101 || code === 150 || code === 153 ? "El canal no deja ver este vídeo fuera de YouTube."
+    : code === 100 ? "Este vídeo ya no existe o es privado." : "YouTube no ha podido cargar el vídeo.";
+  box.innerHTML = `<div class="vmsg"><strong>${why}</strong><a href="${ytUrl(v)}" target="_blank" rel="noopener">Verlo en YouTube</a><small>Código ${code}. Prueba otro vídeo de la ficha o cámbialo en los datos.</small></div>`;
+}
+
+/* ---------- Búsqueda ---------- */
+const norm = s => String(s ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+const idx = [
+  ...D.FICHAS.map(f => ({ href: "#f-" + f.id, title: f.es, sub: `${S[f.seccion].nombre} · ${catName(f)}`, hay: norm([f.es, f.en, f.jp, f.pt, ...(f.alias || [])].join(" ")) })),
+  ...D.POSICIONES.filter(p => !p.pronto && p.lados && p.id !== "base").map(p => ({ href: "#p-" + p.id, title: p.es, sub: "Suelo · Posición", hay: norm([p.es, p.en, p.pt].join(" ")) })),
+  ...D.FASES.map(f => ({ href: "#fase-" + f.id, title: f.n, sub: "Fase del combate", hay: norm(f.n) })),
+  ...(D.GUIA || []).map(g => ({ href: "#guia-" + g.id, title: g.t, sub: "Guía", hay: norm(g.t + " " + g.r) })),
+  { href: "#falta", title: "Qué falta", sub: "Guía · pendientes y huecos", hay: norm("que falta pendientes huecos tanda") }
+];
+const q = $("#q"), res = $("#results");
+let sel = 0, hits = [];
+function drawResults() {
+  res.innerHTML = hits.length ? hits.map((h, i) => `<a href="${h.href}" class="${i === sel ? "sel" : ""}">${esc(h.title)}<br><small>${esc(h.sub)}</small></a>`).join("") : `<div style="padding:8px 10px;color:var(--muted)">Nada con ese nombre todavía.</div>`;
+  res.hidden = false;
+}
+q.addEventListener("input", () => {
+  const s = norm(q.value.trim());
+  if (!s) { res.hidden = true; return; }
+  hits = idx.filter(i => s.split(/\s+/).every(w => i.hay.includes(w))).slice(0, 10); sel = 0; drawResults();
+});
+q.addEventListener("keydown", e => {
+  if (res.hidden) return;
+  if (e.key === "ArrowDown") { sel = Math.min(sel + 1, hits.length - 1); drawResults(); e.preventDefault(); }
+  if (e.key === "ArrowUp") { sel = Math.max(sel - 1, 0); drawResults(); e.preventDefault(); }
+  if (e.key === "Enter" && hits[sel]) { location.hash = hits[sel].href; closeSearch(); }
+  if (e.key === "Escape") closeSearch();
+});
+res.addEventListener("click", closeSearch);
+document.addEventListener("click", e => { if (!e.target.closest(".search")) res.hidden = true; });
+function closeSearch() { res.hidden = true; q.value = ""; q.blur(); }
+
+/* ---------- Rutas ---------- */
+function route() {
+  const h = decodeURIComponent(location.hash.slice(1)) || "inicio";
+  try { player?.destroy?.(); } catch {} player = null; cur = null;
+  let navOn = null;
+  const m = h.match(/^(boxeo|lucha|suelo)(?:-(entrenar|ruta))?$/);
+  if (m) { renderSeccion(m[1], m[2] || "tecnicas"); navOn = m[1]; }
+  else if (h.startsWith("f-")) { renderFicha(h.slice(2)); navOn = F[h.slice(2)]?.seccion; }
+  else if (h.startsWith("p-")) { renderPos(h.slice(2)); navOn = "suelo"; }
+  else if (h.startsWith("fase-")) renderFase(h.slice(5));
+  else if (h === "plan") { renderPlan(); navOn = "plan"; }
+  else if (h === "guia") { renderGuia(null); navOn = "guia"; }
+  else if (h.startsWith("guia-")) { renderGuia(h.slice(5)); navOn = "guia"; }
+  else if (h === "falta") { renderFalta(); navOn = "guia"; }
+  else renderInicio();
+  $$("#nav a").forEach(a => a.classList.toggle("on", a.dataset.s === navOn));
+  window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", route);
+route();
+})();
+</script>
+</body>
+</html>

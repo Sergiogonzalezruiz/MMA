@@ -1,0 +1,118 @@
+#!/usr/bin/env node
+// Comprueba que los datos de la web son coherentes.
+// Uso: node scripts/validar.js
+// Sale con código 1 si hay errores (así GitHub marca el cambio en rojo).
+const { cargar } = require("./cargar");
+const M = cargar();
+
+const errores = [], avisos = [];
+const err = (donde, msg) => errores.push(`${donde}: ${msg}`);
+const aviso = (donde, msg) => avisos.push(`${donde}: ${msg}`);
+
+const SECC = Object.fromEntries(M.SECCIONES.map(s => [s.id, s]));
+const FASES = new Set(M.FASES.map(f => f.id));
+const MAT = new Set(Object.keys(M.MATERIAL));
+const POS = Object.fromEntries((M.POSICIONES || []).map(p => [p.id, p]));
+const JJU = new Set(M.JJU.flatMap(p => p.caps.map(c => c.id)));
+const NIVELES = new Set(Object.keys(M.NIVELES));
+const MMA_V = new Set(["muy alta", "alta", "media", "baja"]);
+const SOLO = new Set(["si", "parcial", "no"]);
+const GI = new Set(["ambos", "gi", "nogi"]);
+const ID_YT = /^[A-Za-z0-9_-]{11}$/;
+const FECHA = /^\d{4}-\d{2}-\d{2}$/;
+
+// ---------- Fichas ----------
+const ids = new Map();
+for (const f of M.FICHAS) {
+  const d = `${f.seccion || "?"} · ${f.id || "(sin id)"}`;
+  if (!f.id) { err(d, "falta el id"); continue; }
+  if (!/^[a-z0-9-]+$/.test(f.id)) err(d, "el id solo puede tener minúsculas, números y guiones");
+  if (ids.has(f.id)) err(d, `id repetido (ya lo usa otra ficha de ${ids.get(f.id)})`);
+  ids.set(f.id, f.seccion);
+}
+for (const f of M.FICHAS) {
+  const d = `${f.seccion || "?"} · ${f.id}`;
+  if (!SECC[f.seccion]) { err(d, `sección «${f.seccion}» no existe (boxeo, lucha o suelo)`); continue; }
+  if (!["tecnica", "drill"].includes(f.tipo)) err(d, `tipo «${f.tipo}» no válido (tecnica o drill)`);
+  if (f.tipo === "tecnica" && !SECC[f.seccion].categorias.some(c => c.id === f.cat))
+    err(d, `categoría «${f.cat}» no existe en ${f.seccion}. Valen: ${SECC[f.seccion].categorias.map(c => c.id).join(", ")}`);
+  for (const k of ["es", "en", "objetivo"]) if (!f[k] || typeof f[k] !== "string") err(d, `falta el campo «${k}»`);
+  if (!NIVELES.has(f.nivel)) err(d, `nivel «${f.nivel}» no válido (F, I o A)`);
+  if (!MMA_V.has(f.mma)) err(d, `mma «${f.mma}» no válido (muy alta, alta, media o baja)`);
+  if (!SOLO.has(f.solo)) err(d, `solo «${f.solo}» no válido (si, parcial o no)`);
+  if (f.gi && !GI.has(f.gi)) err(d, `gi «${f.gi}» no válido (ambos, gi o nogi)`);
+  if (!Array.isArray(f.fases) || !f.fases.length) err(d, "fases tiene que ser una lista con al menos una fase");
+  else for (const x of f.fases) if (!FASES.has(x)) err(d, `fase «${x}» no existe. Valen: ${[...FASES].join(", ")}`);
+  if (!Array.isArray(f.material) || !f.material.length) err(d, "material tiene que ser una lista (usa \"ninguno\" si no hace falta nada)");
+  else for (const m of f.material) if (!MAT.has(m)) err(d, `material «${m}» no existe. Valen: ${[...MAT].join(", ")}`);
+  if (!Array.isArray(f.pasos) || !f.pasos.length) err(d, "pasos tiene que tener al menos un paso");
+  for (const k of ["detalles", "errores", "combina", "reacciones"]) if (f[k] !== undefined && !Array.isArray(f[k])) err(d, `«${k}» tiene que ser una lista`);
+  for (const c of f.combina || []) if (!ids.has(c)) err(d, `combina con «${c}», que no existe`);
+  for (const r of f.reacciones || []) {
+    if (!r.si) err(d, "una reacción no tiene «si»");
+    if (r.ref && !ids.has(r.ref)) err(d, `una reacción enlaza a «${r.ref}», que no existe`);
+    if (!r.ref && !r.txt) err(d, "una reacción no tiene ni «ref» ni «txt»");
+  }
+  if (f.golpes && !(Array.isArray(f.golpes) && f.golpes.every(n => Number.isInteger(n) && n >= 1 && n <= 6)))
+    err(d, "golpes tiene que ser una lista de números del 1 al 6");
+  if (f.jju && !JJU.has(f.jju)) err(d, `capítulo de Jiu-Jitsu University «${f.jju}» no existe en datos-comun.js`);
+  for (const k of ["desde", "hasta"]) {
+    const v = f[k]; if (!v) continue;
+    if (!POS[v.pos]) err(d, `${k}: la posición «${v.pos}» no existe`);
+    else if (v.lado && !(v.lado in (POS[v.pos].lados || {}))) err(d, `${k}: la posición «${v.pos}» no tiene lado «${v.lado}»`);
+  }
+  if (f.seccion === "suelo" && !f.desde) aviso(d, "ficha de suelo sin «desde»: no aparecerá en ninguna posición");
+  if (f.tipo === "drill" && !f.dosis) aviso(d, "drill sin «dosis» (rondas y tiempo)");
+  if (!Array.isArray(f.videos)) { err(d, "videos tiene que ser una lista (puede estar vacía)"); continue; }
+  if (!f.videos.length) aviso(d, "sin vídeo");
+  const vistos = new Set();
+  f.videos.forEach((v, i) => {
+    const dv = `${d} · vídeo ${i + 1}`;
+    if (!ID_YT.test(v.id || "")) err(dv, `id de YouTube «${v.id}» no válido: son 11 caracteres (lo que va tras watch?v=)`);
+    if (vistos.has(v.id)) aviso(dv, "vídeo repetido en la misma ficha"); vistos.add(v.id);
+    if (typeof v.inicio !== "number" || v.inicio < 0) err(dv, "inicio tiene que ser un número de segundos (0 o más)");
+    if (v.fin !== null && v.fin !== undefined && (typeof v.fin !== "number" || v.fin <= v.inicio)) err(dv, "fin tiene que ser null o un número mayor que inicio");
+    if (v.verificado && !FECHA.test(v.verificado)) err(dv, "verificado tiene que ser una fecha AAAA-MM-DD");
+    if (!v.instructor) aviso(dv, "sin instructor ni título");
+    for (const [j, s] of (v.segmentos || []).entries()) {
+      if (!s.t) err(dv, `la parte ${j + 1} no tiene nombre (t)`);
+      if (typeof s.inicio !== "number") err(dv, `la parte ${j + 1} no tiene inicio`);
+      if (s.fin !== null && s.fin !== undefined && s.fin <= s.inicio) err(dv, `la parte ${j + 1} acaba antes de empezar`);
+    }
+  });
+}
+
+// ---------- Plan ----------
+for (const b of M.PLAN.sesion) for (const id of b.fichas) if (!ids.has(id)) err(`plan · ${b.t}`, `enlaza a la ficha «${id}», que no existe`);
+
+// ---------- Pendientes ----------
+const idsP = new Set();
+const nombres = new Map(M.FICHAS.flatMap(f => [f.es, f.en, ...(f.alias || [])].filter(Boolean).map(n => [n.toLowerCase(), f.id])));
+for (const p of M.PENDIENTES || []) {
+  const d = `pendiente · ${p.id}`;
+  if (!p.id || !/^p-[a-z0-9-]+$/.test(p.id)) err(d, "el id de un pendiente empieza por «p-» y solo lleva minúsculas, números y guiones");
+  if (idsP.has(p.id)) err(d, "id de pendiente repetido"); idsP.add(p.id);
+  if (!SECC[p.seccion]) err(d, `sección «${p.seccion}» no existe`);
+  if (!p.es) err(d, "falta el nombre (es)");
+  for (const c of M.CRITERIOS) {
+    const v = p[c.k];
+    if (!Number.isInteger(v) || v < 0 || v > c.max) err(d, `«${c.k}» tiene que ser un número entero de 0 a ${c.max}`);
+  }
+  if (!M.ESTADOS[p.estado]) err(d, `estado «${p.estado}» no válido. Valen: ${Object.keys(M.ESTADOS).join(", ")}`);
+  if (p.estado === "publicada" && !ids.has(p.ficha)) err(d, "está publicada pero «ficha» no apunta a una ficha que exista");
+  if (p.estado !== "publicada" && nombres.has((p.es || "").toLowerCase())) aviso(d, `ya hay una ficha con ese nombre (${nombres.get(p.es.toLowerCase())}); ¿márcalo como publicada?`);
+}
+
+// ---------- Resultado ----------
+const n = M.FICHAS.length, nv = M.FICHAS.reduce((a, f) => a + f.videos.length, 0);
+if (avisos.length) {
+  console.log(`\nAvisos (${avisos.length}) · no bloquean la publicación:`);
+  avisos.slice(0, 40).forEach(a => console.log("  · " + a));
+  if (avisos.length > 40) console.log(`  … y ${avisos.length - 40} más`);
+}
+if (errores.length) {
+  console.log(`\n✗ ${errores.length} error(es). Corrígelos antes de publicar:`);
+  errores.forEach(e => console.log("  ✗ " + e));
+  process.exit(1);
+}
+console.log(`\n✓ Datos correctos: ${n} fichas, ${nv} vídeos, ${(M.PENDIENTES || []).length} pendientes.`);
