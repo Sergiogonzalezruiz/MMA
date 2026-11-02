@@ -11,7 +11,7 @@ window.MMA = {
   MATERIAL: {
     ninguno: "Sin material", esterilla: "Esterilla", goma: "Goma elástica", cuerda: "Cuerda",
     pelota: "Pelota de tenis", espejo: "Espejo", comba: "Comba", cinta: "Cinta en el suelo",
-    pared: "Pared", saco: "Saco", companero: "Compañero", tatami: "Tatami"
+    pared: "Pared", muneco: "Manta enrollada o muñeco", saco: "Saco", companero: "Compañero", tatami: "Tatami"
   },
 
   NIVELES: { F: "Fundamentos", I: "Intermedio", A: "Avanzado" },

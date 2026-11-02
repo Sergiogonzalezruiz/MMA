@@ -72,8 +72,8 @@ MMA.PENDIENTES = [
   P("p-sum-ezequiel", "suelo", "Ezequiel desde la montada (sin gi)", "JJU 37-3", [1, 1, 0, 1]),
   P("p-sum-tobillo", "suelo", "Llave de tobillo recta", "JJU 41-1", [1, 1, 0, 1]),
   P("p-drill-breakfall", "suelo", "Caída y levantada técnica (drill)", "Informe MMA", [3, 2, 2, 2]),
-  P("p-drill-puente", "suelo", "Puente sobre el hombro (drill)", "Informe MMA", [2, 1, 2, 2]),
-  P("p-drill-sombra-suelo", "suelo", "Shadow grappling por cadenas (drill)", "Informe MMA", [2, 1, 2, 2]),
+  P("p-drill-puente", "suelo", "Puente sobre el hombro (drill)", "Informe MMA", [2, 1, 2, 2], { estado: "publicada", ficha: "su-drill-puente" }),
+  P("p-drill-sombra-suelo", "suelo", "Shadow grappling por cadenas (drill)", "Informe MMA", [2, 1, 2, 2], { estado: "publicada", ficha: "su-drill-sombra" }),
 
   // ---------------- LUCHA ----------------
   P("p-lu-down-block", "lucha", "Bloqueo abajo y marcos (down block)", "Informe MMA", [3, 2, 1, 2], { tanda: 2 }),

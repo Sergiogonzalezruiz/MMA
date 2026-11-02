@@ -48,6 +48,15 @@ for (const f of M.FICHAS) {
   if (!Array.isArray(f.pasos) || !f.pasos.length) err(d, "pasos tiene que tener al menos un paso");
   for (const k of ["detalles", "errores", "combina", "reacciones"]) if (f[k] !== undefined && !Array.isArray(f[k])) err(d, `«${k}» tiene que ser una lista`);
   for (const c of f.combina || []) if (!ids.has(c)) err(d, `combina con «${c}», que no existe`);
+  if (f.drills !== undefined && !Array.isArray(f.drills)) err(d, "«drills» tiene que ser una lista");
+  if (f.tipo === "tecnica" && !f.drills?.length) err(d, "falta «drills»: cada técnica necesita al menos un drill");
+  if (f.tipo === "drill" && f.drills?.length) err(d, "un drill no lleva «drills»: la relación se pone en la técnica");
+  for (const x of f.drills || []) {
+    const o = M.FICHAS.find(y => y.id === x);
+    if (!o) err(d, `drills enlaza a «${x}», que no existe`);
+    else if (o.tipo !== "drill") err(d, `drills enlaza a «${x}», que no es un drill`);
+  }
+  if (f.tipo === "drill" && !M.FICHAS.some(y => y.drills?.includes(f.id))) aviso(d, "drill sin técnica: ninguna técnica lo enlaza en «drills»");
   for (const r of f.reacciones || []) {
     if (!r.si) err(d, "una reacción no tiene «si»");
     if (r.ref && !ids.has(r.ref)) err(d, `una reacción enlaza a «${r.ref}», que no existe`);

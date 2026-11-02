@@ -8,7 +8,7 @@ La web es HTML estático, sin frameworks ni proceso de compilación, y se public
 
 | Archivo | Qué contiene |
 | --- | --- |
-| `index.html` | Toda la web: estilos, vistas, reproductor, buscador, guía y «Qué falta» |
+| `index.html` | Toda la web: estilos, vistas, reproductor, buscador, progreso, guía y «Qué falta» |
 | `datos-comun.js` | Secciones y categorías, rutas por nivel, mapa del combate (FASES, TRANSICIONES), plan de casa, estructura de Jiu-Jitsu University (JJU) |
 | `datos-boxeo.js`, `datos-lucha.js`, `datos-suelo.js` | Las fichas de cada sección. `datos-suelo.js` también tiene `MMA.POSICIONES` |
 | `pendientes.js` | Lista de todo lo que falta por añadir, con su puntuación |
@@ -52,6 +52,7 @@ node scripts/servir.js           # ver la web en http://localhost:8000
   detalles: ["2 detalles clave"],
   errores: ["2 errores típicos"],
   reacciones: [{ si: "El rival hace X", ref: "id-de-otra-ficha", txt: "Qué haces" }], // ref opcional
+  drills: ["ids de drills para entrenarla"],  // obligatorio en técnicas: al menos uno, el más directo primero
   combina: ["ids de fichas relacionadas"],
   videos: [V("ID_11_CHARS", "Instructor", { etiqueta: "En español", idioma: "es", inicio: 0, fin: null, verificado: "2026-11-20" })]
 }
@@ -59,7 +60,8 @@ node scripts/servir.js           # ver la web en http://localhost:8000
 
 - **Boxeo:** `golpes: [1, 2, 3]` con la numeración 1 jab, 2 directo, 3 gancho delantero, 4 gancho trasero, 5 uppercut delantero, 6 uppercut trasero.
 - **Suelo:** `gi: "ambos" | "gi" | "nogi"`, `desde: { pos, lado }`, `hasta: { pos, lado } | null`, `jju: "<id de capítulo>"`. Las posiciones y sus lados están en `MMA.POSICIONES` (datos-suelo.js); los capítulos en `MMA.JJU` (datos-comun.js). Los drills de suelo usan `desde: { pos: "base", lado: "neutral" }`.
-- **Drills:** `tipo: "drill"`, `dosis: "3 × 2 min · 1 min de descanso"`, `criterio: "Cuándo está superado, medible"`. Los drills de boxeo y lucha no llevan `cat`.
+- **Drills:** `tipo: "drill"`, `dosis: "3 × 2 min · 1 min de descanso"`, `criterio: "Cuándo está superado, medible"`. Los drills de boxeo y lucha no llevan `cat`. La relación con las técnicas se escribe solo en el campo `drills` de la técnica; la ficha del drill calcula «Técnicas que entrena». Si ningún drill sirve para una técnica nueva, crea uno.
+- **Progreso (Ni idea, Entrenando, Entrenada):** lo marca Sergio en la web y se guarda en `localStorage` del navegador. No va en los datos ni en el repositorio.
 - **Vídeos:** `V(id, instructor, extra)` está definida al principio de cada archivo de sección (en datos-suelo.js los vídeos están escritos como objetos completos: usa el mismo formato que las fichas vecinas). `segmentos: [{ t: "Nombre", inicio: 26, fin: 79 }]` divide un vídeo en partes. `verificado: "AAAA-MM-DD"` **solo lo pone Sergio** (o tú cuando él te diga que lo ha visto).
 
 ### Pendiente (en `pendientes.js`)

@@ -16,6 +16,7 @@ Prepara una tanda de fichas nuevas para la web. Argumento: $ARGUMENTS
 4. Para cada pendiente:
    - Escribe la ficha en `datos-<sección>.js`, en el bloque de su categoría, siguiendo el modelo de CLAUDE.md y el estilo de las fichas vecinas. Si es de suelo, enlázala con `desde`/`hasta` y `jju`.
    - Busca 1–3 vídeos como dice CLAUDE.md (sección «Vídeos: cómo buscarlos»). Comprueba título y canal de cada uno, de uno en uno.
+   - Si es una técnica, ponle al menos un drill en `drills`. Si es un drill, añádelo a `drills` de las técnicas que entrena.
    - Enlaza la ficha con las existentes (`combina`, `reacciones` con `ref`) y, si alguna ficha existente tenía una reacción sin `ref` que ahora tiene ficha, añádele el `ref`.
    - Cambia el pendiente a `estado: "en-tanda"`.
 5. Si una ficha nueva llena una posición marcada `pronto: true` en datos-suelo.js, quita `pronto` y añade `desc` y `lados` como en las demás posiciones.

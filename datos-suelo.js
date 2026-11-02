@@ -291,6 +291,9 @@ MMA.add([
       "Caer plano a la guardia, sin ángulo."
     ],
     "reacciones": [],
+    "drills": [
+      "su-drill-muneco"
+    ],
     "combina": [
       "lu-doble",
       "raspado-cadera"
@@ -356,6 +359,9 @@ MMA.add([
         "ref": "armbar-guardia",
         "txt": "Cambia a la llave de brazo"
       }
+    ],
+    "drills": [
+      "su-drill-cadera"
     ],
     "combina": [
       "armbar-guardia"
@@ -431,6 +437,10 @@ MMA.add([
         "ref": "triangulo",
         "txt": "Ataca el triángulo"
       }
+    ],
+    "drills": [
+      "su-drill-cadera",
+      "su-drill-muneco"
     ],
     "combina": [
       "triangulo"
@@ -518,6 +528,10 @@ MMA.add([
         "txt": "Usa ese agarre para raspar (raspado de kimura)"
       }
     ],
+    "drills": [
+      "su-drill-muneco",
+      "su-drill-cadera"
+    ],
     "combina": [
       "raspado-cadera"
     ],
@@ -589,6 +603,10 @@ MMA.add([
       "No controlar el brazo: lo pone en el suelo y frena."
     ],
     "reacciones": [],
+    "drills": [
+      "su-drill-cadera",
+      "gamba"
+    ],
     "combina": [
       "raspado-cadera"
     ],
@@ -662,6 +680,10 @@ MMA.add([
         "txt": "Ataca la guillotina"
       }
     ],
+    "drills": [
+      "su-drill-cadera",
+      "su-sit-out"
+    ],
     "combina": [
       "kimura-guardia",
       "guillotina"
@@ -725,6 +747,9 @@ MMA.add([
       "Intentar abrir con los brazos en vez de con la cadera."
     ],
     "reacciones": [],
+    "drills": [
+      "su-drill-sombra"
+    ],
     "combina": [],
     "videos": [
       {
@@ -791,6 +816,10 @@ MMA.add([
         "ref": "codo-rodilla",
         "txt": "Cambia al escape de codo-rodilla"
       }
+    ],
+    "drills": [
+      "su-drill-puente",
+      "su-rutina-solo"
     ],
     "combina": [
       "codo-rodilla"
@@ -869,6 +898,11 @@ MMA.add([
         "txt": "Vuelve a intentar el upa"
       }
     ],
+    "drills": [
+      "gamba",
+      "su-drill-puente",
+      "su-rutina-solo"
+    ],
     "combina": [
       "upa",
       "gamba"
@@ -945,6 +979,10 @@ MMA.add([
         "txt": "Pasa a la llave de brazo"
       }
     ],
+    "drills": [
+      "su-drill-muneco",
+      "su-drill-sombra"
+    ],
     "combina": [
       "armbar-montada"
     ],
@@ -1010,6 +1048,10 @@ MMA.add([
         "si": "Junta las manos para defender",
         "txt": "Rompe primero ese agarre y luego extiende"
       }
+    ],
+    "drills": [
+      "su-drill-muneco",
+      "su-drill-sombra"
     ],
     "combina": [
       "americana-montada"
@@ -1077,6 +1119,11 @@ MMA.add([
         "txt": "Encadena otra gamba o vete a rodillas"
       }
     ],
+    "drills": [
+      "gamba",
+      "su-granby",
+      "su-rutina-solo"
+    ],
     "combina": [
       "gamba"
     ],
@@ -1141,6 +1188,9 @@ MMA.add([
         "txt": "Pelea primero sus manos o cambia de lado"
       }
     ],
+    "drills": [
+      "su-drill-muneco"
+    ],
     "combina": [],
     "videos": [
       {
@@ -1200,6 +1250,10 @@ MMA.add([
       "Intentar levantarse con él colgado de la espalda."
     ],
     "reacciones": [],
+    "drills": [
+      "su-drill-puente",
+      "gamba"
+    ],
     "combina": [],
     "videos": [
       {
@@ -1389,6 +1443,9 @@ MMA.add([
         "txt": "Ataca el triángulo"
       }
     ],
+    "drills": [
+      "su-drill-cadera"
+    ],
     "combina": [
       "su-arm-triangle",
       "su-wrestle-up"
@@ -1456,6 +1513,9 @@ MMA.add([
         "txt": "Aprovecha para pasar"
       }
     ],
+    "drills": [
+      "su-drill-sombra"
+    ],
     "combina": [
       "abrir-guardia"
     ],
@@ -1516,6 +1576,10 @@ MMA.add([
       "Quedarte sentado esperando."
     ],
     "reacciones": [],
+    "drills": [
+      "su-sit-out",
+      "levantamiento"
+    ],
     "combina": [
       "lu-single",
       "levantamiento"
@@ -1587,6 +1651,10 @@ MMA.add([
         "txt": "Ve a la pierna simple"
       }
     ],
+    "drills": [
+      "gamba",
+      "su-drill-sombra"
+    ],
     "combina": [
       "lu-single"
     ],
@@ -1644,6 +1712,9 @@ MMA.add([
       "Dejar hueco entre tu cabeza y su brazo."
     ],
     "reacciones": [],
+    "drills": [
+      "su-drill-muneco"
+    ],
     "combina": [
       "su-defensa-golpes"
     ],
@@ -1662,6 +1733,246 @@ MMA.add([
         "instructor": "Learn to Grapple",
         "idioma": "en",
         "etiqueta": "Otra explicación"
+      }
+    ]
+  },
+  {
+    "id": "su-drill-puente",
+    "seccion": "suelo",
+    "tipo": "drill",
+    "cat": "movimiento",
+    "gi": "ambos",
+    "desde": {
+      "pos": "base",
+      "lado": "neutral"
+    },
+    "hasta": null,
+    "reacciones": [],
+    "es": "Puente sobre el hombro",
+    "en": "Shoulder bridge drill",
+    "nivel": "F",
+    "mma": "alta",
+    "fases": [
+      "suelo-abajo"
+    ],
+    "solo": "si",
+    "material": [
+      "esterilla"
+    ],
+    "objetivo": "Sacar potencia de la cadera para el upa y para escapar de la espalda.",
+    "pasos": [
+      "Túmbate boca arriba con los pies cerca del culo y los codos pegados.",
+      "Empuja con los pies y sube la cadera todo lo que puedas.",
+      "Gira y apoya un hombro, mirando por encima de él.",
+      "Baja con control y repite hacia el otro lado."
+    ],
+    "detalles": [
+      "El peso va sobre el hombro y la parte alta de la espalda, nunca sobre el cuello.",
+      "Empieza despacio y sube el ritmo solo si el cuello no carga."
+    ],
+    "errores": [
+      "Empujar con la espalda en vez de con las piernas.",
+      "Abrir los codos al subir."
+    ],
+    "combina": [
+      "gamba"
+    ],
+    "dosis": "3 × 20 alternando lados",
+    "criterio": "20 puentes seguidos tocando el suelo con el hombro cada vez y sin separar los codos.",
+    "videos": [
+      {
+        "id": "hgy9JMwpCv8",
+        "inicio": 0,
+        "fin": null,
+        "instructor": "Grappling SMARTY",
+        "idioma": "en"
+      },
+      {
+        "id": "3hb3eaRdpZ0",
+        "inicio": 0,
+        "fin": null,
+        "instructor": "Balance Jiu-Jitsu",
+        "idioma": "en",
+        "etiqueta": "Otra serie"
+      }
+    ]
+  },
+  {
+    "id": "su-drill-cadera",
+    "seccion": "suelo",
+    "tipo": "drill",
+    "cat": "movimiento",
+    "gi": "ambos",
+    "desde": {
+      "pos": "base",
+      "lado": "neutral"
+    },
+    "hasta": null,
+    "reacciones": [],
+    "es": "Cadera desde la guardia",
+    "en": "Solo guard hip drill",
+    "nivel": "I",
+    "mma": "media",
+    "fases": [
+      "suelo-abajo"
+    ],
+    "solo": "si",
+    "material": [
+      "esterilla"
+    ],
+    "objetivo": "Levantar la cadera y girarla, que es el movimiento de los ataques desde la guardia.",
+    "pasos": [
+      "Siéntate con las rodillas dobladas y rueda hacia atrás.",
+      "Sube la cadera bien alta y gírala 45 grados.",
+      "Arriba, dobla una pierna por detrás de la otra rodilla, como al cerrar un triángulo.",
+      "Baja, vuelve a sentarte y repite hacia el otro lado."
+    ],
+    "detalles": [
+      "Gira sobre el hombro, no sobre el cuello.",
+      "La cadera tiene que quedar más alta que los hombros en cada repetición."
+    ],
+    "errores": [
+      "Subir con impulso de los brazos.",
+      "Quedarte plano sobre la espalda sin girar."
+    ],
+    "combina": [
+      "gamba"
+    ],
+    "dosis": "3 × 10 por lado",
+    "criterio": "10 por lado subiendo la cadera por encima de los hombros en todas.",
+    "videos": [
+      {
+        "id": "Nz8_cn1TmRc",
+        "inicio": 0,
+        "fin": null,
+        "instructor": "Valhalla Academy",
+        "idioma": "en",
+        "etiqueta": "Triángulo"
+      },
+      {
+        "id": "18cjQk413k8",
+        "inicio": 0,
+        "fin": null,
+        "instructor": "James O’Connor",
+        "idioma": "en",
+        "etiqueta": "Llave de brazo"
+      }
+    ]
+  },
+  {
+    "id": "su-drill-sombra",
+    "seccion": "suelo",
+    "tipo": "drill",
+    "cat": "movimiento",
+    "gi": "ambos",
+    "desde": {
+      "pos": "base",
+      "lado": "neutral"
+    },
+    "hasta": null,
+    "reacciones": [],
+    "es": "Shadow grappling por cadenas",
+    "en": "Shadow grappling",
+    "nivel": "I",
+    "mma": "alta",
+    "fases": [
+      "suelo-arriba",
+      "suelo-abajo"
+    ],
+    "solo": "si",
+    "material": [
+      "esterilla"
+    ],
+    "objetivo": "Encadenar posiciones de suelo en sombra, igual que la sombra de boxeo.",
+    "pasos": [
+      "Elige una cadena antes de empezar.",
+      "Arriba: postura en la guardia, golpes, abrir, pasar, montada y americana.",
+      "Abajo: gamba, recuperar la guardia, sentarte y levantarte.",
+      "Repite la misma cadena toda la ronda, imaginando al rival."
+    ],
+    "detalles": [
+      "Una cadena por ronda: si improvisas al principio, no se fija ninguna.",
+      "Mantén la cadera baja y el peso sobre un rival imaginario cuando vas arriba."
+    ],
+    "errores": [
+      "Correr y hacer los movimientos a medias.",
+      "Quedarte quieto entre posiciones."
+    ],
+    "combina": [
+      "gamba",
+      "levantamiento"
+    ],
+    "dosis": "3 × 3 min · 1 min de descanso",
+    "criterio": "3 rondas repitiendo la misma cadena completa, sin pararte a pensar el siguiente paso.",
+    "videos": [
+      {
+        "id": "yLKTfEwVaFQ",
+        "inicio": 0,
+        "fin": null,
+        "instructor": "Dom Tsui",
+        "idioma": "en"
+      }
+    ]
+  },
+  {
+    "id": "su-drill-muneco",
+    "seccion": "suelo",
+    "tipo": "drill",
+    "cat": "movimiento",
+    "gi": "ambos",
+    "desde": {
+      "pos": "base",
+      "lado": "neutral"
+    },
+    "hasta": null,
+    "reacciones": [],
+    "es": "Sumisiones con manta enrollada",
+    "en": "Submission reps on a dummy",
+    "nivel": "I",
+    "mma": "alta",
+    "fases": [
+      "suelo-arriba",
+      "suelo-abajo"
+    ],
+    "solo": "parcial",
+    "material": [
+      "esterilla",
+      "muneco"
+    ],
+    "objetivo": "Repetir la colocación de manos y piernas de las sumisiones sin compañero.",
+    "pasos": [
+      "Enrolla una manta gruesa y átala, o usa un muñeco de grappling si lo tienes.",
+      "Elige una sumisión por serie y colócate despacio: agarre, codos, cadera.",
+      "Aprieta dos segundos, suelta y repite.",
+      "Cambia de lado en cada serie."
+    ],
+    "detalles": [
+      "Sirve para la colocación. El control y el apriete reales solo se validan con compañero y tatami.",
+      "Mira los pasos de la ficha de cada sumisión y compáralos con lo que haces."
+    ],
+    "errores": [
+      "Ir a por la fuerza en vez de a por la posición.",
+      "Repetir siempre por el mismo lado."
+    ],
+    "combina": [],
+    "dosis": "3 × 10 por sumisión",
+    "criterio": "10 repeticiones por lado colocando el agarre a la primera, sin mirarte las manos.",
+    "videos": [
+      {
+        "id": "E7y5JUonP7k",
+        "inicio": 0,
+        "fin": null,
+        "instructor": "Ramon",
+        "idioma": "en",
+        "etiqueta": "15 sumisiones"
+      },
+      {
+        "id": "X5CZBwqtKcY",
+        "inicio": 0,
+        "fin": null,
+        "instructor": "Chasen Hill",
+        "idioma": "en",
+        "etiqueta": "Cadena desde la montada"
       }
     ]
   }

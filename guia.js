@@ -232,6 +232,7 @@ ${sh("git pull\n# edita el archivo\nnode scripts/validar.js\ngit commit -am \"Co
   detalles: ["Detalle clave 1.", "Detalle clave 2."],
   errores: ["Error típico 1.", "Error típico 2."],
   reacciones: [],
+  drills: ["lu-drill-penetraciones"],
   combina: ["lu-collar"],
   videos: [V("XXXXXXXXXXX", "Nombre del instructor")]
 },</pre></div>
@@ -267,6 +268,7 @@ ${pr("/revisar-videos")}
 <tr><td>Error de sintaxis en datos-…js</td><td>Falta o sobra una coma, comilla o corchete cerca de la línea indicada. La web sale en blanco hasta arreglarlo.</td></tr>
 <tr><td>id repetido</td><td>Dos fichas con el mismo id. Cambia uno.</td></tr>
 <tr><td>combina con «x», que no existe</td><td>Enlace a una ficha con otro nombre o que no existe todavía.</td></tr>
+<tr><td>falta «drills»</td><td>Cada técnica necesita al menos un drill. Añade su id en <code>drills</code> o crea el drill.</td></tr>
 <tr><td>categoría «x» no existe</td><td>El campo <code>cat</code> no coincide con las categorías de la sección. El mensaje dice cuáles valen.</td></tr>
 <tr><td>id de YouTube no válido</td><td>El id son las 11 letras tras <code>watch?v=</code>, sin el resto del enlace.</td></tr>
 <tr><td>fin tiene que ser mayor que inicio</td><td>Tiempos al revés o en minutos en vez de segundos.</td></tr>

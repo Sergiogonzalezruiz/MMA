@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Mapa MMA</title>
+<script>try{const t=JSON.parse(localStorage.getItem("mapa-mma-tema"));if(t)document.documentElement.dataset.theme=t}catch{}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
@@ -42,6 +43,7 @@
 [data-sec="lucha"]{--acc:var(--lu);--acc-soft:var(--lu-soft)}
 [data-sec="suelo"]{--acc:var(--su);--acc-soft:var(--su-soft)}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);-webkit-font-smoothing:antialiased}
 a{color:var(--acc)}
@@ -52,7 +54,7 @@ button{font:inherit;color:inherit}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--head-bg)}
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--head-bg);color:var(--head-fg);
   padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.top-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap}
+.top-in{max-width:1208px;margin:0 auto;display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap}
 .brand{font:700 25px/1 var(--display);letter-spacing:.03em;text-transform:uppercase;color:var(--head-fg);text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap}
 .bars{display:inline-flex;gap:3px}
 .bars i{display:block;width:6px;height:18px;border-radius:2px}
@@ -61,8 +63,8 @@ nav.main{display:flex;gap:2px}
 nav.main a{color:color-mix(in srgb,var(--head-fg) 72%,transparent);text-decoration:none;font:600 17px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;padding:9px 11px;border-radius:7px;border-bottom:3px solid transparent}
 nav.main a:hover{color:var(--head-fg);background:color-mix(in srgb,var(--head-fg) 10%,transparent)}
 nav.main a.on{color:var(--head-fg)}
-nav.main a.on[data-s="boxeo"]{border-color:var(--box)} nav.main a.on[data-s="lucha"]{border-color:var(--lu)} nav.main a.on[data-s="suelo"]{border-color:var(--su)} nav.main a.on[data-s="plan"],nav.main a.on[data-s="guia"]{border-color:var(--ok)}
-.search{position:relative;flex:1;min-width:200px;max-width:380px;margin-left:auto}
+nav.main a.on[data-s="boxeo"]{border-color:var(--box)} nav.main a.on[data-s="lucha"]{border-color:var(--lu)} nav.main a.on[data-s="suelo"]{border-color:var(--su)} nav.main a.on[data-s="plan"],nav.main a.on[data-s="progreso"]{border-color:var(--ok)}
+.search{position:relative;flex:1;min-width:0;max-width:380px;margin-left:auto}
 .search input{width:100%;border:0;border-radius:8px;padding:9px 12px;background:color-mix(in srgb,var(--head-fg) 14%,var(--head-bg));color:var(--head-fg);font:inherit}
 .search input::placeholder{color:color-mix(in srgb,var(--head-fg) 55%,transparent)}
 .results{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 12px 30px rgb(0 0 0/.18);max-height:60vh;overflow:auto;padding:6px}
@@ -71,7 +73,7 @@ nav.main a.on[data-s="boxeo"]{border-color:var(--box)} nav.main a.on[data-s="luc
 .results small{color:var(--muted)}
 
 /* ---------- Estructura ---------- */
-main{max-width:1180px;margin:0 auto;padding-block:26px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:1240px;margin:0 auto;padding-block:26px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 h1{font:700 clamp(36px,5.5vw,56px)/1 var(--display);text-transform:uppercase;letter-spacing:.01em;margin:0;text-wrap:balance}
 h2{font:700 24px/1.1 var(--display);text-transform:uppercase;letter-spacing:.03em;margin:0 0 12px;text-wrap:balance}
 h3{font:700 19px/1.1 var(--display);text-transform:uppercase;letter-spacing:.04em;margin:0 0 8px}
@@ -95,23 +97,74 @@ h3{font:700 19px/1.1 var(--display);text-transform:uppercase;letter-spacing:.04e
 a.chip:hover{outline:1px solid currentColor}
 
 /* ---------- Pestañas ---------- */
-.tabs{display:flex;gap:4px;margin-top:22px;border-bottom:2px solid var(--line);overflow-x:auto}
+.tabs{display:flex;gap:4px;margin-top:22px;border-bottom:2px solid var(--line);overflow:auto hidden}
 .tabs a,.tabs button{border:0;background:none;padding:10px 16px;font:700 18px/1 var(--display);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;text-decoration:none;white-space:nowrap}
 .tabs .on,.tabs [aria-selected="true"]{color:var(--ink);border-color:var(--acc)}
 
 /* ---------- Tarjetas ---------- */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-.tcard{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px;text-decoration:none;color:var(--ink);transition:border-color .15s}
-.tcard:hover{border-color:var(--acc)}
-.thumb{aspect-ratio:16/9;max-width:100%;border-radius:6px;background:var(--surface-2) center/cover no-repeat;position:relative}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.tcard{position:relative;display:flex;flex-direction:column;gap:5px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 10px 12px;color:var(--ink);transition:border-color .15s,transform .15s,box-shadow .15s}
+.tcard:hover{border-color:var(--acc);transform:translateY(-2px);box-shadow:0 6px 18px rgb(0 0 0/.12)}
+.tcard[data-e="entrenando"]{border-color:var(--lu);box-shadow:inset 0 0 0 1px var(--lu)}
+.tcard[data-e="hecha"]{border-color:var(--ok)}
+.thumb{aspect-ratio:16/9;max-width:100%;border-radius:6px;background:var(--surface-2);position:relative;overflow:hidden;margin-bottom:4px}
+.thumb img{display:block;width:100%;height:100%;object-fit:cover}
 .thumb.play::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-35%,-50%);border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent;filter:drop-shadow(0 1px 3px rgb(0 0 0/.6))}
 .thumb.none{display:flex;align-items:center;justify-content:center;color:var(--muted);font:600 13px var(--display);letter-spacing:.1em;text-transform:uppercase}
-.tcard strong{font:700 20px/1.1 var(--display);text-transform:uppercase;letter-spacing:.02em}
-.tcard small{color:var(--muted)}
-.tcard .chips{margin-top:2px}
+.tlink{color:var(--ink);text-decoration:none;font:700 21px/1.1 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.tlink::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.tlink:focus-visible{outline:0}
+.tlink:focus-visible::after{outline:2px solid var(--acc);outline-offset:2px}
+.tcard small{color:var(--muted);line-height:1.3}
+.meta{color:var(--muted);font-size:13px;line-height:1.35;margin-top:auto;padding-top:3px}
 .nums{display:flex;gap:4px}
 .num{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--bg);font:700 15px/1 var(--display)}
 .nums.big .num{min-width:40px;height:40px;font-size:22px}
+
+/* ---------- Marcador de estado ---------- */
+.mark{position:absolute;top:16px;right:16px;z-index:2;display:inline-flex;align-items:center;gap:5px;border:0;min-height:30px;padding:4px 10px 4px 7px;border-radius:999px;background:var(--surface);color:var(--muted);font:600 13px/1 var(--body);cursor:pointer;box-shadow:0 1px 4px rgb(0 0 0/.3)}
+.mark:hover{color:var(--ink)}
+.mark svg,.seg svg{width:16px;height:16px;flex:none}
+.mark[data-e="entrenando"]{background:var(--lu);color:var(--surface)}
+.mark[data-e="hecha"]{background:var(--ok);color:var(--surface)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;border:2px solid var(--muted);margin-right:6px;flex:none;vertical-align:baseline}
+.dot[data-e="entrenando"]{border-color:var(--lu);background:var(--lu)}
+.dot[data-e="hecha"]{border-color:var(--ok);background:var(--ok)}
+.seg{display:inline-flex;max-width:100%;overflow-x:auto;scrollbar-width:none;background:var(--surface-2);border-radius:9px;padding:3px;gap:2px}
+.seg button{border:0;background:none;padding:7px 11px;border-radius:7px;font:600 14px/1 var(--body);color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgb(0 0 0/.18)}
+.seg .n{color:var(--muted);font-weight:500;font-variant-numeric:tabular-nums}
+.seg.estado{margin-top:14px}
+.seg.estado button{padding:10px 14px;font-size:15px}
+.seg.estado button[data-set="entrenando"][aria-pressed="true"]{background:var(--lu);color:var(--surface)}
+.seg.estado button[data-set="hecha"][aria-pressed="true"]{background:var(--ok);color:var(--surface)}
+
+/* ---------- Barra de progreso ---------- */
+.prog{margin-top:12px;max-width:560px}
+.prog .bar{display:flex;height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.prog .bar i{display:block;height:100%}
+.prog .bar .h{background:var(--ok)}
+.prog .bar .e{background:var(--lu)}
+.prog small{display:block;margin-top:5px;color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+.sec .prog{margin-top:0;max-width:none}
+
+/* ---------- Filtros ---------- */
+.fbar{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:18px;padding:8px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.vacio{margin-top:18px}
+
+/* ---------- Tarjeta pequeña de drill ---------- */
+.minis{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.mini{position:relative;display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:8px;transition:border-color .15s}
+.mini:hover{border-color:var(--acc)}
+.mini .th{width:96px;aspect-ratio:16/9;border-radius:5px;background:var(--surface-2);overflow:hidden}
+.mini .th img{display:block;width:100%;height:100%;object-fit:cover}
+.mini .tlink{font-size:18px}
+.mini small{display:block;color:var(--muted);font-size:13px;line-height:1.3;margin-top:2px}
+.mini .mark{position:relative;top:auto;right:auto;padding:7px;box-shadow:none;background:var(--surface-2)}
+.mini .mark span{display:none}
+.mini .mark[data-e="entrenando"]{background:var(--lu)}
+.mini .mark[data-e="hecha"]{background:var(--ok)}
 
 /* ---------- Portada ---------- */
 .mapbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:18px;overflow-x:auto}
@@ -149,7 +202,6 @@ a.chip:hover{outline:1px solid currentColor}
 .vbar .btn{font-size:14px;padding:6px 10px}
 .credit{margin-left:auto;color:var(--muted);font-size:14px}
 .novideo{margin-top:20px;border:2px dashed var(--line);border-radius:12px;padding:28px;text-align:center;color:var(--muted)}
-.cols{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:30px;margin-top:26px}
 .block{margin-bottom:26px}
 ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:10px}
 ol.steps li{counter-increment:s;display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start}
@@ -177,7 +229,7 @@ ul.err li::marker{color:var(--box)}
 .level .que{margin:0 0 12px;max-width:75ch}
 .checks{list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:6px}
 .checks li{display:grid;grid-template-columns:20px 1fr;gap:8px}
-.checks li::before{content:"";width:14px;height:14px;border:2px solid var(--ok);border-radius:3px;margin-top:4px}
+.checks li::before{content:"";width:8px;height:8px;background:var(--ok);border-radius:50%;margin:8px 0 0 3px}
 .jju{display:grid;gap:12px;margin-top:14px}
 .jpart{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
 .jpart header{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:10px}
@@ -252,18 +304,61 @@ code{font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;backgrou
 .filters select{font:inherit;padding:5px 8px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
 .unrev{display:inline-flex;align-items:center;gap:6px;font:600 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--lu);background:var(--lu-soft);padding:4px 8px;border-radius:5px;text-decoration:none}
 
+/* ---------- Ficha: vídeo fijo y texto al lado ---------- */
+.fmain{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:28px;margin-top:22px;align-items:start}
+.fvideo{position:sticky;top:76px}
+.fvideo .player-wrap,.fvideo .novideo{margin-top:0}
+.fmore{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4px 28px;margin-top:8px}
+.fstrip{margin:30px 0}
+.fmain .block:last-child{margin-bottom:0}
+
+/* ---------- Progreso ---------- */
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.stat b{display:block;font:700 40px/1 var(--display);font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:14px}
+.stat.e b{color:var(--lu)} .stat.h b{color:var(--ok)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:6px}
+.pgrid .panel + .panel{margin-top:0}
+.pgrid .prog{margin-top:6px}
+.acciones{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.aviso-e{color:var(--box);font-size:14px;margin-top:8px}
+
+/* ---------- Tema y pie ---------- */
+.icon-btn{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;flex:none;border:0;border-radius:8px;background:color-mix(in srgb,var(--head-fg) 14%,var(--head-bg));color:var(--head-fg);cursor:pointer}
+.icon-btn:hover{background:color-mix(in srgb,var(--head-fg) 24%,var(--head-bg))}
+.icon-btn svg{width:18px;height:18px}
+.pie{max-width:1240px;margin:0 auto;padding-block:0 28px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--muted);font-size:14px}
+.pie a{color:var(--muted)}
+.pie a:hover{color:var(--ink)}
+
+@media (min-width:861px){
+  .fbar{position:sticky;top:68px;z-index:10;box-shadow:0 4px 14px rgb(0 0 0/.08)}
+}
+
 @media (max-width:860px){
   .glayout{grid-template-columns:minmax(0,1fr);gap:14px}
   .gnav{position:static;flex-direction:row;overflow-x:auto;gap:6px;padding-bottom:4px}
   .gnav a{white-space:nowrap;background:var(--surface);border:1px solid var(--line)}
   .gnav .sep{display:none}
   .secs{grid-template-columns:minmax(0,1fr)}
-  .cols{grid-template-columns:minmax(0,1fr)}
+  .fmain{grid-template-columns:minmax(0,1fr);gap:22px}
+  .fvideo{position:static}
+  .stats{gap:8px}
+  .stat b{font-size:32px}
   .credit{margin-left:0;width:100%}
-  .search{max-width:none;order:3;flex-basis:100%}
-  nav.main{margin-left:auto}
-  nav.main a{padding:8px 7px;font-size:15px}
+  .top-in{flex-wrap:nowrap}
+  .search{max-width:none;margin-left:0}
+  nav.main{position:fixed;left:0;right:0;bottom:0;z-index:25;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;background:var(--head-bg);padding-bottom:env(safe-area-inset-bottom,0px)}
+  nav.main a{padding:15px 2px;font-size:15px;letter-spacing:.03em;text-align:center;border-radius:0;border-bottom:0;border-top:3px solid transparent}
+  body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
   .brand span.t{display:none}
+  .mark{top:14px;right:14px}
+  .seg.estado{display:flex}
+  .seg.estado button{flex:1;justify-content:center;padding:10px 6px}
+  .fbar .seg button{padding:7px 8px;font-size:13px}
+  .fbar .seg{width:100%;flex-wrap:wrap}
+  .fbar .seg button{flex:1 0 auto;justify-content:center}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -277,16 +372,18 @@ code{font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;backgrou
       <a href="#lucha" data-s="lucha">Lucha</a>
       <a href="#suelo" data-s="suelo">Suelo</a>
       <a href="#plan" data-s="plan">Plan</a>
-      <a href="#guia" data-s="guia">Guía</a>
+      <a href="#progreso" data-s="progreso">Progreso</a>
     </nav>
     <div class="search">
-      <input id="q" type="search" placeholder="Buscar: jab, sprawl, o-uchi, mataleón…" autocomplete="off" aria-label="Buscar">
+      <input id="q" type="search" placeholder="Buscar: jab, sprawl, mataleón…" autocomplete="off" aria-label="Buscar">
       <div class="results" id="results" hidden></div>
     </div>
+    <button class="icon-btn" id="tema" type="button" aria-label="Cambiar entre tema claro y oscuro" title="Tema claro u oscuro"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg></button>
   </div>
 </header>
 
 <main id="main"></main>
+<footer class="pie"><span>Mapa MMA</span><a href="#guia">Guía</a><a href="#falta">Qué falta</a><a href="https://github.com/Sergiogonzalezruiz/MMA" target="_blank" rel="noopener">GitHub</a></footer>
 
 <script src="datos-comun.js"></script>
 <script src="datos-boxeo.js"></script>
@@ -318,7 +415,86 @@ const posLabel = (pos, lado) => `${P[pos]?.es ?? pos}${lado && LADOS[lado] ? " �
 const thumb = id => `https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
 const setSec = s => { if (s) document.body.dataset.sec = s; else delete document.body.dataset.sec; };
 
+/* ---------- Progreso: se guarda solo en este navegador ---------- */
+const CLAVE = "mapa-mma-progreso";
+const leer = (k, def) => { try { return JSON.parse(localStorage.getItem(k)) ?? def; } catch { return def; } };
+const guardar = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
+const hoy = () => new Date().toISOString().slice(0, 10);
+let progreso = leer(CLAVE, {});
+const SIG = { nada: "entrenando", entrenando: "hecha", hecha: "nada" };
+const estadoDe = id => progreso[id]?.e ?? "nada";
+const txtEstado = (id, e = estadoDe(id)) => e === "nada" ? "Ni idea" : e === "entrenando" ? "Entrenando" : F[id]?.tipo === "drill" ? "Entrenado" : "Entrenada";
+const ICO = {
+  nada: `<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="2"/></svg>`,
+  entrenando: `<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor"/></svg>`,
+  hecha: `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+};
+function setEstado(id, e) {
+  if (e === "nada") delete progreso[id]; else progreso[id] = { e, t: hoy() };
+  guardar(CLAVE, progreso);
+  pintarEstados();
+}
+const fichasDe = k => { const [s, n] = k.split(":"); return D.FICHAS.filter(f => (s === "all" || f.seccion === s) && (!n || f.nivel === n)); };
+function barra(lista) {
+  const n = lista.length, h = lista.filter(f => estadoDe(f.id) === "hecha").length, e = lista.filter(f => estadoDe(f.id) === "entrenando").length;
+  return `<div class="bar"><i class="h" style="width:${n ? h / n * 100 : 0}%"></i><i class="e" style="width:${n ? e / n * 100 : 0}%"></i></div>
+    <small>${h} ${h === 1 ? "entrenada" : "entrenadas"} · ${e} entrenando · ${n - h - e} sin empezar</small>`;
+}
+// Actualiza en la página todo lo que depende del progreso, sin volver a pintarla (el vídeo sigue sonando)
+function pintarEstados() {
+  $$("[data-mark]").forEach(b => {
+    const id = b.dataset.mark, e = estadoDe(id), t = txtEstado(id, e);
+    b.dataset.e = e;
+    b.innerHTML = `${ICO[e]}<span>${t}</span>`;
+    b.setAttribute("aria-label", `${F[id].es}: ${t}. Toca para cambiar a ${txtEstado(id, SIG[e])}`);
+    b.title = `Toca para cambiar a ${txtEstado(id, SIG[e])}`;
+  });
+  $$(".tcard,.mini").forEach(c => { c.dataset.e = estadoDe(c.dataset.id); });
+  $$("[data-dot]").forEach(d => { d.dataset.e = estadoDe(d.dataset.dot); });
+  $$("[data-set]").forEach(b => b.setAttribute("aria-pressed", estadoDe(b.dataset.id) === b.dataset.set));
+  $$("[data-prog]").forEach(p => { p.innerHTML = barra(fichasDe(p.dataset.prog)); });
+  $$("[data-cuenta]").forEach(s => {
+    const k = s.dataset.cuenta, c = $$(".tcard");
+    s.textContent = k ? c.filter(x => x.dataset.e === k).length : c.length;
+  });
+}
+
+/* ---------- Filtros de las listas ---------- */
+const filtro = { e: "", n: "", solo: false };
+const barraFiltros = () => `<div class="fbar">
+    <div class="seg" role="group" aria-label="Filtrar por estado">${[["", "Todas"], ["nada", "Ni idea"], ["entrenando", "Entrenando"], ["hecha", "Entrenadas"]].map(([k, t]) => `<button type="button" data-fe="${k}" aria-pressed="${filtro.e === k}">${t} <span class="n" data-cuenta="${k}"></span></button>`).join("")}</div>
+    <div class="seg" role="group" aria-label="Filtrar por nivel">${[["", "Todo nivel"], ...Object.entries(D.NIVELES)].map(([k, t]) => `<button type="button" data-fn="${k}" aria-pressed="${filtro.n === k}">${t}</button>`).join("")}</div>
+    <button class="btn" type="button" data-fsolo aria-pressed="${filtro.solo}">Solo en casa</button>
+  </div><p class="vacio muted" id="fvacio" hidden>Nada con estos filtros. <a href="#" data-flimpiar>Quitar filtros</a></p>`;
+function aplicarFiltros() {
+  if (!$(".fbar")) return;
+  $$("[data-fe]").forEach(b => b.setAttribute("aria-pressed", filtro.e === b.dataset.fe));
+  $$("[data-fn]").forEach(b => b.setAttribute("aria-pressed", filtro.n === b.dataset.fn));
+  $("[data-fsolo]").setAttribute("aria-pressed", filtro.solo);
+  let vistas = 0;
+  $$(".tcard").forEach(c => {
+    const ok = (!filtro.e || c.dataset.e === filtro.e) && (!filtro.n || c.dataset.nivel === filtro.n) && (!filtro.solo || c.dataset.solo === "si");
+    c.hidden = !ok; if (ok) vistas++;
+  });
+  $$(".section").forEach(s => { if (s.querySelector(".tcard")) s.hidden = !s.querySelector(".tcard:not([hidden])"); });
+  $("#fvacio").hidden = vistas > 0;
+}
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-mark],[data-set],[data-fe],[data-fn],[data-fsolo],[data-flimpiar]");
+  if (!t) return;
+  if (t.dataset.mark) { e.preventDefault(); setEstado(t.dataset.mark, SIG[estadoDe(t.dataset.mark)]); return; }
+  if (t.dataset.set) { setEstado(t.dataset.id, t.dataset.set); return; }
+  if (t.dataset.fe !== undefined) filtro.e = t.dataset.fe;
+  if (t.dataset.fn !== undefined) filtro.n = t.dataset.fn;
+  if (t.dataset.fsolo !== undefined) filtro.solo = !filtro.solo;
+  if (t.dataset.flimpiar !== undefined) { e.preventDefault(); filtro.e = filtro.n = ""; filtro.solo = false; }
+  aplicarFiltros();
+});
+
 /* ---------- Piezas ---------- */
+const drillsDe = f => (f.drills || []).map(i => F[i]).filter(Boolean);
+const tecnicasDe = d => D.FICHAS.filter(f => f.drills?.includes(d.id));
+const dot = id => `<span class="dot" data-dot="${id}" aria-hidden="true"></span>`;
 const nums = (g, big) => g?.length ? `<span class="nums${big ? " big" : ""}" aria-label="Golpes ${g.join("-")}">${g.map(n => `<span class="num">${n}</span>`).join("")}</span>` : "";
 const chips = f => `<div class="chips">
   ${f.tipo === "drill" ? `<span class="chip acc">Drill</span>` : ""}
@@ -326,12 +502,30 @@ const chips = f => `<div class="chips">
   <span class="chip mma">${MMA_TXT[f.mma] ?? ""}</span>
   <span class="chip ${f.solo === "si" ? "ok" : f.solo === "parcial" ? "warn" : ""}">${SOLO_TXT[f.solo]}</span>
   ${f.gi && f.gi !== "ambos" ? `<span class="chip">${GI_TXT[f.gi]}</span>` : ""}</div>`;
-const card = f => `<a class="tcard" href="#f-${f.id}" data-sec="${f.seccion}">
-  ${f.videos.length ? `<div class="thumb play" style="background-image:url('${thumb(f.videos[0].id)}')"></div>` : `<div class="thumb none">Vídeo pendiente</div>`}
-  <strong>${esc(f.es)}</strong>
+const meta = f => {
+  const n = drillsDe(f).length;
+  return [f.tipo === "drill" ? "Drill" : "", D.NIVELES[f.nivel], SOLO_TXT[f.solo], MMA_TXT[f.mma], n ? `${n} ${n === 1 ? "drill" : "drills"}` : ""].filter(Boolean).join(" · ");
+};
+const card = f => `<article class="tcard" data-sec="${f.seccion}" data-id="${f.id}" data-nivel="${f.nivel}" data-solo="${f.solo}">
+  ${f.videos.length ? `<div class="thumb play"><img src="${thumb(f.videos[0].id)}" alt="" loading="lazy"></div>` : `<div class="thumb none">Vídeo pendiente</div>`}
+  <button class="mark" type="button" data-mark="${f.id}"></button>
+  <a class="tlink" href="#f-${f.id}">${esc(f.es)}</a>
   <small>${esc(f.en)}${f.jp ? " · " + esc(f.jp) : ""}${f.dosis ? " · " + esc(f.dosis) : ""}</small>
-  ${nums(f.golpes)}${chips(f)}</a>`;
+  ${nums(f.golpes)}<div class="meta">${esc(meta(f))}</div></article>`;
 const grid = list => list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<p class="muted">Todavía no hay fichas aquí.</p>`;
+const mini = f => `<article class="mini" data-sec="${f.seccion}" data-id="${f.id}">
+  <div class="th">${f.videos.length ? `<img src="${thumb(f.videos[0].id)}" alt="" loading="lazy">` : ""}</div>
+  <div><a class="tlink" href="#f-${f.id}">${esc(f.es)}</a><small>${esc(f.dosis || `${D.NIVELES[f.nivel]} · ${SOLO_TXT[f.solo]}`)}</small></div>
+  <button class="mark" type="button" data-mark="${f.id}"></button></article>`;
+const barraDe = k => `<div class="prog" data-prog="${k}"></div>`;
+// Lo siguiente que conviene empezar: lo más básico y útil en MMA que aún no has tocado, repartido por sección
+const RANGO = { nivel: { F: 0, I: 1, A: 2 }, mma: { "muy alta": 0, "alta": 1, "media": 2, "baja": 3 }, solo: { si: 0, parcial: 1, no: 2 } };
+function sugeridas(porSeccion = 2) {
+  return D.SECCIONES.flatMap(s => D.FICHAS.filter(f => f.seccion === s.id && f.tipo === "tecnica" && estadoDe(f.id) === "nada")
+    .sort((a, b) => RANGO.nivel[a.nivel] - RANGO.nivel[b.nivel] || RANGO.mma[a.mma] - RANGO.mma[b.mma] || RANGO.solo[a.solo] - RANGO.solo[b.solo])
+    .slice(0, porSeccion));
+}
+const entrenando = () => D.FICHAS.filter(f => estadoDe(f.id) === "entrenando").sort((a, b) => progreso[b.id].t.localeCompare(progreso[a.id].t));
 const names = o => `<p class="names">
   ${o.en ? `<span><b>EN</b>${esc(o.en)}</span>` : ""}
   ${o.jp ? `<span><b>JP</b>${esc(o.jp)}</span>` : ""}
@@ -373,21 +567,28 @@ function renderInicio() {
     return [f.id, { x: f.x, y: f.y, t: f.n, sub: `${n} fichas`, go: "#fase-" + f.id }];
   }));
   const count = (s, t) => D.FICHAS.filter(f => f.seccion === s && f.tipo === t).length;
+  const act = entrenando();
   $("#main").innerHTML = `${fileBanner()}
     <h1>Mapa MMA</h1>
-    <p class="lead">Técnicas, drills y rutas de aprendizaje de boxeo, lucha y suelo, pensados para MMA y para entrenar en casa. Cada ficha lleva su vídeo.</p>
-    <div class="section"><h2>Mapa del combate</h2>
-      <p class="muted" style="margin:-4px 0 0;max-width:70ch">Las fases de una pelea y cómo se pasa de una a otra. Toca una fase para ver todo lo que tienes para ella, de las tres secciones.</p>
-      ${grafo({ nodos, aristas: D.TRANSICIONES, vb: "0 0 820 400", label: "Mapa del combate" })}</div>
-    <div class="section"><h2>Secciones</h2><div class="secs">
+    <p class="lead">Boxeo, lucha y suelo para MMA, pensados para entrenar en casa. Cada técnica lleva su vídeo y sus drills.</p>
+    ${barraDe("all")}
+    ${act.length ? `<div class="section"><h2>Estás entrenando</h2>${grid(act.slice(0, 6))}
+        <div class="acciones"><a class="btn" href="#progreso">${act.length > 6 ? `Ver las ${act.length}` : "Ver mi progreso"}</a><a class="btn" href="#plan">Plan de hoy</a></div></div>`
+      : `<div class="section"><h2>Por dónde empezar</h2>
+        <p class="muted" style="margin:-4px 0 14px;max-width:70ch">Toca el marcador de una tarjeta para cambiarlo: Ni idea → Entrenando → Entrenada. Lo que marques aparecerá aquí.</p>
+        ${grid(sugeridas())}</div>`}
+    <div class="section"><h2>Secciones</h2><div class="secs" style="margin-top:0">
       ${D.SECCIONES.map(s => `<article class="sec" data-sec="${s.id}">
-        <div class="eyebrow">${esc(s.grupo)}</div><h2>${esc(s.nombre)}</h2><p>${esc(s.desc)}</p>
+        <div class="eyebrow" style="margin:0">${esc(s.grupo)}</div><h2>${esc(s.nombre)}</h2><p>${esc(s.desc)}</p>
         <p><strong style="color:var(--ink)">${count(s.id, "tecnica")}</strong> técnicas · <strong style="color:var(--ink)">${count(s.id, "drill")}</strong> drills</p>
+        ${barraDe(s.id)}
         <div class="links"><a class="btn solid" href="#${s.id}">Técnicas</a><a class="btn" href="#${s.id}-entrenar">Entrenar</a><a class="btn" href="#${s.id}-ruta">Ruta</a></div>
       </article>`).join("")}</div>
       <div class="today"><p><strong>Entrenar hoy en casa:</strong> sesión de 60–70 min que recorre las tres secciones, y una semana tipo.</p><a class="btn" href="#plan">Ver el plan</a></div>
-      <div class="today" style="background:var(--surface-2)"><p><strong>Mantener y ampliar:</strong> la guía explica paso a paso cómo seguir añadiendo contenido con Claude Code, y «Qué falta» dice qué toca después.</p><div class="links" style="display:flex;gap:6px"><a class="btn" href="#guia">Guía</a><a class="btn" href="#falta">Qué falta</a></div></div>
-    </div>`;
+    </div>
+    <div class="section"><h2>Mapa del combate</h2>
+      <p class="muted" style="margin:-4px 0 0;max-width:70ch">Las fases de una pelea y cómo se pasa de una a otra. Toca una fase para ver todo lo que tienes para ella, de las tres secciones.</p>
+      ${grafo({ nodos, aristas: D.TRANSICIONES, vb: "0 0 820 400", label: "Mapa del combate" })}</div>`;
   bindGo();
 }
 
@@ -416,7 +617,7 @@ function renderSeccion(id, tab = "tecnicas") {
   let body = "";
   if (tab === "tecnicas") {
     body = (id === "suelo" ? `<div class="section"><h2>Posiciones</h2>${mapaSuelo()}</div>` : "") +
-      `<div class="note">${esc(s.nota)}</div>` +
+      `<div class="note">${esc(s.nota)}</div>${barraFiltros()}` +
       s.categorias.map(c => { const l = fichas.filter(f => f.tipo === "tecnica" && f.cat === c.id); return l.length ? `<div class="section"><h2>${esc(c.n)}</h2>${grid(l)}</div>` : ""; }).join("") +
       (id === "suelo" ? `<div class="section"><h2>Movimientos base</h2>${grid(fichas.filter(f => f.cat === "movimiento"))}</div>` : "");
   } else if (tab === "entrenar") {
@@ -425,7 +626,7 @@ function renderSeccion(id, tab = "tecnicas") {
     const g3 = drills.filter(f => f.material.some(m => FUERA.includes(m)));
     const g2 = drills.filter(f => !g1.includes(f) && !g3.includes(f));
     const solos = fichas.filter(f => f.tipo === "tecnica" && f.solo === "si");
-    body = `<p class="lead">Drills para mejorar entrenando solo. Cada ficha dice cuántas rondas, con qué material y cuándo lo has superado.</p>
+    body = `<p class="lead">Drills para mejorar entrenando solo. Cada ficha dice cuántas rondas, con qué material y cuándo lo has superado.</p>${barraFiltros()}
       ${g1.length ? `<div class="section"><h2>Sin material</h2>${grid(g1)}</div>` : ""}
       ${g2.length ? `<div class="section"><h2>Con material de casa</h2>${grid(g2)}</div>` : ""}
       ${g3.length ? `<div class="section"><h2>Con compañero o gimnasio</h2>${grid(g3)}</div>` : ""}
@@ -434,13 +635,13 @@ function renderSeccion(id, tab = "tecnicas") {
   } else {
     body = Object.entries(s.ruta).map(([n, r]) => `<section class="level">
         <header><span class="chip acc">${D.NIVELES[n]}</span><h2>${esc(r.cuando)}</h2></header>
-        <p class="que">${esc(r.que)}</p>
-        <h3>Pasas de nivel cuando</h3><ul class="checks">${r.criterio.map(c => `<li><span>${esc(c)}</span></li>`).join("")}</ul>
+        <p class="que">${esc(r.que)}</p>${barraDe(`${id}:${n}`)}
+        <h3 style="margin-top:14px">Pasas de nivel cuando</h3><ul class="checks">${r.criterio.map(c => `<li><span>${esc(c)}</span></li>`).join("")}</ul>
         ${grid(fichas.filter(f => f.nivel === n))}</section>`).join("") + (id === "suelo" ? renderJJU() : "");
   }
   $("#main").innerHTML = `${fileBanner()}
     <div class="eyebrow">${esc(s.grupo)}</div><h1>${esc(s.nombre)}</h1>
-    <p class="lead">${esc(s.desc)}</p>
+    <p class="lead">${esc(s.desc)}</p>${barraDe(id)}
     <nav class="tabs" aria-label="Pestañas">${tabs.map(([k, t, h]) => `<a href="${h}" class="${k === tab ? "on" : ""}">${t}</a>`).join("")}</nav>
     ${body}`;
   bindGo();
@@ -474,7 +675,7 @@ function renderPos(id, ladoSel) {
     ${desde.length ? cats.map(c => { const l = desde.filter(f => f.cat === c.id); return l.length ? `<div class="section"><h2>${esc(c.n)}</h2>${grid(l)}</div>` : ""; }).join("")
       : `<div class="section"><p class="muted">Todavía no hay técnicas desde aquí.</p></div>`}
     ${llegan.length ? `<div class="section"><h2>Cómo llegas aquí</h2><div class="linklist">${llegan.map(f => `<a href="#f-${f.id}">${esc(f.es)} <small>· desde ${esc(posLabel(f.desde.pos, f.desde.lado))}</small></a>`).join("")}</div></div>` : ""}`;
-  $$("[data-lado]").forEach(b => b.addEventListener("click", () => renderPos(id, b.dataset.lado)));
+  $$("[data-lado]").forEach(b => b.addEventListener("click", () => { renderPos(id, b.dataset.lado); pintarEstados(); }));
 }
 
 /* ---------- Fase del combate ---------- */
@@ -500,11 +701,59 @@ function renderPlan() {
     <p class="lead">Una sesión de unos ${total} minutos que recorre las tres secciones, la semana tipo y cómo compensar lo que se pierde entrenando sin compañero.</p>
     <div class="section"><h2>Sesión tipo</h2><div class="blocks">
       ${pl.sesion.map(b => `<div class="pblock"><div class="min">${b.min}<small>min</small></div><div><h3>${esc(b.t)}</h3><p>${esc(b.txt)}</p>
-        ${b.fichas.length ? `<div class="linklist">${b.fichas.filter(i => F[i]).map(i => `<a href="#f-${i}">${esc(F[i].es)}</a>`).join("")}</div>` : ""}</div></div>`).join("")}</div></div>
+        ${b.fichas.length ? `<div class="linklist">${b.fichas.filter(i => F[i]).map(i => `<a href="#f-${i}">${dot(i)}${esc(F[i].es)}</a>`).join("")}</div>` : ""}</div></div>`).join("")}</div></div>
     <div class="section"><h2>Semana tipo</h2><div style="overflow-x:auto"><table class="week"><tbody>
       ${pl.semana.map(d => `<tr><td>${esc(d.d)}</td><td>${esc(d.t)}</td></tr>`).join("")}</tbody></table></div></div>
     <div class="section"><h2>Lo que se pierde entrenando solo</h2>
       ${pl.solo.map(([k, v]) => `<div class="panel"><div class="k">${esc(k)}</div>${esc(v)}</div>`).join("")}</div>`;
+}
+
+/* ---------- Mi progreso ---------- */
+function renderProgreso() {
+  setSec(null);
+  const por = e => D.FICHAS.filter(f => estadoDe(f.id) === e);
+  const act = entrenando(), hechas = por("hecha");
+  $("#main").innerHTML = `${fileBanner()}
+    <div class="eyebrow" style="color:var(--ok)">Tu entrenamiento</div><h1>Progreso</h1>
+    <div class="stats">
+      <div class="stat e"><b>${act.length}</b><span>Entrenando</span></div>
+      <div class="stat h"><b>${hechas.length}</b><span>Entrenadas</span></div>
+      <div class="stat"><b>${por("nada").length}</b><span>Ni idea</span></div>
+    </div>
+    <div class="section"><h2>Por sección</h2><div class="pgrid">
+      ${D.SECCIONES.map(s => `<a class="panel" href="#${s.id}" data-sec="${s.id}" style="text-decoration:none;color:var(--ink)"><div class="k">${esc(s.nombre)}</div>${barraDe(s.id)}</a>`).join("")}</div></div>
+    <div class="section"><h2>Entrenando ahora</h2>${act.length ? grid(act) : `<p class="muted">Nada todavía. Marca una técnica o un drill como «Entrenando» y aparecerá aquí.</p>`}</div>
+    <div class="section"><h2>Por dónde seguir</h2><p class="muted" style="margin:-4px 0 12px;max-width:70ch">Lo más básico y útil en MMA que aún no has empezado, por sección.</p>${grid(sugeridas())}</div>
+    ${hechas.length ? `<div class="section"><h2>Ya entrenadas</h2>${grid(hechas)}</div>` : ""}
+    <div class="section"><h2>Copia de seguridad</h2>
+      <p style="margin:0;max-width:70ch">Tu progreso se guarda solo en este navegador. No se comparte entre el móvil y el ordenador, y se pierde si borras los datos del sitio. Para pasarlo a otro dispositivo, expórtalo aquí e impórtalo allí.</p>
+      <div class="acciones">
+        <button class="btn" type="button" id="expBtn">Exportar archivo</button>
+        <label class="btn">Importar archivo<input type="file" id="impFile" accept="application/json,.json" hidden></label>
+        <button class="btn" type="button" id="resetBtn">Borrar progreso</button>
+      </div><p class="aviso-e" id="impMsg" hidden></p></div>`;
+  $("#expBtn").addEventListener("click", () => {
+    const url = URL.createObjectURL(new Blob([JSON.stringify({ version: 1, fecha: hoy(), progreso }, null, 2)], { type: "application/json" }));
+    const a = document.createElement("a");
+    a.href = url; a.download = `mapa-mma-progreso-${hoy()}.json`; a.click();
+    URL.revokeObjectURL(url);
+  });
+  $("#impFile").addEventListener("change", async e => {
+    const file = e.target.files[0]; if (!file) return;
+    try {
+      const j = JSON.parse(await file.text());
+      const limpio = {};
+      for (const [id, v] of Object.entries(j.progreso)) if (F[id] && (v?.e === "entrenando" || v?.e === "hecha")) limpio[id] = { e: v.e, t: v.t || hoy() };
+      progreso = limpio; guardar(CLAVE, progreso); route();
+    } catch {
+      $("#impMsg").textContent = "Ese archivo no es una copia de progreso de esta web.";
+      $("#impMsg").hidden = false;
+    }
+  });
+  $("#resetBtn").addEventListener("click", () => {
+    if (!confirm("¿Borrar todo tu progreso en este navegador? Todas las fichas volverán a «Ni idea».")) return;
+    progreso = {}; guardar(CLAVE, progreso); route();
+  });
 }
 
 /* ---------- Guía ---------- */
@@ -609,44 +858,56 @@ function renderFicha(id) {
   const v0 = vs[0];
   const crumbCat = f.tipo === "drill" ? `<a href="#${s.id}-entrenar">Entrenar</a>` : `<a href="#${s.id}">${esc(catName(f))}</a>`;
   const material = f.material.map(m => D.MATERIAL[m]).join(" · ");
+  const rel = f.tipo === "drill" ? tecnicasDe(f) : drillsDe(f);
+  const encadena = (f.combina || []).filter(c => F[c] && !rel.includes(F[c]));
+  const hermanas = D.FICHAS.filter(x => x.seccion === f.seccion && x.tipo === f.tipo);
+  const i = hermanas.indexOf(f), ant = hermanas[i - 1], sig = hermanas[i + 1];
   $("#main").innerHTML = `${fileBanner()}
     <div class="crumb"><a href="#${s.id}">${esc(s.nombre)}</a><span>/</span>${crumbCat}${f.desde && f.desde.pos !== "base" ? `<span>/</span><a href="#p-${f.desde.pos}">${esc(posLabel(f.desde.pos, f.desde.lado))}</a>` : ""}</div>
     <h1>${esc(f.es)}</h1>${names(f)}
     ${f.golpes ? `<div style="margin-top:12px">${nums(f.golpes, true)}</div>` : ""}
     ${chips(f)}
-    ${v0 ? `<div class="player-wrap"><div class="player" id="player"></div></div>
-    <div class="vbar">
-      ${vs.length > 1 ? `<div class="grp"><span class="lbl">Vídeo</span>${vs.map((v, i) => `<button class="btn" data-v="${i}" aria-pressed="${i === 0}">${esc(v.etiqueta || (i === 0 ? "Principal" : "Alternativo " + i))}</button>`).join("")}</div>` : ""}
-      <div class="grp" id="segs"></div>
-      <div class="grp"><span class="lbl">Velocidad</span>${[0.5, 0.75, 1].map(r => `<button class="btn" data-rate="${r}" aria-pressed="${r === rate}">${r}×</button>`).join("")}</div>
-      <div class="grp"><button class="btn" id="loopBtn" aria-pressed="${loop}">Repetir en bucle</button></div>
-      <span class="credit" id="credit"></span>
-    </div>` : `<div class="novideo">Vídeo pendiente. Añádelo en el archivo de datos de ${esc(s.nombre.toLowerCase())}.</div>`}
+    <div class="seg estado" role="group" aria-label="Cómo llevas esta ficha">
+      ${Object.keys(SIG).map(e => `<button type="button" data-set="${e}" data-id="${f.id}">${ICO[e]}${txtEstado(f.id, e)}</button>`).join("")}</div>
 
-    <div class="cols">
+    <div class="fmain">
+      <div class="fvideo">
+        ${v0 ? `<div class="player-wrap"><div class="player" id="player"></div></div>
+        <div class="vbar">
+          ${vs.length > 1 ? `<div class="grp"><span class="lbl">Vídeo</span>${vs.map((v, i) => `<button class="btn" data-v="${i}" aria-pressed="${i === 0}">${esc(v.etiqueta || (i === 0 ? "Principal" : "Alternativo " + i))}</button>`).join("")}</div>` : ""}
+          <div class="grp" id="segs"></div>
+          <div class="grp"><span class="lbl">Velocidad</span>${[0.5, 0.75, 1].map(r => `<button class="btn" data-rate="${r}" aria-pressed="${r === rate}">${r}×</button>`).join("")}</div>
+          <div class="grp"><button class="btn" id="loopBtn" aria-pressed="${loop}">Repetir en bucle</button></div>
+          <span class="credit" id="credit"></span>
+        </div>` : `<div class="novideo">Vídeo pendiente. Añádelo en el archivo de datos de ${esc(s.nombre.toLowerCase())}.</div>`}
+      </div>
       <div>
         <div class="block"><h2>Para qué sirve</h2><p style="margin:0;max-width:65ch">${esc(f.objetivo)}</p></div>
+        ${f.dosis || f.criterio ? `<div class="block"><h2>Dosis</h2>
+          ${f.dosis ? `<div class="panel"><div class="k">Rondas y tiempo</div>${esc(f.dosis)}</div>` : ""}
+          ${f.criterio ? `<div class="panel"><div class="k">Lo has superado cuando</div>${esc(f.criterio)}</div>` : ""}</div>` : ""}
         <div class="block"><h2>${f.tipo === "drill" ? "Cómo se hace" : "Pasos"}</h2><ol class="steps">${f.pasos.map(x => `<li><span>${esc(x)}</span></li>`).join("")}</ol></div>
         ${f.detalles?.length ? `<div class="block"><h2>Detalles clave</h2><ul class="plain">${f.detalles.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
         ${f.errores?.length ? `<div class="block"><h2>Errores típicos</h2><ul class="plain err">${f.errores.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
       </div>
-      <div>
-        ${f.dosis || f.criterio ? `<div class="block"><h2>Dosis</h2>
-          ${f.dosis ? `<div class="panel"><div class="k">Rondas y tiempo</div>${esc(f.dosis)}</div>` : ""}
-          ${f.criterio ? `<div class="panel"><div class="k">Lo has superado cuando</div>${esc(f.criterio)}</div>` : ""}</div>` : ""}
-        <div class="block"><h2>En MMA</h2>
-          ${f.mmaNota ? `<div class="panel"><div class="k">${MMA_TXT[f.mma]}</div>${esc(f.mmaNota)}</div>` : ""}
-          <div class="panel"><div class="k">Material</div>${esc(material)}${f.solo !== "si" ? `<br><span class="muted">${f.solo === "parcial" ? "Solo puedes trabajar el patrón; la técnica completa necesita compañero." : "Necesita compañero para practicarla de verdad."}</span>` : ""}</div>
-          <div class="panel"><div class="k">Fases del combate</div><div class="linklist" style="margin-top:4px">${f.fases.map(x => `<a href="#fase-${x}">${esc(FA[x].n)}</a>`).join("")}</div></div>
-          ${f.jju && JJ[f.jju] ? `<div class="panel"><div class="k">Jiu-Jitsu University</div>${esc(JJ[f.jju].parte)} · ${esc(JJ[f.jju].n)} <a href="#suelo-ruta">ver</a></div>` : ""}
-        </div>
-        ${f.desde && f.desde.pos !== "base" ? `<div class="block"><h2>De dónde a dónde</h2><div class="panel flow">
-          <a class="pos" href="#p-${f.desde.pos}">${esc(P[f.desde.pos].es)}<small>${LADOS[f.desde.lado] || ""}</small></a><span class="muted" aria-hidden="true">→</span>
-          ${f.hasta ? `<a class="pos" href="#p-${f.hasta.pos}">${esc(P[f.hasta.pos].es)}<small>${LADOS[f.hasta.lado] || ""}</small></a>` : `<span class="pos">${f.cat === "sumision" ? "Sumisión" : "—"}</span>`}</div></div>` : ""}
-        ${f.reacciones?.length ? `<div class="block"><h2>Si el rival reacciona</h2><div class="react">${f.reacciones.map(r => `<div class="panel"><div class="si">Si ${esc(r.si.charAt(0).toLowerCase() + r.si.slice(1))}…</div>${r.ref && F[r.ref] ? `<a href="#f-${r.ref}">${esc(r.txt || F[r.ref].es)} →</a>` : esc(r.txt)}</div>`).join("")}</div></div>` : ""}
-        ${f.combina?.length ? `<div class="block"><h2>Encadena con</h2><div class="linklist">${f.combina.filter(c => F[c]).map(c => `<a href="#f-${c}" data-sec="${F[c].seccion}">${esc(F[c].es)}${F[c].seccion !== f.seccion ? ` <small>· ${esc(S[F[c].seccion].nombre)}</small>` : ""}</a>`).join("")}</div></div>` : ""}
+    </div>
+
+    ${rel.length ? `<div class="fstrip"><h2>${f.tipo === "drill" ? "Técnicas que entrena" : "Drills para entrenarla"}</h2><div class="minis">${rel.map(mini).join("")}</div></div>` : ""}
+
+    <div class="fmore">
+      <div class="block"><h2>En MMA</h2>
+        ${f.mmaNota ? `<div class="panel"><div class="k">${MMA_TXT[f.mma]}</div>${esc(f.mmaNota)}</div>` : ""}
+        <div class="panel"><div class="k">Material</div>${esc(material)}${f.solo !== "si" ? `<br><span class="muted">${f.solo === "parcial" ? "Solo puedes trabajar el patrón; la técnica completa necesita compañero." : "Necesita compañero para practicarla de verdad."}</span>` : ""}</div>
+        <div class="panel"><div class="k">Fases del combate</div><div class="linklist" style="margin-top:4px">${f.fases.map(x => `<a href="#fase-${x}">${esc(FA[x].n)}</a>`).join("")}</div></div>
+        ${f.jju && JJ[f.jju] ? `<div class="panel"><div class="k">Jiu-Jitsu University</div>${esc(JJ[f.jju].parte)} · ${esc(JJ[f.jju].n)} <a href="#suelo-ruta">ver</a></div>` : ""}
       </div>
-    </div>`;
+      ${f.desde && f.desde.pos !== "base" ? `<div class="block"><h2>De dónde a dónde</h2><div class="panel flow">
+        <a class="pos" href="#p-${f.desde.pos}">${esc(P[f.desde.pos].es)}<small>${LADOS[f.desde.lado] || ""}</small></a><span class="muted" aria-hidden="true">→</span>
+        ${f.hasta ? `<a class="pos" href="#p-${f.hasta.pos}">${esc(P[f.hasta.pos].es)}<small>${LADOS[f.hasta.lado] || ""}</small></a>` : `<span class="pos">${f.cat === "sumision" ? "Sumisión" : "—"}</span>`}</div></div>` : ""}
+      ${f.reacciones?.length ? `<div class="block"><h2>Si el rival reacciona</h2><div class="react">${f.reacciones.map(r => `<div class="panel"><div class="si">Si ${esc(r.si.charAt(0).toLowerCase() + r.si.slice(1))}…</div>${r.ref && F[r.ref] ? `<a href="#f-${r.ref}">${esc(r.txt || F[r.ref].es)} →</a>` : esc(r.txt)}</div>`).join("")}</div></div>` : ""}
+      ${encadena.length ? `<div class="block"><h2>Encadena con</h2><div class="linklist">${encadena.map(c => `<a href="#f-${c}" data-sec="${F[c].seccion}">${dot(c)}${esc(F[c].es)}${F[c].seccion !== f.seccion ? ` <small>· ${esc(S[F[c].seccion].nombre)}</small>` : ""}</a>`).join("")}</div></div>` : ""}
+    </div>
+    <div class="gpager">${ant ? `<a class="btn" href="#f-${ant.id}">← ${esc(ant.es)}</a>` : "<span></span>"}${sig ? `<a class="btn" href="#f-${sig.id}">${esc(sig.es)} →</a>` : ""}</div>`;
 
   if (!v0) return;
   const segOf = (v, i) => v.segmentos ? { ...v, inicio: v.segmentos[i].inicio, fin: v.segmentos[i].fin } : v;
@@ -739,7 +1000,7 @@ function showError(v, code) {
 /* ---------- Búsqueda ---------- */
 const norm = s => String(s ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 const idx = [
-  ...D.FICHAS.map(f => ({ href: "#f-" + f.id, title: f.es, sub: `${S[f.seccion].nombre} · ${catName(f)}`, hay: norm([f.es, f.en, f.jp, f.pt, ...(f.alias || [])].join(" ")) })),
+  ...D.FICHAS.map(f => ({ id: f.id, href: "#f-" + f.id, title: f.es, sub: `${S[f.seccion].nombre} · ${catName(f)}`, hay: norm([f.es, f.en, f.jp, f.pt, ...(f.alias || [])].join(" ")) })),
   ...D.POSICIONES.filter(p => !p.pronto && p.lados && p.id !== "base").map(p => ({ href: "#p-" + p.id, title: p.es, sub: "Suelo · Posición", hay: norm([p.es, p.en, p.pt].join(" ")) })),
   ...D.FASES.map(f => ({ href: "#fase-" + f.id, title: f.n, sub: "Fase del combate", hay: norm(f.n) })),
   ...(D.GUIA || []).map(g => ({ href: "#guia-" + g.id, title: g.t, sub: "Guía", hay: norm(g.t + " " + g.r) })),
@@ -748,7 +1009,7 @@ const idx = [
 const q = $("#q"), res = $("#results");
 let sel = 0, hits = [];
 function drawResults() {
-  res.innerHTML = hits.length ? hits.map((h, i) => `<a href="${h.href}" class="${i === sel ? "sel" : ""}">${esc(h.title)}<br><small>${esc(h.sub)}</small></a>`).join("") : `<div style="padding:8px 10px;color:var(--muted)">Nada con ese nombre todavía.</div>`;
+  res.innerHTML = hits.length ? hits.map((h, i) => `<a href="${h.href}" class="${i === sel ? "sel" : ""}">${h.id ? `<span class="dot" data-e="${estadoDe(h.id)}" aria-hidden="true"></span>` : ""}${esc(h.title)}<br><small>${esc(h.sub)}</small></a>`).join("") : `<div style="padding:8px 10px;color:var(--muted)">Nada con ese nombre todavía.</div>`;
   res.hidden = false;
 }
 q.addEventListener("input", () => {
@@ -766,10 +1027,26 @@ q.addEventListener("keydown", e => {
 res.addEventListener("click", closeSearch);
 document.addEventListener("click", e => { if (!e.target.closest(".search")) res.hidden = true; });
 function closeSearch() { res.hidden = true; q.value = ""; q.blur(); }
+document.addEventListener("keydown", e => {
+  if (e.key === "/" && !e.ctrlKey && !e.metaKey && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) { e.preventDefault(); q.focus(); }
+});
+
+/* ---------- Tema ---------- */
+$("#tema").addEventListener("click", () => {
+  const raiz = document.documentElement;
+  const actual = raiz.dataset.theme || (matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light");
+  raiz.dataset.theme = actual === "dark" ? "light" : "dark";
+  guardar("mapa-mma-tema", raiz.dataset.theme);
+});
 
 /* ---------- Rutas ---------- */
+// Al volver atrás recupera la posición de la lista en vez de subir arriba del todo
+const pila = [], scrolls = {};
 function route() {
   const h = decodeURIComponent(location.hash.slice(1)) || "inicio";
+  if (pila.length) scrolls[pila.at(-1)] = window.scrollY;
+  const atras = pila.at(-2) === h;
+  if (atras) pila.pop(); else if (pila.at(-1) !== h) pila.push(h);
   try { player?.destroy?.(); } catch {} player = null; cur = null;
   let navOn = null;
   const m = h.match(/^(boxeo|lucha|suelo)(?:-(entrenar|ruta))?$/);
@@ -778,12 +1055,14 @@ function route() {
   else if (h.startsWith("p-")) { renderPos(h.slice(2)); navOn = "suelo"; }
   else if (h.startsWith("fase-")) renderFase(h.slice(5));
   else if (h === "plan") { renderPlan(); navOn = "plan"; }
-  else if (h === "guia") { renderGuia(null); navOn = "guia"; }
-  else if (h.startsWith("guia-")) { renderGuia(h.slice(5)); navOn = "guia"; }
-  else if (h === "falta") { renderFalta(); navOn = "guia"; }
+  else if (h === "progreso") { renderProgreso(); navOn = "progreso"; }
+  else if (h === "guia") renderGuia(null);
+  else if (h.startsWith("guia-")) renderGuia(h.slice(5));
+  else if (h === "falta") renderFalta();
   else renderInicio();
+  pintarEstados(); aplicarFiltros();
   $$("#nav a").forEach(a => a.classList.toggle("on", a.dataset.s === navOn));
-  window.scrollTo(0, 0);
+  window.scrollTo(0, atras ? scrolls[h] || 0 : 0);
 }
 window.addEventListener("hashchange", route);
 route();

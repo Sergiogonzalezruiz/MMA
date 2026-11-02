@@ -20,6 +20,7 @@ MMA.add([
     ],
     detalles: ["La cabeza por encima de las rodillas, nunca por delante.", "Tu postura de boxeo y la de lucha deben ser casi la misma."],
     errores: ["Inclinarte con la cabeza adelantada.", "Piernas rectas: no puedes cambiar de nivel ni hacer sprawl."],
+    drills: ["lu-drill-postura"],
     combina: ["lu-nivel", "lu-sprawl"],
     videos: [
       V("IfyPE3achtc", "Postura y movimiento"),
@@ -41,6 +42,7 @@ MMA.add([
     ],
     detalles: ["Cabeza arriba y espalda recta durante todo el movimiento.", "Primero se baja, luego se avanza: no a la vez."],
     errores: ["Bajar la cabeza: le das una guillotina o un rodillazo.", "Apoyar las manos en el suelo."],
+    drills: ["lu-drill-penetraciones", "lu-drill-postura"],
     combina: ["lu-doble", "lu-single", "box-1-2-nivel"],
     videos: [V("z6DKWX0YlV8", "Henry Cejudo"), V("dlKDrqmDe4g", "Cambio de nivel y penetración", { etiqueta: "Otra explicación" })]
   },
@@ -66,6 +68,7 @@ MMA.add([
       { si: "Hace sprawl y carga su peso", ref: "lu-single", txt: "Cambia a una pierna o vuelve a ponerte de pie" },
       { si: "Te rodea el cuello", ref: "guillotina", txt: "Saca la cabeza ya: es una guillotina" }
     ],
+    drills: ["lu-drill-penetraciones", "lu-drill-sombra"],
     combina: ["lu-single", "lu-bodylock-trip"],
     videos: [V("eKIHtN-p8Ng", "Kings MMA"), V("JI4RNwyjh94", "Kick Lab", { etiqueta: "MMA" })]
   },
@@ -85,6 +88,7 @@ MMA.add([
     detalles: ["Cuanto antes subas la pierna y la cabeza, menos opciones de defensa tiene."],
     errores: ["Quedarte abrazado a la pierna con la cabeza baja.", "No reaccionar cuando mete el whizzer."],
     reacciones: [{ si: "Mete el whizzer y aprieta", txt: "Cabeza dentro y cambia al otro lado o a doble" }],
+    drills: ["lu-drill-single-solo", "lu-drill-penetraciones"],
     combina: ["lu-doble", "lu-kouchi"],
     videos: [V("11xpvybbz9M", "Tyler Caldwell")]
   },
@@ -104,6 +108,7 @@ MMA.add([
     ],
     detalles: ["Colócate a su lado, no delante: así su otra mano no te alcanza."],
     errores: ["Quedarte delante de él."],
+    drills: ["lu-drill-manos"],
     combina: ["lu-single"],
     videos: [V("Bt7P1xl323s", "Jon Fitch (FitchSMASH)")]
   },
@@ -120,6 +125,7 @@ MMA.add([
     ],
     detalles: ["El codo dentro es lo que te deja empujar y mantener distancia."],
     errores: ["Agarrar con el codo por fuera: no controlas nada."],
+    drills: ["lu-drill-manos"],
     combina: ["lu-osoto"],
     videos: [V("9NILfubIvcc", "Dan Vallimont")]
   },
@@ -136,6 +142,7 @@ MMA.add([
     ],
     detalles: ["Desde el underhook salen derribos, zancadillas y salidas de la jaula."],
     errores: ["Quedarte cuadrado con la cadera lejos."],
+    drills: ["lu-drill-pummeling"],
     combina: ["lu-bodylock-trip", "lu-harai"],
     videos: [V("1lI7yTOD9VY", "Clinch y pummeling"), V("44rT_EsGRUs", "Underhook en MMA", { etiqueta: "MMA" })]
   },
@@ -154,6 +161,7 @@ MMA.add([
     ],
     detalles: ["Las manos cerradas y la cadera pegada: si hay hueco, se gira."],
     errores: ["Manos sueltas.", "Cadera lejos."],
+    drills: ["lu-drill-uchikomi", "lu-drill-pummeling"],
     combina: ["lu-ouchi", "lu-single"],
     videos: [V("zpu6TT38gRo", "Zancadilla exterior desde body lock")]
   },
@@ -172,6 +180,7 @@ MMA.add([
     ],
     detalles: ["El empuje y la siega van a la vez."],
     errores: ["Segar sin haberle cargado el peso en esa pierna."],
+    drills: ["lu-drill-uchikomi"],
     combina: ["lu-kouchi", "lu-osoto"],
     videos: [V("2H_KOBkNZ9I", "Satoshi Ishii")]
   },
@@ -188,6 +197,7 @@ MMA.add([
     ],
     detalles: ["Pequeño y rápido: no hace falta que caiga para que te sirva."],
     errores: ["Levantar mucho la pierna y perder el equilibrio."],
+    drills: ["lu-drill-uchikomi"],
     combina: ["lu-single", "lu-ouchi"],
     videos: [V("GYiKtPS1iRI", "Ko-uchi-gari sin gi")]
   },
@@ -204,6 +214,7 @@ MMA.add([
     ],
     detalles: ["Tu pierna de apoyo, cerca de la suya."],
     errores: ["Quedarte lejos: la siega no llega."],
+    drills: ["lu-drill-uchikomi"],
     combina: ["lu-ouchi"],
     videos: [V("G499sHSEk3o", "Shintaro Higashi")]
   },
@@ -221,6 +232,7 @@ MMA.add([
     ],
     detalles: ["Practica la entrada con goma; el lanzamiento completo, solo sobre tatami."],
     errores: ["Entrar sin underhook: le das la espalda."],
+    drills: ["lu-drill-uchikomi"],
     combina: ["lu-underhook"],
     videos: [V("D8ca9dqImzY", "Harai-goshi desde underhook")]
   },
@@ -241,6 +253,7 @@ MMA.add([
     detalles: ["La cadera es lo que para el derribo, no los brazos."],
     errores: ["Caer de rodillas con la cadera alta.", "Quedarte encima sin hacer nada."],
     reacciones: [{ si: "Mantiene la cabeza dentro y sigue empujando", ref: "lu-whizzer", txt: "Mete el whizzer" }],
+    drills: ["lu-drill-sprawl", "lu-drill-sombra"],
     combina: ["lu-whizzer"],
     videos: [V("J0kcsLXX1Ms", "Ben Askren"), V("QT7dxLzt2JA", "John Smith", { etiqueta: "John Smith" })]
   },
@@ -258,6 +271,7 @@ MMA.add([
     ],
     detalles: ["Se combina con el sprawl."],
     errores: ["Brazo flojo.", "Cadera lejos de él."],
+    drills: ["lu-drill-sprawl", "lu-drill-pummeling"],
     combina: ["lu-sprawl"],
     videos: [V("5SmCpBtNnRM", "Sprawl y whizzer"), V("A5_NabqOldo", "Cary Kolat", { etiqueta: "Cary Kolat" })]
   },
@@ -278,6 +292,7 @@ MMA.add([
     ],
     detalles: ["Empujas con las piernas, no con los brazos."],
     errores: ["Quedarte plano de espaldas.", "Perder la posición de la cabeza."],
+    drills: ["lu-drill-wall"],
     combina: ["levantamiento"],
     videos: [
       V("ZlcvyHz15Ss", "Jamie Varner"),
@@ -390,6 +405,27 @@ MMA.add([
     criterio: "5 wall walks limpios por lado.",
     combina: ["lu-wall-walk"],
     videos: [V("56iRfTYaeb4", "Wall get up (MMA)")]
+  },
+  {
+    id: "lu-drill-manos", seccion: "lucha", tipo: "drill",
+    es: "Pelea de manos con goma", en: "Solo hand fighting with a band", nivel: "F", mma: "alta",
+    fases: ["clinch"], solo: "parcial", material: ["goma"],
+    objetivo: "Repetir solo el patrón del 2 contra 1 y del collar tie.",
+    pasos: [
+      "Ancla la goma a la altura del pecho y agarra el extremo como si fuera su muñeca.",
+      "2 contra 1: tira con las dos manos hacia tu cadera y mete el hombro detrás de su brazo.",
+      "Collar tie: lleva la mano a su nuca imaginaria, con el codo dentro, y tira hacia abajo mientras circulas.",
+      "Cambia de lado cada 30 segundos sin salir de la postura."
+    ],
+    detalles: ["Muévete con pasos cortos: el agarre sirve para moverle, no para quedarte quieto.", "Los vídeos muestran el drill con compañero: copia el patrón y úsalo tal cual si un día tienes con quién."],
+    errores: ["Tirar solo con los brazos, sin meter la cadera.", "Quedarte de pie y recto al agarrar."],
+    dosis: "3 × 1 min por lado",
+    criterio: "3 rondas sin levantarte de la postura ni separar el codo del cuerpo.",
+    combina: ["lu-drill-pummeling"],
+    videos: [
+      V("wBtM_rx8kHk", "Cary Kolat", { etiqueta: "2 contra 1" }),
+      V("DvIPinttukM", "Cary Kolat", { etiqueta: "Collar tie" })
+    ]
   }
 ]);
 })();

@@ -28,6 +28,7 @@ MMA.add([
       "Guardia larga y estrecha de boxeo con el pie delantero hacia dentro: deja la pierna expuesta a patadas bajas.",
       "Bajar las manos al moverte."
     ],
+    drills: ["box-espejo", "box-sombra", "box-4-drills"],
     combina: ["box-paso-arrastre", "box-jab"],
     videos: [V("EKxYAvGGayI", "MMA Fundamentals", { etiqueta: "Guardia básica" }), V("pBIHzv3iWGo", "Boxeo vs MMA", { etiqueta: "Diferencias con boxeo" })]
   },
@@ -45,6 +46,7 @@ MMA.add([
     ],
     detalles: ["Pasos cortos; la distancia entre los pies no cambia.", "El golpe sigue al pie: primero el paso, luego la mano."],
     errores: ["Cruzar o juntar los pies.", "Saltar en vez de deslizar."],
+    drills: ["box-patrones-pies", "box-comba"],
     combina: ["box-pivote"],
     videos: [V("v0y86288Wt0", "Tony Jeffries")]
   },
@@ -61,6 +63,7 @@ MMA.add([
     ],
     detalles: ["Pivota justo después de golpear: el rival te busca donde estabas."],
     errores: ["Girar sobre el talón.", "Abrir las manos al girar."],
+    drills: ["box-patrones-pies", "box-sombra"],
     combina: ["box-1-2-3"],
     videos: [V("TSyV2i56BFA", "Pivote y ángulos (boxeo y MMA)")]
   },
@@ -80,6 +83,7 @@ MMA.add([
     ],
     detalles: ["Puedes acompañarlo de un pequeño paso adelante.", "Doblarlo (1-1) sirve para cerrar distancia."],
     errores: ["Bajar la mano trasera mientras golpeas.", "Recoger la mano por abajo."],
+    drills: ["box-espejo", "box-sombra", "box-4-drills"],
     combina: ["box-1-2", "box-cuerpo-cabeza"],
     videos: [
       V("ArQ50PXMCj4", "Tony Jeffries"),
@@ -101,6 +105,7 @@ MMA.add([
     ],
     detalles: ["La potencia sale de la rotación de cadera, no del brazo."],
     errores: ["Inclinarse hacia delante.", "Levantar la barbilla."],
+    drills: ["box-espejo", "box-gomas", "box-4-drills"],
     combina: ["box-1-2"],
     videos: [V("vyTaKpylOcU", "Tony Jeffries"), V("BF7V9qJzCjQ", "Jorge Blanco", { etiqueta: "En español", idioma: "es" })]
   },
@@ -118,6 +123,7 @@ MMA.add([
     ],
     detalles: ["Después de un directo, el peso ya está cargado para el gancho."],
     errores: ["Abrir el brazo antes de golpear: se ve venir.", "No girar el pie."],
+    drills: ["box-espejo", "box-sombra"],
     combina: ["box-1-2-3"],
     videos: [V("UFVDcNDnpoU", "Tony Jeffries"), V("i3G3HsI1GGU", "Cómo lanzar el gancho", { etiqueta: "Otra explicación" })]
   },
@@ -135,6 +141,7 @@ MMA.add([
     ],
     detalles: ["Corto: no hace falta bajar la mano para cargarlo."],
     errores: ["Bajar la mano antes de lanzarlo.", "Lanzarlo desde lejos."],
+    drills: ["box-espejo", "box-sombra"],
     combina: ["box-1-2-3"],
     videos: [
       V("zl2bZwxM_ws", "Uppercut delantero", { etiqueta: "Delantero" }),
@@ -156,6 +163,7 @@ MMA.add([
     ],
     detalles: ["Funciona muy bien justo después de amenazar con un cambio de nivel."],
     errores: ["Lanzarlo con la cabeza en el centro.", "Cargar todo el peso y quedar desequilibrado."],
+    drills: ["box-cuerda", "box-sombra"],
     combina: ["box-1-2-nivel"],
     videos: [V("YRqT3MgapNk", "Overhand de derecha"), V("XcXQDAEZSzQ", "Overhand", { etiqueta: "Otra explicación" })]
   },
@@ -172,6 +180,7 @@ MMA.add([
     ],
     detalles: ["La cabeza sigue alta y fuera de la línea."],
     errores: ["Inclinar la espalda: te expone a un rodillazo o una guillotina.", "Quedarse abajo."],
+    drills: ["box-sombra"],
     combina: ["box-cuerpo-cabeza"],
     videos: [V("HXJz_gEPHDw", "Jab al cuerpo"), V("MfIvF3OIjNU", "El jab para abrir el cuerpo", { etiqueta: "Otra explicación" })]
   },
@@ -190,6 +199,7 @@ MMA.add([
     ],
     detalles: ["Espera el golpe cerca de tu cara; no salgas a buscarlo."],
     errores: ["Estirar el brazo para buscar el golpe.", "Desviar y dejar la cara abierta."],
+    drills: ["box-pelota", "box-sombra"],
     combina: ["box-pull-counter"],
     videos: [V("HL261oRyURE", "Cómo hacer paradas")]
   },
@@ -206,6 +216,7 @@ MMA.add([
     ],
     detalles: ["En MMA, unos pocos centímetros bastan; en boxeo se esquiva más."],
     errores: ["Esquivar demasiado y desequilibrarte.", "Mirar al suelo."],
+    drills: ["box-cuerda", "box-pelota"],
     combina: ["box-1-2"],
     videos: [V("3WJos-OAPQc", "Esquiva para kickboxing y MMA"), V("i17tNtv8N2I", "Esquivas para principiantes", { etiqueta: "Otra explicación" })]
   },
@@ -222,6 +233,7 @@ MMA.add([
     ],
     detalles: ["Solo se mueve el peso; los pies casi no cambian de sitio."],
     errores: ["Retroceder con todo el cuerpo y quedarte lejos.", "Echarte atrás con la barbilla levantada."],
+    drills: ["box-pelota", "box-sombra"],
     combina: ["box-directo"],
     videos: [V("g0UkYHewzNc", "Pull counter para MMA"), V("elvLNRqCycc", "El pull counter explicado", { etiqueta: "Boxeo" })]
   },
@@ -241,6 +253,7 @@ MMA.add([
     ],
     detalles: ["El jab tapa la visión del rival justo cuando sale el directo."],
     errores: ["Telegrafiar el directo.", "Quedarse quieto después."],
+    drills: ["box-sombra", "box-gomas", "box-sesion-16"],
     combina: ["box-1-2-3", "box-1-2-nivel"],
     videos: [V("vyTaKpylOcU", "Tony Jeffries")]
   },
@@ -253,6 +266,7 @@ MMA.add([
     pasos: ["Jab.", "Directo: el giro deja el peso cargado delante.", "Gancho delantero aprovechando ese peso.", "Sal en ángulo."],
     detalles: ["El gancho llega por fuera, justo donde el rival no mira tras dos rectos."],
     errores: ["Abrir el gancho.", "Acabar en el sitio."],
+    drills: ["box-sombra", "box-sesion-16"],
     combina: ["box-pivote"],
     videos: [V("awgP60rGSlw", "1-2-3"), V("C7IGPNANJjI", "Jab, directo y gancho", { etiqueta: "Otra explicación" })]
   },
@@ -265,6 +279,7 @@ MMA.add([
     pasos: ["Jab al cuerpo bajando de nivel con las rodillas.", "Sube y jab a la cabeza.", "Directo.", "Sal de la línea."],
     detalles: ["Cambia el nivel con las piernas; la espalda sigue recta."],
     errores: ["Inclinarse hacia delante en el primer golpe."],
+    drills: ["box-sombra"],
     combina: ["box-jab-cuerpo"],
     videos: [V("HXJz_gEPHDw", "Jab al cuerpo y combinación")]
   },
@@ -281,6 +296,7 @@ MMA.add([
     ],
     detalles: ["Los golpes se lanzan de verdad: si no amenazan, no suben la guardia."],
     errores: ["Bajar la cabeza en vez de la cadera.", "Entrar desde demasiado lejos."],
+    drills: ["lu-drill-sombra", "lu-drill-penetraciones", "box-sombra"],
     combina: ["lu-doble", "lu-nivel"],
     videos: [V("rCqouAepyHs", "Ramón López", { idioma: "es", etiqueta: "En español" })]
   },
