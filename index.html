@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
 <style>
-/* Layout: cabecera con las tres secciones; cada sección con pestañas Técnicas / Entrenar / Ruta; fichas con el vídeo arriba */
+/* Layout: cabecera con las tres secciones; cada sección con pestañas Técnicas / Drills / Ruta; fichas con el vídeo arriba */
 :root{
   --bg:#eef1f0; --surface:#ffffff; --surface-2:#e3e8e6; --line:#cfd6d3;
   --ink:#16202c; --muted:#5a6672;
@@ -63,7 +63,7 @@ nav.main{display:flex;gap:2px}
 nav.main a{color:color-mix(in srgb,var(--head-fg) 72%,transparent);text-decoration:none;font:600 17px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;padding:9px 11px;border-radius:7px;border-bottom:3px solid transparent}
 nav.main a:hover{color:var(--head-fg);background:color-mix(in srgb,var(--head-fg) 10%,transparent)}
 nav.main a.on{color:var(--head-fg)}
-nav.main a.on[data-s="boxeo"]{border-color:var(--box)} nav.main a.on[data-s="lucha"]{border-color:var(--lu)} nav.main a.on[data-s="suelo"]{border-color:var(--su)} nav.main a.on[data-s="plan"],nav.main a.on[data-s="progreso"]{border-color:var(--ok)}
+nav.main a.on[data-s="boxeo"]{border-color:var(--box)} nav.main a.on[data-s="lucha"]{border-color:var(--lu)} nav.main a.on[data-s="suelo"]{border-color:var(--su)} nav.main a.on[data-s="plan"],nav.main a.on[data-s="inicio"]{border-color:var(--ok)}
 .search{position:relative;flex:1;min-width:0;max-width:380px;margin-left:auto}
 .search input{width:100%;border:0;border-radius:8px;padding:9px 12px;background:color-mix(in srgb,var(--head-fg) 14%,var(--head-bg));color:var(--head-fg);font:inherit}
 .search input::placeholder{color:color-mix(in srgb,var(--head-fg) 55%,transparent)}
@@ -85,7 +85,7 @@ h3{font:700 19px/1.1 var(--display);text-transform:uppercase;letter-spacing:.04e
 .muted{color:var(--muted)}
 .names{color:var(--muted);margin:8px 0 0;display:flex;flex-wrap:wrap;gap:4px 14px;font-size:15px}
 .names b{font:600 12px/1 var(--display);letter-spacing:.1em;color:var(--muted);margin-right:4px}
-.section{margin-top:34px}
+.section{margin-top:28px}
 .note{background:var(--surface);border-left:4px solid var(--acc);border-radius:0 8px 8px 0;padding:11px 14px;margin-top:18px;max-width:78ch;font-size:15px}
 
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
@@ -101,28 +101,35 @@ a.chip:hover{outline:1px solid currentColor}
 .tabs a,.tabs button{border:0;background:none;padding:10px 16px;font:700 18px/1 var(--display);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;text-decoration:none;white-space:nowrap}
 .tabs .on,.tabs [aria-selected="true"]{color:var(--ink);border-color:var(--acc)}
 
-/* ---------- Tarjetas ---------- */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-.tcard{position:relative;display:flex;flex-direction:column;gap:5px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 10px 12px;color:var(--ink);transition:border-color .15s,transform .15s,box-shadow .15s}
-.tcard:hover{border-color:var(--acc);transform:translateY(-2px);box-shadow:0 6px 18px rgb(0 0 0/.12)}
-.tcard[data-e="entrenando"]{border-color:var(--lu);box-shadow:inset 0 0 0 1px var(--lu)}
-.tcard[data-e="hecha"]{border-color:var(--ok)}
-.thumb{aspect-ratio:16/9;max-width:100%;border-radius:6px;background:var(--surface-2);position:relative;overflow:hidden;margin-bottom:4px}
-.thumb img{display:block;width:100%;height:100%;object-fit:cover}
-.thumb.play::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-35%,-50%);border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent;filter:drop-shadow(0 1px 3px rgb(0 0 0/.6))}
-.thumb.none{display:flex;align-items:center;justify-content:center;color:var(--muted);font:600 13px var(--display);letter-spacing:.1em;text-transform:uppercase}
-.tlink{color:var(--ink);text-decoration:none;font:700 21px/1.1 var(--display);text-transform:uppercase;letter-spacing:.02em}
+/* ---------- Listas: una fila por ficha ---------- */
+.filas{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,480px),1fr));gap:8px}
+.fila{position:relative;display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-left-width:4px;border-radius:var(--r);padding:8px 10px 8px 8px;color:var(--ink);transition:border-color .15s}
+.fila:hover{border-color:var(--acc)}
+.fila[data-e="entrenando"]{border-left-color:var(--lu)}
+.fila[data-e="hecha"]{border-left-color:var(--ok)}
+.fila .th{width:96px;aspect-ratio:16/9;border-radius:5px;background:var(--surface-2);overflow:hidden}
+.fila .th img{display:block;width:100%;height:100%;object-fit:cover}
+.tlink{display:block;color:var(--ink);text-decoration:none;font:700 19px/1.15 var(--display);text-transform:uppercase;letter-spacing:.02em}
 .tlink::after{content:"";position:absolute;inset:0;border-radius:inherit}
 .tlink:focus-visible{outline:0}
 .tlink:focus-visible::after{outline:2px solid var(--acc);outline-offset:2px}
-.tcard small{color:var(--muted);line-height:1.3}
-.meta{color:var(--muted);font-size:13px;line-height:1.35;margin-top:auto;padding-top:3px}
-.nums{display:flex;gap:4px}
-.num{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--bg);font:700 15px/1 var(--display)}
+.meta{color:var(--muted);font-size:13px;line-height:1.35;margin-top:2px}
+.frel{display:flex;flex-wrap:wrap;align-items:center;gap:2px 10px;margin-top:5px;font-size:13px;line-height:1.3}
+.frel b{font:600 12px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.frel a{position:relative;z-index:2;color:var(--ink);text-decoration:none;padding:3px 0}
+.frel a:hover{color:var(--acc);text-decoration:underline}
+.nums{display:flex;gap:4px;margin-top:4px}
+.num{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--bg);font:700 13px/1 var(--display)}
+.nums.big{margin-top:0}
 .nums.big .num{min-width:40px;height:40px;font-size:22px}
+.cuenta{font:500 15px var(--body);color:var(--muted);letter-spacing:0;margin-left:4px}
+.tabdesc{color:var(--muted);margin:12px 0 0;max-width:70ch}
+.grupos{columns:2 440px;column-gap:14px;margin-top:6px}
+.grupos .section{break-inside:avoid;margin:0;padding-top:22px}
+.grupos .filas{grid-template-columns:minmax(0,1fr)}
 
 /* ---------- Marcador de estado ---------- */
-.mark{position:absolute;top:16px;right:16px;z-index:2;display:inline-flex;align-items:center;gap:5px;border:0;min-height:30px;padding:4px 10px 4px 7px;border-radius:999px;background:var(--surface);color:var(--muted);font:600 13px/1 var(--body);cursor:pointer;box-shadow:0 1px 4px rgb(0 0 0/.3)}
+.mark{position:relative;z-index:2;display:inline-flex;align-items:center;gap:5px;border:0;min-height:32px;padding:4px 10px 4px 7px;border-radius:999px;background:var(--surface-2);color:var(--muted);font:600 13px/1 var(--body);cursor:pointer}
 .mark:hover{color:var(--ink)}
 .mark svg,.seg svg{width:16px;height:16px;flex:none}
 .mark[data-e="entrenando"]{background:var(--lu);color:var(--surface)}
@@ -153,19 +160,6 @@ a.chip:hover{outline:1px solid currentColor}
 .fbar{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:18px;padding:8px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
 .vacio{margin-top:18px}
 
-/* ---------- Tarjeta pequeña de drill ---------- */
-.minis{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
-.mini{position:relative;display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:8px;transition:border-color .15s}
-.mini:hover{border-color:var(--acc)}
-.mini .th{width:96px;aspect-ratio:16/9;border-radius:5px;background:var(--surface-2);overflow:hidden}
-.mini .th img{display:block;width:100%;height:100%;object-fit:cover}
-.mini .tlink{font-size:18px}
-.mini small{display:block;color:var(--muted);font-size:13px;line-height:1.3;margin-top:2px}
-.mini .mark{position:relative;top:auto;right:auto;padding:7px;box-shadow:none;background:var(--surface-2)}
-.mini .mark span{display:none}
-.mini .mark[data-e="entrenando"]{background:var(--lu)}
-.mini .mark[data-e="hecha"]{background:var(--ok)}
-
 /* ---------- Portada ---------- */
 .mapbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:18px;overflow-x:auto}
 .mapbox svg{display:block;width:100%;min-width:640px;height:auto}
@@ -179,16 +173,14 @@ a.chip:hover{outline:1px solid currentColor}
 .node .band{stroke:none}
 .edge{stroke:var(--muted);stroke-width:1.6;fill:none}
 .secs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
-.sec{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--acc);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.sec{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--acc);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;color:var(--ink);text-decoration:none;transition:border-color .15s}
+.sec:hover{border-color:var(--acc)}
 .sec h2{margin:0;font-size:32px}
-.sec p{margin:0;color:var(--muted)}
-.sec .links{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.sec p{margin:0 0 auto;color:var(--muted);font-size:15px;line-height:1.4}
 .btn{display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--surface);padding:7px 11px;border-radius:7px;cursor:pointer;font-size:15px;text-decoration:none;color:var(--ink);font-variant-numeric:tabular-nums}
 .btn:hover{border-color:var(--acc);color:var(--acc)}
 .btn.solid{background:var(--acc);border-color:var(--acc);color:#fff}
 .btn[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
-.today{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;justify-content:space-between;background:var(--ok-soft);border-radius:12px;padding:16px 18px;margin-top:14px}
-.today p{margin:0;max-width:62ch}
 
 /* ---------- Ficha y vídeo ---------- */
 .player-wrap{margin-top:20px;background:#000;border-radius:12px 12px 0 0;overflow:hidden}
@@ -313,16 +305,11 @@ code{font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;backgrou
 .fmain .block:last-child{margin-bottom:0}
 
 /* ---------- Progreso ---------- */
-.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
-.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-.stat b{display:block;font:700 40px/1 var(--display);font-variant-numeric:tabular-nums}
-.stat span{color:var(--muted);font-size:14px}
-.stat.e b{color:var(--lu)} .stat.h b{color:var(--ok)}
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:6px}
-.pgrid .panel + .panel{margin-top:0}
-.pgrid .prog{margin-top:6px}
 .acciones{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .aviso-e{color:var(--box);font-size:14px;margin-top:8px}
+.plegable{margin-top:28px;border-top:1px solid var(--line);padding-top:14px}
+.plegable summary{cursor:pointer;font:700 22px/1.2 var(--display);text-transform:uppercase;letter-spacing:.03em}
+.plegable .filas{margin-top:12px}
 
 /* ---------- Tema y pie ---------- */
 .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;flex:none;border:0;border-radius:8px;background:color-mix(in srgb,var(--head-fg) 14%,var(--head-bg));color:var(--head-fg);cursor:pointer}
@@ -344,8 +331,6 @@ code{font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;backgrou
   .secs{grid-template-columns:minmax(0,1fr)}
   .fmain{grid-template-columns:minmax(0,1fr);gap:22px}
   .fvideo{position:static}
-  .stats{gap:8px}
-  .stat b{font-size:32px}
   .credit{margin-left:0;width:100%}
   .top-in{flex-wrap:nowrap}
   .search{max-width:none;margin-left:0}
@@ -353,11 +338,18 @@ code{font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;backgrou
   nav.main a{padding:15px 2px;font-size:15px;letter-spacing:.03em;text-align:center;border-radius:0;border-bottom:0;border-top:3px solid transparent}
   body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px))}
   .brand span.t{display:none}
-  .mark{top:14px;right:14px}
   .seg.estado{display:flex}
   .seg.estado button{flex:1;justify-content:center;padding:10px 6px}
   .fbar .seg button{padding:7px 8px;font-size:13px}
   .fbar .seg{width:100%;flex-wrap:wrap}
+  .secs{gap:8px;margin-top:14px}
+  .sec{padding:10px 14px 12px}
+  .sec h2{font-size:24px}
+  .sec p{display:none}
+  .fila{grid-template-columns:72px minmax(0,1fr) auto;gap:10px}
+  .fila .th{width:72px}
+  .fila .mark{padding:8px;min-height:36px}
+  .fila .mark span{display:none}
   .fbar .seg button{flex:1 0 auto;justify-content:center}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -368,11 +360,11 @@ code{font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;backgrou
   <div class="top-in">
     <a class="brand" href="#inicio"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="t">Mapa MMA</span></a>
     <nav class="main" id="nav" aria-label="Secciones">
+      <a href="#inicio" data-s="inicio">Inicio</a>
       <a href="#boxeo" data-s="boxeo">Boxeo</a>
       <a href="#lucha" data-s="lucha">Lucha</a>
       <a href="#suelo" data-s="suelo">Suelo</a>
       <a href="#plan" data-s="plan">Plan</a>
-      <a href="#progreso" data-s="progreso">Progreso</a>
     </nav>
     <div class="search">
       <input id="q" type="search" placeholder="Buscar: jab, sprawl, mataleón…" autocomplete="off" aria-label="Buscar">
@@ -383,7 +375,7 @@ code{font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;backgrou
 </header>
 
 <main id="main"></main>
-<footer class="pie"><span>Mapa MMA</span><a href="#guia">Guía</a><a href="#falta">Qué falta</a><a href="https://github.com/Sergiogonzalezruiz/MMA" target="_blank" rel="noopener">GitHub</a></footer>
+<footer class="pie"><span>Mapa MMA</span><a href="#guia">Guía</a><a href="#falta">Qué falta</a><a href="#copia">Copia de seguridad</a><a href="https://github.com/Sergiogonzalezruiz/MMA" target="_blank" rel="noopener">GitHub</a></footer>
 
 <script src="datos-comun.js"></script>
 <script src="datos-boxeo.js"></script>
@@ -438,7 +430,7 @@ const fichasDe = k => { const [s, n] = k.split(":"); return D.FICHAS.filter(f =>
 function barra(lista) {
   const n = lista.length, h = lista.filter(f => estadoDe(f.id) === "hecha").length, e = lista.filter(f => estadoDe(f.id) === "entrenando").length;
   return `<div class="bar"><i class="h" style="width:${n ? h / n * 100 : 0}%"></i><i class="e" style="width:${n ? e / n * 100 : 0}%"></i></div>
-    <small>${h} ${h === 1 ? "entrenada" : "entrenadas"} · ${e} entrenando · ${n - h - e} sin empezar</small>`;
+    <small>${h} ${h === 1 ? "entrenada" : "entrenadas"} · ${e} entrenando · ${n - h - e} ni idea</small>`;
 }
 // Actualiza en la página todo lo que depende del progreso, sin volver a pintarla (el vídeo sigue sonando)
 function pintarEstados() {
@@ -449,45 +441,42 @@ function pintarEstados() {
     b.setAttribute("aria-label", `${F[id].es}: ${t}. Toca para cambiar a ${txtEstado(id, SIG[e])}`);
     b.title = `Toca para cambiar a ${txtEstado(id, SIG[e])}`;
   });
-  $$(".tcard,.mini").forEach(c => { c.dataset.e = estadoDe(c.dataset.id); });
+  $$(".fila").forEach(c => { c.dataset.e = estadoDe(c.dataset.id); });
   $$("[data-dot]").forEach(d => { d.dataset.e = estadoDe(d.dataset.dot); });
   $$("[data-set]").forEach(b => b.setAttribute("aria-pressed", estadoDe(b.dataset.id) === b.dataset.set));
   $$("[data-prog]").forEach(p => { p.innerHTML = barra(fichasDe(p.dataset.prog)); });
   $$("[data-cuenta]").forEach(s => {
-    const k = s.dataset.cuenta, c = $$(".tcard");
+    const k = s.dataset.cuenta, c = $$(".fila");
     s.textContent = k ? c.filter(x => x.dataset.e === k).length : c.length;
   });
 }
 
 /* ---------- Filtros de las listas ---------- */
-const filtro = { e: "", n: "", solo: false };
+const filtro = { e: "", solo: false };
 const barraFiltros = () => `<div class="fbar">
     <div class="seg" role="group" aria-label="Filtrar por estado">${[["", "Todas"], ["nada", "Ni idea"], ["entrenando", "Entrenando"], ["hecha", "Entrenadas"]].map(([k, t]) => `<button type="button" data-fe="${k}" aria-pressed="${filtro.e === k}">${t} <span class="n" data-cuenta="${k}"></span></button>`).join("")}</div>
-    <div class="seg" role="group" aria-label="Filtrar por nivel">${[["", "Todo nivel"], ...Object.entries(D.NIVELES)].map(([k, t]) => `<button type="button" data-fn="${k}" aria-pressed="${filtro.n === k}">${t}</button>`).join("")}</div>
     <button class="btn" type="button" data-fsolo aria-pressed="${filtro.solo}">Solo en casa</button>
   </div><p class="vacio muted" id="fvacio" hidden>Nada con estos filtros. <a href="#" data-flimpiar>Quitar filtros</a></p>`;
 function aplicarFiltros() {
   if (!$(".fbar")) return;
   $$("[data-fe]").forEach(b => b.setAttribute("aria-pressed", filtro.e === b.dataset.fe));
-  $$("[data-fn]").forEach(b => b.setAttribute("aria-pressed", filtro.n === b.dataset.fn));
   $("[data-fsolo]").setAttribute("aria-pressed", filtro.solo);
   let vistas = 0;
-  $$(".tcard").forEach(c => {
-    const ok = (!filtro.e || c.dataset.e === filtro.e) && (!filtro.n || c.dataset.nivel === filtro.n) && (!filtro.solo || c.dataset.solo === "si");
+  $$(".fila").forEach(c => {
+    const ok = (!filtro.e || c.dataset.e === filtro.e) && (!filtro.solo || c.dataset.solo === "si");
     c.hidden = !ok; if (ok) vistas++;
   });
-  $$(".section").forEach(s => { if (s.querySelector(".tcard")) s.hidden = !s.querySelector(".tcard:not([hidden])"); });
+  $$(".section").forEach(s => { if (s.querySelector(".fila")) s.hidden = !s.querySelector(".fila:not([hidden])"); });
   $("#fvacio").hidden = vistas > 0;
 }
 document.addEventListener("click", e => {
-  const t = e.target.closest("[data-mark],[data-set],[data-fe],[data-fn],[data-fsolo],[data-flimpiar]");
+  const t = e.target.closest("[data-mark],[data-set],[data-fe],[data-fsolo],[data-flimpiar]");
   if (!t) return;
   if (t.dataset.mark) { e.preventDefault(); setEstado(t.dataset.mark, SIG[estadoDe(t.dataset.mark)]); return; }
   if (t.dataset.set) { setEstado(t.dataset.id, t.dataset.set); return; }
   if (t.dataset.fe !== undefined) filtro.e = t.dataset.fe;
-  if (t.dataset.fn !== undefined) filtro.n = t.dataset.fn;
   if (t.dataset.fsolo !== undefined) filtro.solo = !filtro.solo;
-  if (t.dataset.flimpiar !== undefined) { e.preventDefault(); filtro.e = filtro.n = ""; filtro.solo = false; }
+  if (t.dataset.flimpiar !== undefined) { e.preventDefault(); filtro.e = ""; filtro.solo = false; }
   aplicarFiltros();
 });
 
@@ -502,21 +491,19 @@ const chips = f => `<div class="chips">
   <span class="chip mma">${MMA_TXT[f.mma] ?? ""}</span>
   <span class="chip ${f.solo === "si" ? "ok" : f.solo === "parcial" ? "warn" : ""}">${SOLO_TXT[f.solo]}</span>
   ${f.gi && f.gi !== "ambos" ? `<span class="chip">${GI_TXT[f.gi]}</span>` : ""}</div>`;
-const meta = f => {
-  const n = drillsDe(f).length;
-  return [f.tipo === "drill" ? "Drill" : "", D.NIVELES[f.nivel], SOLO_TXT[f.solo], MMA_TXT[f.mma], n ? `${n} ${n === 1 ? "drill" : "drills"}` : ""].filter(Boolean).join(" · ");
+const meta = f => [f.dosis || D.NIVELES[f.nivel], SOLO_TXT[f.solo], MMA_TXT[f.mma]].filter(Boolean).join(" · ");
+// Una ficha en una lista. Las técnicas enseñan sus drills y los drills, las técnicas que entrenan
+const fila = (f, { rel = true } = {}) => {
+  const r = f.tipo === "drill" ? tecnicasDe(f) : drillsDe(f);
+  return `<article class="fila" data-sec="${f.seccion}" data-id="${f.id}" data-solo="${f.solo}">
+    <div class="th">${f.videos.length ? `<img src="${thumb(f.videos[0].id)}" alt="" loading="lazy">` : ""}</div>
+    <div><a class="tlink" href="#f-${f.id}">${esc(f.es)}</a>
+      <div class="meta">${esc(meta(f))}</div>${nums(f.golpes)}
+      ${rel && r.length ? `<div class="frel"><b>${f.tipo === "drill" ? "Entrena" : "Drills"}</b>${r.map(x => `<a href="#f-${x.id}">${dot(x.id)}${esc(x.es)}</a>`).join("")}</div>` : ""}</div>
+    <button class="mark" type="button" data-mark="${f.id}"></button></article>`;
 };
-const card = f => `<article class="tcard" data-sec="${f.seccion}" data-id="${f.id}" data-nivel="${f.nivel}" data-solo="${f.solo}">
-  ${f.videos.length ? `<div class="thumb play"><img src="${thumb(f.videos[0].id)}" alt="" loading="lazy"></div>` : `<div class="thumb none">Vídeo pendiente</div>`}
-  <button class="mark" type="button" data-mark="${f.id}"></button>
-  <a class="tlink" href="#f-${f.id}">${esc(f.es)}</a>
-  <small>${esc(f.en)}${f.jp ? " · " + esc(f.jp) : ""}${f.dosis ? " · " + esc(f.dosis) : ""}</small>
-  ${nums(f.golpes)}<div class="meta">${esc(meta(f))}</div></article>`;
-const grid = list => list.length ? `<div class="grid">${list.map(card).join("")}</div>` : `<p class="muted">Todavía no hay fichas aquí.</p>`;
-const mini = f => `<article class="mini" data-sec="${f.seccion}" data-id="${f.id}">
-  <div class="th">${f.videos.length ? `<img src="${thumb(f.videos[0].id)}" alt="" loading="lazy">` : ""}</div>
-  <div><a class="tlink" href="#f-${f.id}">${esc(f.es)}</a><small>${esc(f.dosis || `${D.NIVELES[f.nivel]} · ${SOLO_TXT[f.solo]}`)}</small></div>
-  <button class="mark" type="button" data-mark="${f.id}"></button></article>`;
+const grid = list => list.length ? `<div class="filas">${list.map(f => fila(f)).join("")}</div>` : `<p class="muted">Todavía no hay fichas aquí.</p>`;
+const grupo = (titulo, list) => list.length ? `<div class="section"><h2>${esc(titulo)}<span class="cuenta">${list.length}</span></h2>${grid(list)}</div>` : "";
 const barraDe = k => `<div class="prog" data-prog="${k}"></div>`;
 // Lo siguiente que conviene empezar: lo más básico y útil en MMA que aún no has tocado, repartido por sección
 const RANGO = { nivel: { F: 0, I: 1, A: 2 }, mma: { "muy alta": 0, "alta": 1, "media": 2, "baja": 3 }, solo: { si: 0, parcial: 1, no: 2 } };
@@ -559,36 +546,27 @@ function grafo({ nodos, aristas, W = 220, H = 56, vb, label }) {
     ${edges}${nodes}</svg></div>`;
 }
 
-/* ---------- Portada ---------- */
+/* ---------- Portada: tu entrenamiento, y desde aquí a cada sección ---------- */
 function renderInicio() {
   setSec(null);
   const nodos = Object.fromEntries(D.FASES.map(f => {
     const n = D.FICHAS.filter(x => x.fases.includes(f.id)).length;
     return [f.id, { x: f.x, y: f.y, t: f.n, sub: `${n} fichas`, go: "#fase-" + f.id }];
   }));
-  const count = (s, t) => D.FICHAS.filter(f => f.seccion === s && f.tipo === t).length;
   const act = entrenando();
+  const hechas = D.FICHAS.filter(f => estadoDe(f.id) === "hecha");
   $("#main").innerHTML = `${fileBanner()}
-    <h1>Mapa MMA</h1>
-    <p class="lead">Boxeo, lucha y suelo para MMA, pensados para entrenar en casa. Cada técnica lleva su vídeo y sus drills.</p>
-    ${barraDe("all")}
-    ${act.length ? `<div class="section"><h2>Estás entrenando</h2>${grid(act.slice(0, 6))}
-        <div class="acciones"><a class="btn" href="#progreso">${act.length > 6 ? `Ver las ${act.length}` : "Ver mi progreso"}</a><a class="btn" href="#plan">Plan de hoy</a></div></div>`
-      : `<div class="section"><h2>Por dónde empezar</h2>
-        <p class="muted" style="margin:-4px 0 14px;max-width:70ch">Toca el marcador de una tarjeta para cambiarlo: Ni idea → Entrenando → Entrenada. Lo que marques aparecerá aquí.</p>
-        ${grid(sugeridas())}</div>`}
-    <div class="section"><h2>Secciones</h2><div class="secs" style="margin-top:0">
-      ${D.SECCIONES.map(s => `<article class="sec" data-sec="${s.id}">
-        <div class="eyebrow" style="margin:0">${esc(s.grupo)}</div><h2>${esc(s.nombre)}</h2><p>${esc(s.desc)}</p>
-        <p><strong style="color:var(--ink)">${count(s.id, "tecnica")}</strong> técnicas · <strong style="color:var(--ink)">${count(s.id, "drill")}</strong> drills</p>
-        ${barraDe(s.id)}
-        <div class="links"><a class="btn solid" href="#${s.id}">Técnicas</a><a class="btn" href="#${s.id}-entrenar">Entrenar</a><a class="btn" href="#${s.id}-ruta">Ruta</a></div>
-      </article>`).join("")}</div>
-      <div class="today"><p><strong>Entrenar hoy en casa:</strong> sesión de 60–70 min que recorre las tres secciones, y una semana tipo.</p><a class="btn" href="#plan">Ver el plan</a></div>
-    </div>
-    <div class="section"><h2>Mapa del combate</h2>
-      <p class="muted" style="margin:-4px 0 0;max-width:70ch">Las fases de una pelea y cómo se pasa de una a otra. Toca una fase para ver todo lo que tienes para ella, de las tres secciones.</p>
-      ${grafo({ nodos, aristas: D.TRANSICIONES, vb: "0 0 820 400", label: "Mapa del combate" })}</div>`;
+    <h1>Tu entrenamiento</h1>
+    <div class="secs">
+      ${D.SECCIONES.map(s => `<a class="sec" href="#${s.id}" data-sec="${s.id}"><h2>${esc(s.nombre)}</h2><p>${esc(s.desc)}</p>${barraDe(s.id)}</a>`).join("")}</div>
+    <div class="section"><h2>Entrenando ahora<span class="cuenta">${act.length}</span></h2>
+      ${act.length ? grid(act) : `<p class="muted" style="margin:0;max-width:70ch">Nada todavía. Toca el círculo de una ficha para cambiarlo: Ni idea → Entrenando → Entrenada.</p>`}</div>
+    <div class="section"><h2>Por dónde seguir</h2>
+      <p class="muted" style="margin:-4px 0 12px;max-width:70ch">Lo más básico y útil en MMA que aún no has empezado.</p>${grid(sugeridas())}</div>
+    ${hechas.length ? `<details class="plegable"><summary>Ya entrenadas<span class="cuenta">${hechas.length}</span></summary>${grid(hechas)}</details>` : ""}
+    <details class="plegable"><summary>Ver por fase del combate</summary>
+      <p class="muted" style="margin:10px 0 0;max-width:70ch">Las fases de una pelea y cómo se pasa de una a otra. Toca una fase para ver lo que tienes para ella.</p>
+      ${grafo({ nodos, aristas: D.TRANSICIONES, vb: "0 0 820 400", label: "Mapa del combate" })}</details>`;
   bindGo();
 }
 
@@ -613,36 +591,36 @@ function mapaSuelo() {
 function renderSeccion(id, tab = "tecnicas") {
   const s = S[id]; setSec(id);
   const fichas = D.FICHAS.filter(f => f.seccion === id);
-  const tabs = [["tecnicas", "Técnicas", `#${id}`], ["entrenar", "Entrenar", `#${id}-entrenar`], ["ruta", "Ruta", `#${id}-ruta`]];
+  const tecnicas = fichas.filter(f => f.tipo === "tecnica");
+  const drills = fichas.filter(f => f.tipo === "drill");
+  const tabs = [
+    ["tecnicas", "Técnicas", `#${id}`, "Todas las técnicas, por tema. Debajo de cada una, sus drills."],
+    ["entrenar", "Drills", `#${id}-entrenar`, "Ejercicios para repetir en casa, con rondas y tiempos."],
+    ["ruta", "Ruta", `#${id}-ruta`, "Qué aprender primero, nivel por nivel."]
+  ];
+  if (id === "suelo") tabs.push(["posiciones", "Posiciones", "#suelo-posiciones", "Las técnicas según la posición en la que estás."]);
   let body = "";
   if (tab === "tecnicas") {
-    body = (id === "suelo" ? `<div class="section"><h2>Posiciones</h2>${mapaSuelo()}</div>` : "") +
-      `<div class="note">${esc(s.nota)}</div>${barraFiltros()}` +
-      s.categorias.map(c => { const l = fichas.filter(f => f.tipo === "tecnica" && f.cat === c.id); return l.length ? `<div class="section"><h2>${esc(c.n)}</h2>${grid(l)}</div>` : ""; }).join("") +
-      (id === "suelo" ? `<div class="section"><h2>Movimientos base</h2>${grid(fichas.filter(f => f.cat === "movimiento"))}</div>` : "");
+    body = barraFiltros() + `<div class="grupos">${s.categorias.map(c => grupo(c.n, tecnicas.filter(f => f.cat === c.id))).join("")}</div>` +
+      `<div class="note">${esc(s.nota)}</div>`;
   } else if (tab === "entrenar") {
-    const drills = fichas.filter(f => f.tipo === "drill");
     const g1 = drills.filter(f => f.material.every(m => m === "ninguno"));
     const g3 = drills.filter(f => f.material.some(m => FUERA.includes(m)));
     const g2 = drills.filter(f => !g1.includes(f) && !g3.includes(f));
-    const solos = fichas.filter(f => f.tipo === "tecnica" && f.solo === "si");
-    body = `<p class="lead">Drills para mejorar entrenando solo. Cada ficha dice cuántas rondas, con qué material y cuándo lo has superado.</p>${barraFiltros()}
-      ${g1.length ? `<div class="section"><h2>Sin material</h2>${grid(g1)}</div>` : ""}
-      ${g2.length ? `<div class="section"><h2>Con material de casa</h2>${grid(g2)}</div>` : ""}
-      ${g3.length ? `<div class="section"><h2>Con compañero o gimnasio</h2>${grid(g3)}</div>` : ""}
-      ${solos.length ? `<div class="section"><h2>Técnicas que puedes trabajar solo</h2><p class="muted" style="margin-top:-4px">En sombra o frente al espejo.</p>${grid(solos)}</div>` : ""}
-      <div class="today"><p>¿Quieres una sesión completa que combine las tres secciones?</p><a class="btn" href="#plan">Ver el plan de casa</a></div>`;
+    body = barraFiltros() + `<div class="grupos">${grupo("Sin material", g1)}${grupo("Con material de casa", g2)}${grupo("Con compañero o gimnasio", g3)}</div>`;
+  } else if (tab === "posiciones") {
+    body = `<div class="section">${mapaSuelo()}</div>`;
   } else {
     body = Object.entries(s.ruta).map(([n, r]) => `<section class="level">
         <header><span class="chip acc">${D.NIVELES[n]}</span><h2>${esc(r.cuando)}</h2></header>
         <p class="que">${esc(r.que)}</p>${barraDe(`${id}:${n}`)}
         <h3 style="margin-top:14px">Pasas de nivel cuando</h3><ul class="checks">${r.criterio.map(c => `<li><span>${esc(c)}</span></li>`).join("")}</ul>
-        ${grid(fichas.filter(f => f.nivel === n))}</section>`).join("") + (id === "suelo" ? renderJJU() : "");
+        ${grid(tecnicas.filter(f => f.nivel === n))}</section>`).join("") + (id === "suelo" ? renderJJU() : "");
   }
   $("#main").innerHTML = `${fileBanner()}
-    <div class="eyebrow">${esc(s.grupo)}</div><h1>${esc(s.nombre)}</h1>
-    <p class="lead">${esc(s.desc)}</p>${barraDe(id)}
+    <h1>${esc(s.nombre)}</h1>${barraDe(id)}
     <nav class="tabs" aria-label="Pestañas">${tabs.map(([k, t, h]) => `<a href="${h}" class="${k === tab ? "on" : ""}">${t}</a>`).join("")}</nav>
+    <p class="tabdesc">${esc(tabs.find(([k]) => k === tab)[3])}</p>
     ${body}`;
   bindGo();
 }
@@ -667,7 +645,7 @@ function renderPos(id, ladoSel) {
   const llegan = D.FICHAS.filter(f => f.hasta?.pos === id && f.hasta.lado === lado);
   const cats = S.suelo.categorias;
   $("#main").innerHTML = `${fileBanner()}
-    <div class="crumb"><a href="#suelo">Suelo</a><span>/</span><span>Posición</span></div>
+    <div class="crumb"><a href="#suelo">Suelo</a><span>/</span><a href="#suelo-posiciones">Posiciones</a></div>
     <h1>${esc(p.es)}</h1>${names(p)}
     <p class="lead">${esc(p.desc)}</p>
     ${lados.length > 1 ? `<div class="tabs" role="tablist">${lados.map(l => `<button role="tab" aria-selected="${l === lado}" data-lado="${l}">${LADOS[l]}</button>`).join("")}</div>` : ""}
@@ -708,30 +686,17 @@ function renderPlan() {
       ${pl.solo.map(([k, v]) => `<div class="panel"><div class="k">${esc(k)}</div>${esc(v)}</div>`).join("")}</div>`;
 }
 
-/* ---------- Mi progreso ---------- */
-function renderProgreso() {
+/* ---------- Copia de seguridad del progreso ---------- */
+function renderCopia() {
   setSec(null);
-  const por = e => D.FICHAS.filter(f => estadoDe(f.id) === e);
-  const act = entrenando(), hechas = por("hecha");
   $("#main").innerHTML = `${fileBanner()}
-    <div class="eyebrow" style="color:var(--ok)">Tu entrenamiento</div><h1>Progreso</h1>
-    <div class="stats">
-      <div class="stat e"><b>${act.length}</b><span>Entrenando</span></div>
-      <div class="stat h"><b>${hechas.length}</b><span>Entrenadas</span></div>
-      <div class="stat"><b>${por("nada").length}</b><span>Ni idea</span></div>
-    </div>
-    <div class="section"><h2>Por sección</h2><div class="pgrid">
-      ${D.SECCIONES.map(s => `<a class="panel" href="#${s.id}" data-sec="${s.id}" style="text-decoration:none;color:var(--ink)"><div class="k">${esc(s.nombre)}</div>${barraDe(s.id)}</a>`).join("")}</div></div>
-    <div class="section"><h2>Entrenando ahora</h2>${act.length ? grid(act) : `<p class="muted">Nada todavía. Marca una técnica o un drill como «Entrenando» y aparecerá aquí.</p>`}</div>
-    <div class="section"><h2>Por dónde seguir</h2><p class="muted" style="margin:-4px 0 12px;max-width:70ch">Lo más básico y útil en MMA que aún no has empezado, por sección.</p>${grid(sugeridas())}</div>
-    ${hechas.length ? `<div class="section"><h2>Ya entrenadas</h2>${grid(hechas)}</div>` : ""}
-    <div class="section"><h2>Copia de seguridad</h2>
-      <p style="margin:0;max-width:70ch">Tu progreso se guarda solo en este navegador. No se comparte entre el móvil y el ordenador, y se pierde si borras los datos del sitio. Para pasarlo a otro dispositivo, expórtalo aquí e impórtalo allí.</p>
-      <div class="acciones">
-        <button class="btn" type="button" id="expBtn">Exportar archivo</button>
-        <label class="btn">Importar archivo<input type="file" id="impFile" accept="application/json,.json" hidden></label>
-        <button class="btn" type="button" id="resetBtn">Borrar progreso</button>
-      </div><p class="aviso-e" id="impMsg" hidden></p></div>`;
+    <h1>Copia de seguridad</h1>
+    <p class="lead">Tu progreso se guarda solo en este navegador. No se comparte entre el móvil y el ordenador, y se pierde si borras los datos del sitio. Para pasarlo a otro dispositivo, expórtalo aquí e impórtalo allí.</p>
+    <div class="acciones">
+      <button class="btn" type="button" id="expBtn">Exportar archivo</button>
+      <label class="btn">Importar archivo<input type="file" id="impFile" accept="application/json,.json" hidden></label>
+      <button class="btn" type="button" id="resetBtn">Borrar progreso</button>
+    </div><p class="aviso-e" id="impMsg" hidden></p>`;
   $("#expBtn").addEventListener("click", () => {
     const url = URL.createObjectURL(new Blob([JSON.stringify({ version: 1, fecha: hoy(), progreso }, null, 2)], { type: "application/json" }));
     const a = document.createElement("a");
@@ -744,7 +709,7 @@ function renderProgreso() {
       const j = JSON.parse(await file.text());
       const limpio = {};
       for (const [id, v] of Object.entries(j.progreso)) if (F[id] && (v?.e === "entrenando" || v?.e === "hecha")) limpio[id] = { e: v.e, t: v.t || hoy() };
-      progreso = limpio; guardar(CLAVE, progreso); route();
+      progreso = limpio; guardar(CLAVE, progreso); location.hash = "#inicio";
     } catch {
       $("#impMsg").textContent = "Ese archivo no es una copia de progreso de esta web.";
       $("#impMsg").hidden = false;
@@ -752,7 +717,7 @@ function renderProgreso() {
   });
   $("#resetBtn").addEventListener("click", () => {
     if (!confirm("¿Borrar todo tu progreso en este navegador? Todas las fichas volverán a «Ni idea».")) return;
-    progreso = {}; guardar(CLAVE, progreso); route();
+    progreso = {}; guardar(CLAVE, progreso); location.hash = "#inicio";
   });
 }
 
@@ -856,7 +821,7 @@ function renderFicha(id) {
   const s = S[f.seccion]; setSec(f.seccion);
   const vs = f.videos;
   const v0 = vs[0];
-  const crumbCat = f.tipo === "drill" ? `<a href="#${s.id}-entrenar">Entrenar</a>` : `<a href="#${s.id}">${esc(catName(f))}</a>`;
+  const crumbCat = f.tipo === "drill" ? `<a href="#${s.id}-entrenar">Drills</a>` : `<a href="#${s.id}">${esc(catName(f))}</a>`;
   const material = f.material.map(m => D.MATERIAL[m]).join(" · ");
   const rel = f.tipo === "drill" ? tecnicasDe(f) : drillsDe(f);
   const encadena = (f.combina || []).filter(c => F[c] && !rel.includes(F[c]));
@@ -892,7 +857,7 @@ function renderFicha(id) {
       </div>
     </div>
 
-    ${rel.length ? `<div class="fstrip"><h2>${f.tipo === "drill" ? "Técnicas que entrena" : "Drills para entrenarla"}</h2><div class="minis">${rel.map(mini).join("")}</div></div>` : ""}
+    ${rel.length ? `<div class="fstrip"><h2>${f.tipo === "drill" ? "Técnicas que entrena" : "Drills para entrenarla"}</h2><div class="filas">${rel.map(x => fila(x, { rel: false })).join("")}</div></div>` : ""}
 
     <div class="fmore">
       <div class="block"><h2>En MMA</h2>
@@ -1049,17 +1014,17 @@ function route() {
   if (atras) pila.pop(); else if (pila.at(-1) !== h) pila.push(h);
   try { player?.destroy?.(); } catch {} player = null; cur = null;
   let navOn = null;
-  const m = h.match(/^(boxeo|lucha|suelo)(?:-(entrenar|ruta))?$/);
+  const m = h.match(/^(boxeo|lucha|suelo)(?:-(entrenar|ruta|posiciones))?$/);
   if (m) { renderSeccion(m[1], m[2] || "tecnicas"); navOn = m[1]; }
   else if (h.startsWith("f-")) { renderFicha(h.slice(2)); navOn = F[h.slice(2)]?.seccion; }
   else if (h.startsWith("p-")) { renderPos(h.slice(2)); navOn = "suelo"; }
   else if (h.startsWith("fase-")) renderFase(h.slice(5));
   else if (h === "plan") { renderPlan(); navOn = "plan"; }
-  else if (h === "progreso") { renderProgreso(); navOn = "progreso"; }
+  else if (h === "copia") renderCopia();
   else if (h === "guia") renderGuia(null);
   else if (h.startsWith("guia-")) renderGuia(h.slice(5));
   else if (h === "falta") renderFalta();
-  else renderInicio();
+  else { renderInicio(); navOn = "inicio"; }
   pintarEstados(); aplicarFiltros();
   $$("#nav a").forEach(a => a.classList.toggle("on", a.dataset.s === navOn));
   window.scrollTo(0, atras ? scrolls[h] || 0 : 0);
