@@ -91,6 +91,19 @@ for (const f of M.FICHAS) {
   });
 }
 
+// ---------- Mapa de suelo ----------
+const enMapa = (M.POSICIONES || []).filter(p => p.id !== "base");
+for (const p of enMapa) {
+  const d = `posición · ${p.id}`;
+  if (!p.mapa) { err(d, "falta «mapa: { x, y }», su sitio en el mapa de suelo"); continue; }
+  const { x, y } = p.mapa;
+  if (typeof x !== "number" || x < 0 || x > 1000) err(d, `mapa.x tiene que ser un número de 0 a 1000 (es ${x})`);
+  if (typeof y !== "number" || y < 0 || y > 680) err(d, `mapa.y tiene que ser un número de 0 a 680 (es ${y})`);
+}
+enMapa.forEach((a, i) => enMapa.slice(i + 1).forEach(b => {
+  if (a.mapa && b.mapa && Math.hypot(a.mapa.x - b.mapa.x, a.mapa.y - b.mapa.y) < 140) aviso(`posición · ${a.id}`, `está a menos de 140 de ${b.id} en el mapa`);
+}));
+
 // ---------- Plan ----------
 for (const b of M.PLAN.sesion) for (const id of b.fichas) if (!ids.has(id)) err(`plan · ${b.t}`, `enlaza a la ficha «${id}», que no existe`);
 

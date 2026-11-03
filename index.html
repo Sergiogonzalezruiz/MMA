@@ -311,6 +311,74 @@ code{font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;backgrou
 .plegable summary{cursor:pointer;font:700 22px/1.2 var(--display);text-transform:uppercase;letter-spacing:.03em}
 .plegable .filas{margin-top:12px}
 
+/* ---------- Mapa de suelo ---------- */
+.mn-acceso{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:16px}
+.mn-filtros{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:14px}
+.mn-cats{display:flex;flex-wrap:wrap;gap:6px}
+.mn-chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:6px 10px;border-radius:999px;font:600 13px/1 var(--body);cursor:pointer}
+.mn-chip[aria-pressed="false"]{color:var(--muted);background:none}
+.mn-chip[aria-pressed="false"] i{opacity:.35}
+.mn-chip:hover{border-color:var(--acc)}
+.mn-modo{margin-left:auto;border:0;background:none;padding:6px 2px;color:var(--acc);font:600 14px var(--body);text-decoration:underline;cursor:pointer}
+.c-escape{--c:var(--ok)} .c-guardia{--c:var(--lu)} .c-pase{--c:var(--su)} .c-sumision{--c:var(--box)} .c-mma{--c:var(--ink)}
+.mn-p{display:inline-block;flex:none;width:12px;height:12px;border-radius:50%;background:var(--c,var(--muted))}
+.mn-p.c-mma{background:none;border:2px solid var(--ink)}
+.mn-p.vacia{width:18px;border-radius:3px;background:none;border:1px dashed var(--muted)}
+.mn-wrap{position:relative;height:min(72vh,720px);min-height:360px;margin-top:10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.mn{display:block;width:100%;height:100%;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}
+.mn.moviendo{cursor:grabbing}
+.mn .e{fill:none;transition:opacity .12s}
+.mn .ep{stroke:var(--line);stroke-width:1.2}
+.mn .eh{stroke:var(--c);stroke-width:1.5;stroke-dasharray:5 4}
+.mn .n{cursor:pointer;outline:0;transition:opacity .12s}
+.mn .hit{fill:transparent}
+.mn .box{fill:var(--surface);stroke:var(--ink);stroke-width:1.5}
+.mn .nom{fill:var(--ink);font:700 15px var(--display);text-transform:uppercase;letter-spacing:.03em}
+.mn .cnt{fill:var(--muted);font:500 12px var(--body)}
+.mn .p.vacia .box{stroke:var(--muted);stroke-dasharray:5 4}
+.mn .p.vacia .nom{fill:var(--muted)}
+.mn .pt{fill:var(--c);stroke:var(--surface);stroke-width:1.5}
+.mn .t.c-mma .pt{fill:var(--surface);stroke:var(--ink);stroke-width:2}
+.mn .lbl{fill:var(--ink);font:500 var(--lbl,12px) var(--body);paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+.mn.lejos .lbl{display:none}
+.mn.lejos .n.on .lbl{display:inline}
+.mn .n.off,.mn .e.off{opacity:.15}
+.mn.foco .n:not(.on),.mn.foco .e:not(.on){opacity:.15}
+.mn.foco .n.on,.mn.foco .e.on{opacity:1}
+.mn .e.on{stroke-width:2.2}
+.mn .ep.on{stroke:var(--muted)}
+.mn .p:hover .box,.mn .n:focus-visible .box,.mn .sel .box{stroke:var(--acc);stroke-width:3}
+.mn .t:hover .pt,.mn .n:focus-visible .pt,.mn .t.sel .pt{stroke:var(--acc);stroke-width:3}
+.mn .t:hover .lbl,.mn .n:focus-visible .lbl,.mn .t.sel .lbl{font-weight:600}
+.mn-eje{position:absolute;left:4px;top:10px;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--muted);background:color-mix(in srgb,var(--surface) 85%,transparent);padding:4px 2px;border-radius:4px;font-size:12px;line-height:1;pointer-events:none;white-space:nowrap}
+.mn-zoom{position:absolute;left:30px;bottom:10px;display:flex;gap:4px}
+.mn-zoom .btn{min-width:36px;height:36px;justify-content:center;padding:0 10px;font-weight:600}
+.mn-panel{position:fixed;z-index:15;top:calc(58px + env(safe-area-inset-top,0px));right:0;bottom:0;width:380px;background:var(--surface);border-left:1px solid var(--line);box-shadow:-8px 0 24px rgb(0 0 0/.14);overflow:auto;overscroll-behavior:contain;padding:14px 16px 28px}
+.mn-panel h2{font-size:28px;margin:0 36px 2px 0}
+.mn-panel h3{margin:18px 0 8px}
+.mn-panel .chips{margin-top:8px}
+.mn-panel .player-wrap{margin-top:12px;border-radius:10px}
+.mn-panel .credit{display:block;margin:6px 0 0;font-size:13px}
+.mn-panel .seg.estado{display:flex;margin-top:12px}
+.mn-panel .seg.estado button{flex:1;justify-content:center;padding:9px 4px;font-size:14px}
+.mn-panel .btn.solid{width:100%;justify-content:center;padding:11px;margin-top:16px;font-weight:600}
+.mn-panel .btn.solid + .btn{margin-top:8px}
+.mn-panel .novideo{margin-top:12px;padding:18px}
+.mn-panel .linklist a{font-size:14px;padding:5px 9px}
+.mn-panel ol.steps{font-size:15px}
+.mn-ruta{margin:10px 0 0;font-size:15px}
+.mn-cerrar{position:sticky;top:0;float:right;z-index:2;width:36px;height:36px;margin:-4px -6px 0 0;border:0;border-radius:50%;background:var(--surface-2);color:var(--ink);font-size:20px;line-height:1;cursor:pointer}
+.mn-cerrar:hover{color:var(--acc)}
+.mn-lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:10px;margin-top:12px}
+.mn-lista .panel + .panel{margin-top:0}
+.mn-lista h3{margin:0 0 8px}
+.mn-lista h3 a{color:var(--ink)}
+@media (max-width:860px){
+  .mn-modo{margin-left:0}
+  .mn-panel{top:auto;left:0;right:0;width:auto;z-index:24;bottom:calc(47px + env(safe-area-inset-bottom,0px));max-height:75vh;border-left:0;border-top:1px solid var(--line);border-radius:14px 14px 0 0;box-shadow:0 -8px 24px rgb(0 0 0/.22)}
+}
+@media (prefers-reduced-motion:reduce){.mn .e,.mn .n{transition:none}}
+
 /* ---------- Tema y pie ---------- */
 .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;flex:none;border:0;border-radius:8px;background:color-mix(in srgb,var(--head-fg) 14%,var(--head-bg));color:var(--head-fg);cursor:pointer}
 .icon-btn:hover{background:color-mix(in srgb,var(--head-fg) 24%,var(--head-bg))}
@@ -571,24 +639,7 @@ function renderInicio() {
 }
 
 /* ---------- Sección ---------- */
-const NODOS_SUELO = {
-  "mariposa": [130, 50], "guardia-cerrada": [410, 50], "guardias-abiertas": [690, 50],
-  "media-guardia": [130, 175], "rodilla-vientre": [410, 175], "montada": [690, 175],
-  "cien-kilos": [130, 300], "tortuga": [410, 300], "espalda": [690, 300]
-};
-function mapaSuelo() {
-  const nodos = Object.fromEntries(Object.entries(NODOS_SUELO).map(([id, [x, y]]) => {
-    const p = P[id]; const n = D.FICHAS.filter(f => f.desde?.pos === id).length;
-    return [id, { x, y, t: p.es.split(" y ")[0], sub: p.pronto ? "" : `${n} ${n === 1 ? "técnica" : "técnicas"}`, pronto: p.pronto, go: "#p-" + id }];
-  }));
-  const pares = {};
-  D.FICHAS.forEach(f => { if (f.desde && f.hasta && f.desde.pos !== f.hasta.pos && NODOS_SUELO[f.desde.pos] && NODOS_SUELO[f.hasta.pos]) (pares[f.desde.pos + ">" + f.hasta.pos] ??= []).push(f.es); });
-  const aristas = Object.entries(pares).map(([k, v]) => [...k.split(">"), v.join(", ")]);
-  return grafo({ nodos, aristas, W: 210, H: 50, vb: "0 0 820 350", label: "Mapa de posiciones de suelo" }) +
-    `<div class="legend"><span>Toca una posición para verla desde arriba y desde abajo</span><span>Caja discontinua: próximamente</span></div>`;
-}
-
-function renderSeccion(id, tab = "tecnicas") {
+function renderSeccion(id, tab = "tecnicas", sel = null) {
   const s = S[id]; setSec(id);
   const fichas = D.FICHAS.filter(f => f.seccion === id);
   const tecnicas = fichas.filter(f => f.tipo === "tecnica");
@@ -598,18 +649,18 @@ function renderSeccion(id, tab = "tecnicas") {
     ["entrenar", "Drills", `#${id}-entrenar`, "Ejercicios para repetir en casa, con rondas y tiempos."],
     ["ruta", "Ruta", `#${id}-ruta`, "Qué aprender primero, nivel por nivel."]
   ];
-  if (id === "suelo") tabs.push(["posiciones", "Posiciones", "#suelo-posiciones", "Las técnicas según la posición en la que estás."]);
+  if (id === "suelo") tabs.splice(1, 0, ["mapa", "Mapa", "#suelo-mapa", "Cada posición con sus técnicas. Toca un punto o una caja para ver el vídeo y lo básico."]);
   let body = "";
   if (tab === "tecnicas") {
-    body = barraFiltros() + `<div class="grupos">${s.categorias.map(c => grupo(c.n, tecnicas.filter(f => f.cat === c.id))).join("")}</div>` +
+    body = (id === "suelo" ? accesoMapa() : "") + barraFiltros() + `<div class="grupos">${s.categorias.map(c => grupo(c.n, tecnicas.filter(f => f.cat === c.id))).join("")}</div>` +
       `<div class="note">${esc(s.nota)}</div>`;
   } else if (tab === "entrenar") {
     const g1 = drills.filter(f => f.material.every(m => m === "ninguno"));
     const g3 = drills.filter(f => f.material.some(m => FUERA.includes(m)));
     const g2 = drills.filter(f => !g1.includes(f) && !g3.includes(f));
     body = barraFiltros() + `<div class="grupos">${grupo("Sin material", g1)}${grupo("Con material de casa", g2)}${grupo("Con compañero o gimnasio", g3)}</div>`;
-  } else if (tab === "posiciones") {
-    body = `<div class="section">${mapaSuelo()}</div>`;
+  } else if (tab === "mapa") {
+    body = mapaHTML();
   } else {
     body = Object.entries(s.ruta).map(([n, r]) => `<section class="level">
         <header><span class="chip acc">${D.NIVELES[n]}</span><h2>${esc(r.cuando)}</h2></header>
@@ -623,7 +674,9 @@ function renderSeccion(id, tab = "tecnicas") {
     <p class="tabdesc">${esc(tabs.find(([k]) => k === tab)[3])}</p>
     ${body}`;
   bindGo();
+  if (tab === "mapa") montarMapa(sel);
 }
+const accesoMapa = () => `<div class="mn-acceso"><a class="btn solid" href="#suelo-mapa">Abrir el mapa</a><div class="linklist">${D.POSICIONES.filter(p => p.mapa && !p.pronto).map(p => `<a href="#p-${p.id}">${esc(nombrePos(p))}</a>`).join("")}</div></div>`;
 
 function renderJJU() {
   const E = { prioridad: "Prioridad MMA", mantener: "Se mantiene", adaptar: "Adaptar a no-gi", gi: "Solo gi", mma: "Añadido para MMA" };
@@ -635,6 +688,361 @@ function renderJJU() {
         return `<div class="jcap ${c.e}"><span>${esc(c.n)}</span>${c.nota ? `<small>${esc(c.nota)}</small>` : ""}${fs.map(f => `<a href="#f-${f.id}">${esc(f.es)}</a>`).join("")}</div>`; }).join("")}</div></div>`).join("")}</div></div>`;
 }
 
+/* ---------- Mapa de suelo ---------- */
+// Las posiciones tienen sitio fijo (campo mapa). Las técnicas las coloca una simulación con semilla: salen siempre en el mismo sitio.
+const MN = { W: 1000, H: 680, PW: 168, PH: 50, ZOOM_NOMBRES: 0.8 };
+const MN_CATS = ["escape", "guardia", "pase", "sumision", "mma"];
+const mapa = { datos: null, sel: null, foco: null, vista: null, raf: 0, lado: "", cats: new Set(MN_CATS), lista: false, arrastrado: false };
+const nombrePos = p => p.es.split(" y ")[0];
+const posConLado = ({ pos, lado }) => `${nombrePos(P[pos])}${LADOS[lado] ? ` (${LADOS[lado].toLowerCase()})` : ""}`;
+const catSuelo = c => S.suelo.categorias.find(x => x.id === c)?.n ?? c;
+const fijarHash = h => { history.replaceState(null, "", "#" + h); pila[pila.length - 1] = h; };
+const pararVideo = () => { try { player?.destroy?.(); } catch {} player = null; cur = null; };
+
+function azar(a) {
+  return () => { a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+}
+const semilla = s => [...s].reduce((h, c) => Math.imul(h ^ c.charCodeAt(0), 16777619), 2166136261);
+
+function colocarTecnicas(fichas) {
+  const obst = D.POSICIONES.filter(p => p.mapa).map(p => ({ x: p.mapa.x - MN.PW / 2, y: p.mapa.y - MN.PH / 2, w: MN.PW, h: MN.PH, cx: p.mapa.x, cy: p.mapa.y }));
+  const cuantas = p => fichas.filter(f => f.desde.pos === p).length;
+  const ns = fichas.map(f => {
+    const a = P[f.desde.pos].mapa, b = f.hasta ? P[f.hasta.pos]?.mapa : null, r = azar(semilla(f.id)), ang = r() * Math.PI * 2;
+    const w = 16 + f.es.length * 7, cx = b ? a.x + (b.x - a.x) * .25 + Math.cos(ang) * 40 : a.x + Math.cos(ang) * 130, cy = b ? a.y + (b.y - a.y) * .25 + Math.sin(ang) * 40 : a.y + Math.sin(ang) * 90;
+    return { f, a, b, w, h: 22, x: cx + 9 - w / 2, y: cy, s: r() < .5 ? -1 : 1, largo: 90 + cuantas(f.desde.pos) * 14 };
+  });
+  const caja = n => ({ x: n.x - 9, y: n.y - n.h / 2, w: n.w, h: n.h });
+  // El muelle tira del centro de punto y nombre, para que queden repartidos alrededor. Mide en elipse: los nombres son anchos
+  const muelle = (n, c, largo, fuerza) => {
+    const dx = c.x - (n.x - 9 + n.w / 2), dy = (c.y - n.y) * 2.2, d = Math.hypot(dx, dy) || 1, t = (d - largo) * fuerza;
+    n.x += dx / d * t; n.y += dy / d * t;
+  };
+  // Separa una caja de otra por el eje en el que se solapan menos
+  const choque = (n, o, m, reparto) => {
+    const A = caja(n), B = o.f ? caja(o) : o;
+    const px = Math.min(A.x + A.w, B.x + B.w) - Math.max(A.x, B.x) + m, py = Math.min(A.y + A.h, B.y + B.h) - Math.max(A.y, B.y) + m;
+    if (px <= 0 || py <= 0) return false;
+    const borde = Math.max(A.y + A.h, B.y + B.h) > MN.H - 6 || Math.min(A.y, B.y) < 6;
+    if (py < px && !borde) { const s = A.y + A.h / 2 < B.y + B.h / 2 ? -1 : A.y + A.h / 2 > B.y + B.h / 2 ? 1 : n.s; n.y += s * py * reparto; if (o.f) o.y -= s * py * reparto; }
+    else { const s = A.x + A.w / 2 < B.x + B.w / 2 ? -1 : A.x + A.w / 2 > B.x + B.w / 2 ? 1 : n.s; n.x += s * px * reparto; if (o.f) o.x -= s * px * reparto; }
+    return true;
+  };
+  const dentro = n => { n.x = Math.max(12, Math.min(MN.W - n.w - 2, n.x)); n.y = Math.max(14, Math.min(MN.H - 14, n.y)); };
+  const separar = () => {
+    let hubo = false;
+    ns.forEach((n, i) => {
+      for (let j = i + 1; j < ns.length; j++) hubo = choque(n, ns[j], 3, .5) || hubo;
+      obst.forEach(o => { hubo = choque(n, o, 6, 1) || hubo; });
+      dentro(n);
+    });
+    return hubo;
+  };
+  for (let it = 0; it < 300; it++) {
+    const al = 1 - it / 300;
+    ns.forEach((n, i) => {
+      for (let j = i + 1; j < ns.length; j++) {
+        const m = ns[j], dx = n.x + n.w / 2 - m.x - m.w / 2, dy = n.y - m.y, d2 = Math.max(dx * dx + dy * dy, 25), t = 900 * al / d2;
+        n.x += dx * t / 2; n.y += dy * t / 2; m.x -= dx * t / 2; m.y -= dy * t / 2;
+      }
+      muelle(n, n.a, n.largo, .07 * al + .015);
+      if (n.b) muelle(n, n.b, 110, .006 * al);
+    });
+    if (it % 3 === 0) separar();
+  }
+  for (let it = 0; it < 150 && separar(); it++);
+  return ns.map(({ f, x, y, w, h }) => ({ id: f.id, f, x: Math.round(x), y: Math.round(y), w, h }));
+}
+
+function datosMapa() {
+  if (mapa.datos) return mapa.datos;
+  const posiciones = D.POSICIONES.filter(p => p.mapa).sort((a, b) => a.mapa.y - b.mapa.y || a.mapa.x - b.mapa.x);
+  const tecnicas = colocarTecnicas(D.FICHAS.filter(f => f.tipo === "tecnica" && P[f.desde?.pos]?.mapa));
+  const nodos = new Map([...posiciones.map(p => ["p-" + p.id, { p }]), ...tecnicas.map(t => [t.id, { t }])]);
+  const vecinos = new Map([...nodos.keys()].map(id => [id, new Set()]));
+  const aristas = [];
+  const une = (a, b, t, hacia) => { aristas.push({ a, b, t, hacia }); vecinos.get(a).add(b); vecinos.get(b).add(a); };
+  tecnicas.forEach(t => {
+    une("p-" + t.f.desde.pos, t.id, t);
+    if (P[t.f.hasta?.pos]?.mapa) une(t.id, "p-" + t.f.hasta.pos, t, P[t.f.hasta.pos].mapa);
+  });
+  return mapa.datos = { posiciones, tecnicas, nodos, vecinos, aristas };
+}
+
+/* Dibujo */
+function svgMapa() {
+  const { posiciones, tecnicas, aristas } = datosMapa();
+  const flecha = c => `<marker id="mnf-${c}" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="c-${c}" style="fill:var(--c)"/></marker>`;
+  const linea = ({ a, b, t, hacia }) => {
+    if (!hacia) { const o = P[t.f.desde.pos].mapa; return `<path class="e ep" data-a="${a}" data-b="${b}" data-t="${t.id}" d="M${o.x},${o.y} L${t.x},${t.y}"/>`; }
+    const dx = hacia.x - t.x, dy = hacia.y - t.y, s = Math.min((MN.PW / 2 + 3) / Math.abs(dx || 1e-9), (MN.PH / 2 + 3) / Math.abs(dy || 1e-9));
+    return `<path class="e eh c-${t.f.cat}" data-a="${a}" data-b="${b}" data-t="${t.id}" marker-end="url(#mnf-${t.f.cat})" d="M${t.x},${t.y} L${hacia.x - dx * s},${hacia.y - dy * s}"/>`;
+  };
+  const nodoT = t => `<g class="n t c-${t.f.cat}" data-id="${t.id}" tabindex="0" role="button" transform="translate(${t.x} ${t.y})"
+      aria-label="${esc(`${t.f.es}. ${catSuelo(t.f.cat)}. Desde ${posConLado(t.f.desde)}${t.f.hasta ? `, hasta ${posConLado(t.f.hasta)}` : ""}`)}">
+      <rect class="hit" x="-14" y="-14" width="${t.w + 8}" height="28"/><circle class="pt" r="7"/><text class="lbl" x="11" y="4">${esc(t.f.es)}</text></g>`;
+  const nodoP = p => {
+    const l = tecnicas.filter(t => t.f.desde.pos === p.id), { x, y } = p.mapa;
+    return `<g class="n p${p.pronto || !l.length ? " vacia" : ""}" data-id="p-${p.id}" tabindex="0" role="button" transform="translate(${x} ${y})" aria-label="${esc(`Posición: ${nombrePos(p)}. ${l.length} técnicas`)}">
+      <rect class="box" x="${-MN.PW / 2}" y="${-MN.PH / 2}" width="${MN.PW}" height="${MN.PH}" rx="8"/>
+      <text class="nom" y="-2" text-anchor="middle">${esc(nombrePos(p))}</text><text class="cnt" y="15" text-anchor="middle">${l.length} ${l.length === 1 ? "técnica" : "técnicas"}</text></g>`;
+  };
+  return `<div class="mn-wrap"><svg class="mn" id="mnSvg" role="group" aria-label="Mapa de suelo: posiciones y técnicas">
+      <defs>${MN_CATS.map(flecha).join("")}</defs>
+      <g id="mnVista">${aristas.map(linea).join("")}${posiciones.map(p => nodoP(p) + tecnicas.filter(t => t.f.desde.pos === p.id).map(nodoT).join("")).join("")}</g></svg>
+    <div class="mn-eje" aria-hidden="true">Más dominante para el de arriba →</div>
+    <div class="mn-zoom"><button class="btn" type="button" data-z="mas" aria-label="Acercar">+</button><button class="btn" type="button" data-z="menos" aria-label="Alejar">−</button><button class="btn" type="button" data-z="centro">Centrar</button></div>
+  </div>
+  <div class="legend">${MN_CATS.map(c => `<span><span class="mn-p c-${c}"></span>${esc(catSuelo(c))}</span>`).join("")}<span><span class="mn-p vacia"></span>Posición vacía</span><span>Más alto = peor para el de abajo</span></div>`;
+}
+function listaMapa() {
+  const { posiciones, tecnicas } = datosMapa();
+  return `<div class="mn-lista">${posiciones.map(p => {
+    const l = tecnicas.filter(t => t.f.desde.pos === p.id);
+    return `<section class="panel"><h3>${p.pronto ? esc(nombrePos(p)) : `<a href="#p-${p.id}">${esc(nombrePos(p))}</a>`}</h3>
+      ${l.length ? `<div class="linklist">${l.map(t => `<a href="#f-${t.id}">${dot(t.id)}${esc(t.f.es)}${LADOS[t.f.desde.lado] ? ` <small class="muted">· ${LADOS[t.f.desde.lado].toLowerCase()}</small>` : ""}</a>`).join("")}</div>` : `<span class="muted">Todavía sin técnicas.</span>`}</section>`;
+  }).join("")}</div>`;
+}
+const mapaHTML = () => `<div class="mn-filtros" id="mnFiltros">
+    <div class="seg" role="group" aria-label="Filtrar por lado">${[["", "Todos"], ["abajo", "Estoy abajo"], ["arriba", "Estoy arriba"]].map(([k, t]) => `<button type="button" data-fl="${k}">${t}</button>`).join("")}</div>
+    <div class="mn-cats" role="group" aria-label="Filtrar por categoría">${MN_CATS.map(c => `<button class="mn-chip" type="button" data-fc="${c}"><i class="mn-p c-${c}"></i>${esc(catSuelo(c))}</button>`).join("")}</div>
+    <button class="mn-modo" type="button" id="mnModo"></button>
+  </div>
+  <div id="mnCuerpo"></div>
+  <aside class="mn-panel" id="mnPanel" aria-label="Vista previa" hidden></aside>`;
+
+/* Vista: k son píxeles por unidad del lienzo */
+function medidasMapa() { const r = $("#mnSvg").getBoundingClientRect(); return { w: r.width, h: r.height, fit: Math.min(r.width / MN.W, r.height / MN.H) }; }
+function vistaInicial() {
+  const { w, h, fit } = medidasMapa(), k = Math.min(1.3, Math.max(fit, MN.ZOOM_NOMBRES + .05));
+  return { k, x: (w - MN.W * k) / 2, y: (h - MN.H * k) / 2, auto: true };
+}
+function limitarVista() {
+  const v = mapa.vista, { w, h, fit } = medidasMapa();
+  v.k = Math.max(fit * .9, Math.min(3, v.k));
+  const eje = (t, lado, largo) => { const m = lado / 2, mitad = (lado - largo * v.k) / 2; return Math.max(Math.min(lado - largo * v.k - m, mitad), Math.min(t, Math.max(m, mitad))); };
+  v.x = eje(v.x, w, MN.W); v.y = eje(v.y, h, MN.H);
+}
+function pintarVista() {
+  const g = $("#mnVista"); if (!g) return;
+  const { k, x, y } = mapa.vista, svg = $("#mnSvg");
+  g.setAttribute("transform", `translate(${x} ${y}) scale(${k})`);
+  svg.classList.toggle("lejos", k < MN.ZOOM_NOMBRES);
+  svg.style.setProperty("--lbl", 12 / k + "px");
+}
+function zoomMapa(cx, cy, factor) {
+  const v = mapa.vista, k0 = v.k; v.k *= factor; v.auto = false;
+  limitarVista();
+  v.x = cx - (cx - v.x) * v.k / k0; v.y = cy - (cy - v.y) * v.k / k0;
+  limitarVista(); pintarVista();
+}
+function irVista(x, y, k, animar) {
+  const v = mapa.vista; cancelAnimationFrame(mapa.raf);
+  if (!animar || document.hidden || matchMedia("(prefers-reduced-motion:reduce)").matches) { Object.assign(v, { x, y, k }); limitarVista(); pintarVista(); return; }
+  const a = { x: v.x, y: v.y, k: v.k }, t0 = performance.now();
+  const paso = t => {
+    const p = Math.min((t - t0) / 260, 1), e = 1 - (1 - p) ** 3;
+    v.x = a.x + (x - a.x) * e; v.y = a.y + (y - a.y) * e; v.k = a.k + (k - a.k) * e;
+    pintarVista();
+    if (p < 1) mapa.raf = requestAnimationFrame(paso); else limitarVista();
+  };
+  mapa.raf = requestAnimationFrame(paso);
+}
+// Centra un nodo en la parte del mapa que no tapa el panel
+function centrarNodo(id, animar) {
+  const n = datosMapa().nodos.get(id), { x, y } = n.p ? n.p.mapa : n.t, { w, h } = medidasMapa(), v = mapa.vista, panel = $("#mnPanel");
+  let cx = w / 2, cy = h / 2;
+  if (panel && !panel.hidden) {
+    const r = $("#mnSvg").getBoundingClientRect(), pr = panel.getBoundingClientRect();
+    if (matchMedia("(max-width:860px)").matches) cy = Math.max(44, (pr.top - $(".top").offsetHeight) / 2);
+    else cx = Math.max(100, Math.min(pr.left, r.right) - r.left) / 2;
+  }
+  v.auto = false;
+  irVista(cx - x * v.k, cy - y * v.k, v.k, animar);
+}
+
+/* Resaltado y filtros: atenúan sin mover nada */
+function pintarFoco() {
+  const svg = $("#mnSvg"); if (!svg) return;
+  const f = mapa.foco ?? mapa.sel, v = f ? datosMapa().vecinos.get(f) : null;
+  svg.classList.toggle("foco", !!f);
+  svg.querySelectorAll(".n").forEach(n => {
+    n.classList.toggle("on", !!f && (n.dataset.id === f || v.has(n.dataset.id)));
+    n.classList.toggle("sel", n.dataset.id === mapa.sel);
+  });
+  svg.querySelectorAll(".e").forEach(e => e.classList.toggle("on", !!f && (e.dataset.a === f || e.dataset.b === f)));
+}
+function pintarFiltrosMapa() {
+  $$("[data-fl]").forEach(b => b.setAttribute("aria-pressed", b.dataset.fl === mapa.lado));
+  $$("[data-fc]").forEach(b => b.setAttribute("aria-pressed", mapa.cats.has(b.dataset.fc)));
+  const vale = t => mapa.cats.has(t.f.cat) && (!mapa.lado || t.f.desde.lado === mapa.lado);
+  const { nodos } = datosMapa();
+  $$("#mnSvg .t").forEach(n => n.classList.toggle("off", !vale(nodos.get(n.dataset.id).t)));
+  $$("#mnSvg .e").forEach(e => e.classList.toggle("off", !vale(nodos.get(e.dataset.t).t)));
+}
+
+/* Panel de vista previa */
+function enlaceNodo(id) {
+  const x = F[id];
+  return `<a href="${datosMapa().nodos.has(id) ? `#suelo-mapa/${id}" data-nodo="${id}` : `#f-${id}`}">${dot(id)}${esc(x.es)}</a>`;
+}
+function panelTecnica(f) {
+  const hermanas = datosMapa().tecnicas.filter(t => t.f.desde.pos === f.desde.pos && t.id !== f.id).map(t => t.id);
+  const rel = [...new Set([...(f.combina || []).filter(c => F[c]), ...hermanas])];
+  const dr = drillsDe(f);
+  return `<h2>${esc(f.es)}</h2><div class="muted">${esc(f.en)}</div>${chips(f)}
+    <p class="mn-ruta">${esc(posConLado(f.desde))}${f.hasta ? ` → ${esc(posConLado(f.hasta))}` : f.cat === "sumision" ? " → Sumisión" : ""}</p>
+    ${f.videos.length ? `<div class="player-wrap"><div class="player" id="player"></div></div><span class="credit" id="credit"></span>` : `<div class="novideo">Vídeo pendiente.</div>`}
+    <div class="seg estado" role="group" aria-label="Cómo llevas esta técnica">${Object.keys(SIG).map(e => `<button type="button" data-set="${e}" data-id="${f.id}">${ICO[e]}${txtEstado(f.id, e)}</button>`).join("")}</div>
+    <h3>Para qué sirve</h3><p style="margin:0">${esc(f.objetivo)}</p>
+    <h3>Pasos</h3><ol class="steps">${f.pasos.map(x => `<li><span>${esc(x)}</span></li>`).join("")}</ol>
+    <a class="btn solid" href="#f-${f.id}">Abrir ficha completa →</a>
+    ${dr.length ? `<h3>Drills para entrenarla</h3><div class="linklist">${dr.map(d => `<a href="#f-${d.id}">${dot(d.id)}${esc(d.es)}</a>`).join("")}</div>` : ""}
+    ${rel.length ? `<h3>Técnicas relacionadas</h3><div class="linklist">${rel.map(enlaceNodo).join("")}</div>` : ""}`;
+}
+function panelPosicion(p) {
+  const { tecnicas } = datosMapa();
+  const desde = tecnicas.filter(t => t.f.desde.pos === p.id), llegan = tecnicas.filter(t => t.f.hasta?.pos === p.id);
+  const lados = Object.keys(p.lados || {}).filter(l => !mapa.lado || l === mapa.lado);
+  return `<h2>${esc(p.es)}</h2><div class="muted">${esc(p.en)}</div>
+    ${p.desc ? `<p style="margin:10px 0 0">${esc(p.desc)}</p>` : `<p class="muted" style="margin:10px 0 0">Todavía no hay técnicas aquí. Es un hueco por llenar.</p>`}
+    ${lados.map(l => `<div class="panel" style="margin-top:10px"><div class="k">Si estás ${LADOS[l].toLowerCase()}</div>${esc(p.lados[l])}</div>`).join("")}
+    ${desde.length ? `<h3>Desde aquí</h3><div class="linklist">${desde.map(t => enlaceNodo(t.id)).join("")}</div>` : ""}
+    ${llegan.length ? `<h3>Llegas aquí</h3><div class="linklist">${llegan.map(t => enlaceNodo(t.id)).join("")}</div>` : ""}
+    ${p.pronto ? "" : `<a class="btn solid" href="#p-${p.id}">Abrir posición →</a>`}`;
+}
+function pintarPanel() {
+  const el = $("#mnPanel"), n = datosMapa().nodos.get(mapa.sel);
+  pararVideo();
+  el.innerHTML = `<button class="mn-cerrar" type="button" aria-label="Cerrar vista previa">×</button>${n.t ? panelTecnica(n.t.f) : panelPosicion(n.p)}`;
+  el.hidden = false; el.scrollTop = 0;
+  const v = n.t?.f.videos[0];
+  if (v) mountPlayer(v.segmentos ? { ...v, inicio: v.segmentos[0].inicio, fin: v.segmentos[0].fin } : v);
+  pintarEstados();
+}
+function seleccionarNodo(id, { animar = true, teclado = false, usuario = true } = {}) {
+  if (!datosMapa().nodos.has(id)) return;
+  mapa.sel = id; mapa.foco = null;
+  pintarPanel(); pintarFoco();
+  fijarHash("suelo-mapa/" + id);
+  if (usuario && matchMedia("(max-width:860px)").matches) {
+    const top = $("#mnSvg").getBoundingClientRect().top + scrollY - $(".top").offsetHeight;
+    window.scrollTo({ top, behavior: matchMedia("(prefers-reduced-motion:reduce)").matches ? "auto" : "smooth" });
+  }
+  centrarNodo(id, animar);
+  if (teclado) $("#mnPanel .mn-cerrar").focus({ preventScroll: true });
+}
+function cerrarPanelMapa() {
+  const id = mapa.sel, el = $("#mnPanel"), dentro = el?.contains(document.activeElement);
+  pararVideo();
+  if (el) { el.hidden = true; el.innerHTML = ""; }
+  mapa.sel = null; mapa.foco = null;
+  pintarFoco();
+  fijarHash("suelo-mapa");
+  if (dentro && id) $(`#mnSvg [data-id="${id}"]`)?.focus({ preventScroll: true });
+}
+
+/* Interacción */
+function activarSvgMapa() {
+  const svg = $("#mnSvg"), ptrs = new Map();
+  let recorrido = 0;
+  const local = e => { const r = svg.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
+  svg.addEventListener("wheel", e => { e.preventDefault(); const p = local(e); zoomMapa(p.x, p.y, Math.exp(-e.deltaY * .0015)); }, { passive: false });
+  svg.addEventListener("pointerdown", e => {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    ptrs.set(e.pointerId, local(e)); recorrido = 0; mapa.arrastrado = false;
+    cancelAnimationFrame(mapa.raf);
+  });
+  svg.addEventListener("pointermove", e => {
+    if (!ptrs.has(e.pointerId)) return;
+    const antes = ptrs.get(e.pointerId), ahora = local(e), v = mapa.vista;
+    if (ptrs.size === 2) {
+      const otro = [...ptrs].find(([id]) => id !== e.pointerId)[1];
+      const d0 = Math.hypot(antes.x - otro.x, antes.y - otro.y) || 1, d1 = Math.hypot(ahora.x - otro.x, ahora.y - otro.y) || 1;
+      mapa.arrastrado = true; v.auto = false;
+      v.x += (ahora.x - antes.x) / 2; v.y += (ahora.y - antes.y) / 2;
+      zoomMapa((ahora.x + otro.x) / 2, (ahora.y + otro.y) / 2, d1 / d0);
+    } else {
+      recorrido += Math.abs(ahora.x - antes.x) + Math.abs(ahora.y - antes.y);
+      if (recorrido > 4) {
+        if (!mapa.arrastrado) { mapa.arrastrado = true; mapa.foco = null; pintarFoco(); svg.classList.add("moviendo"); try { svg.setPointerCapture(e.pointerId); } catch {} }
+        v.x += ahora.x - antes.x; v.y += ahora.y - antes.y; v.auto = false;
+        limitarVista(); pintarVista();
+      }
+    }
+    ptrs.set(e.pointerId, ahora);
+  });
+  const fin = e => { ptrs.delete(e.pointerId); if (!ptrs.size) svg.classList.remove("moviendo"); };
+  svg.addEventListener("pointerup", fin);
+  svg.addEventListener("pointercancel", fin);
+  svg.addEventListener("click", e => {
+    if (mapa.arrastrado) { mapa.arrastrado = false; return; }
+    const n = e.target.closest(".n"); if (n) seleccionarNodo(n.dataset.id);
+  });
+  svg.addEventListener("keydown", e => {
+    const n = e.target.closest(".n");
+    if (n && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); seleccionarNodo(n.dataset.id, { teclado: true }); }
+  });
+  svg.addEventListener("pointerover", e => {
+    if (e.pointerType !== "mouse" || ptrs.size) return;
+    mapa.foco = e.target.closest(".n")?.dataset.id ?? null; pintarFoco();
+  });
+  svg.addEventListener("pointerleave", () => { if (!ptrs.size) { mapa.foco = null; pintarFoco(); } });
+  svg.addEventListener("focusin", e => {
+    const n = e.target.closest(".n");
+    if (!n?.matches(":focus-visible")) return;
+    mapa.foco = n.dataset.id; pintarFoco();
+    const r = svg.getBoundingClientRect(), b = n.getBoundingClientRect();
+    if (b.left < r.left + 30 || b.right > r.right - 10 || b.top < r.top + 10 || b.bottom > r.bottom - 10) centrarNodo(n.dataset.id, true);
+  });
+  svg.addEventListener("focusout", () => { mapa.foco = null; pintarFoco(); });
+  $(".mn-zoom").addEventListener("click", e => {
+    const z = e.target.closest("[data-z]")?.dataset.z; if (!z) return;
+    const { w, h } = medidasMapa();
+    if (z === "centro") { const i = vistaInicial(); mapa.vista.auto = true; irVista(i.x, i.y, i.k, true); }
+    else zoomMapa(w / 2, h / 2, z === "mas" ? 1.25 : .8);
+  });
+}
+function pintarCuerpoMapa() {
+  $("#mnCuerpo").innerHTML = mapa.lista ? listaMapa() : svgMapa();
+  $("#mnModo").textContent = mapa.lista ? "Ver como mapa" : "Ver como lista";
+  $$("#mnFiltros .seg, #mnFiltros .mn-cats").forEach(x => { x.hidden = mapa.lista; });
+  if (mapa.lista) { pintarEstados(); return; }
+  if (mapa.vista) limitarVista(); else mapa.vista = vistaInicial();
+  pintarVista(); pintarFiltrosMapa(); pintarFoco(); activarSvgMapa();
+}
+function montarMapa(sel) {
+  mapa.sel = null; mapa.foco = null;
+  const nodo = sel && datosMapa().nodos.has(sel) ? sel : null;
+  if (sel && !nodo) fijarHash("suelo-mapa");
+  if (nodo) mapa.lista = false;
+  pintarCuerpoMapa();
+  $("#mnFiltros").addEventListener("click", e => {
+    const t = e.target.closest("[data-fl],[data-fc],#mnModo"); if (!t) return;
+    if (t.id === "mnModo") { if (mapa.sel) cerrarPanelMapa(); mapa.lista = !mapa.lista; pintarCuerpoMapa(); return; }
+    if (t.dataset.fl !== undefined) {
+      mapa.lado = t.dataset.fl;
+      if (mapa.sel?.startsWith("p-")) pintarPanel();
+    } else if (mapa.cats.has(t.dataset.fc)) mapa.cats.delete(t.dataset.fc);
+    else mapa.cats.add(t.dataset.fc);
+    pintarFiltrosMapa();
+  });
+  $("#mnPanel").addEventListener("click", e => {
+    if (e.target.closest(".mn-cerrar")) return cerrarPanelMapa();
+    const a = e.target.closest("[data-nodo]");
+    if (a && !e.ctrlKey && !e.metaKey) { e.preventDefault(); seleccionarNodo(a.dataset.nodo); }
+  });
+  if (nodo) seleccionarNodo(nodo, { animar: false, usuario: false });
+}
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && mapa.sel && $("#mnPanel") && !$("#mnPanel").hidden && !e.target.closest?.(".search")) cerrarPanelMapa();
+});
+window.addEventListener("resize", () => {
+  if (!$("#mnSvg")) return;
+  if (mapa.vista.auto) mapa.vista = vistaInicial(); else limitarVista();
+  pintarVista();
+});
+
 /* ---------- Posición de suelo ---------- */
 function renderPos(id, ladoSel) {
   const p = P[id]; if (!p || p.pronto) return renderSeccion("suelo");
@@ -645,7 +1053,7 @@ function renderPos(id, ladoSel) {
   const llegan = D.FICHAS.filter(f => f.hasta?.pos === id && f.hasta.lado === lado);
   const cats = S.suelo.categorias;
   $("#main").innerHTML = `${fileBanner()}
-    <div class="crumb"><a href="#suelo">Suelo</a><span>/</span><a href="#suelo-posiciones">Posiciones</a></div>
+    <div class="crumb"><a href="#suelo">Suelo</a><span>/</span><a href="#suelo-mapa">Mapa</a></div>
     <h1>${esc(p.es)}</h1>${names(p)}
     <p class="lead">${esc(p.desc)}</p>
     ${lados.length > 1 ? `<div class="tabs" role="tablist">${lados.map(l => `<button role="tab" aria-selected="${l === lado}" data-lado="${l}">${LADOS[l]}</button>`).join("")}</div>` : ""}
@@ -969,6 +1377,7 @@ const idx = [
   ...D.POSICIONES.filter(p => !p.pronto && p.lados && p.id !== "base").map(p => ({ href: "#p-" + p.id, title: p.es, sub: "Suelo · Posición", hay: norm([p.es, p.en, p.pt].join(" ")) })),
   ...D.FASES.map(f => ({ href: "#fase-" + f.id, title: f.n, sub: "Fase del combate", hay: norm(f.n) })),
   ...(D.GUIA || []).map(g => ({ href: "#guia-" + g.id, title: g.t, sub: "Guía", hay: norm(g.t + " " + g.r) })),
+  { href: "#suelo-mapa", title: "Mapa de suelo", sub: "Suelo · Posiciones y técnicas", hay: norm("mapa de suelo posiciones") },
   { href: "#falta", title: "Qué falta", sub: "Guía · pendientes y huecos", hay: norm("que falta pendientes huecos tanda") }
 ];
 const q = $("#q"), res = $("#results");
@@ -1008,14 +1417,16 @@ $("#tema").addEventListener("click", () => {
 // Al volver atrás recupera la posición de la lista en vez de subir arriba del todo
 const pila = [], scrolls = {};
 function route() {
-  const h = decodeURIComponent(location.hash.slice(1)) || "inicio";
+  let h = decodeURIComponent(location.hash.slice(1)) || "inicio";
+  if (h === "suelo-posiciones") { h = "suelo-mapa"; history.replaceState(null, "", "#suelo-mapa"); }
   if (pila.length) scrolls[pila.at(-1)] = window.scrollY;
   const atras = pila.at(-2) === h;
   if (atras) pila.pop(); else if (pila.at(-1) !== h) pila.push(h);
   try { player?.destroy?.(); } catch {} player = null; cur = null;
   let navOn = null;
-  const m = h.match(/^(boxeo|lucha|suelo)(?:-(entrenar|ruta|posiciones))?$/);
+  const m = h.match(/^(boxeo|lucha|suelo)(?:-(entrenar|ruta))?$/);
   if (m) { renderSeccion(m[1], m[2] || "tecnicas"); navOn = m[1]; }
+  else if (h === "suelo-mapa" || h.startsWith("suelo-mapa/")) { renderSeccion("suelo", "mapa", h.slice(11) || null); navOn = "suelo"; }
   else if (h.startsWith("f-")) { renderFicha(h.slice(2)); navOn = F[h.slice(2)]?.seccion; }
   else if (h.startsWith("p-")) { renderPos(h.slice(2)); navOn = "suelo"; }
   else if (h.startsWith("fase-")) renderFase(h.slice(5));

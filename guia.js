@@ -251,6 +251,26 @@ ${sh("git pull\n# edita el archivo\nnode scripts/validar.js\ngit commit -am \"Co
 <p>Los valores que admite cada campo están en <a href="#guia-campos">Referencia de campos</a>.</p>`
 },
 {
+  id: "mapa-suelo", t: "El mapa de suelo",
+  r: "Cómo se dibuja, cómo mover una posición y cómo comprobar lo que añades.",
+  html: `
+<p class="glead">Está en Suelo, pestaña <a href="#suelo-mapa">Mapa</a>. No hay que mantenerlo a mano: se dibuja solo a partir de las fichas.</p>
+<h3>De dónde sale cada cosa</h3>
+<ul>
+<li><b>Técnicas:</b> sale cada técnica de suelo. Se une a su posición por <code>desde</code> y, con una flecha, a la posición a la que llega por <code>hasta</code>. Las sumisiones no llevan <code>hasta</code>: son el final.</li>
+<li><b>Colocación:</b> las técnicas se colocan solas alrededor de su posición, y salen siempre en el mismo sitio.</li>
+<li><b>Drills:</b> no salen en el mapa. Los ves en el panel de cada técnica.</li>
+<li><b>Posiciones vacías:</b> una posición sin técnicas sale con borde discontinuo. Es un hueco por llenar.</li>
+</ul>
+<h3>Mover una posición</h3>
+<p>Cada posición tiene su sitio en <code>datos-suelo.js</code>, en el campo <code>mapa</code>. El lienzo mide 1000 de ancho por 680 de alto, y cuanto más arriba, más dominante para el de arriba.</p>
+${pr("Mueve la posición «Tortuga» un poco a la derecha en el mapa de suelo")}
+<p>El validador da error si una posición no tiene <code>mapa</code> o se sale del lienzo, y avisa si dos posiciones quedan a menos de 140 de distancia.</p>
+<h3>Comprobar lo que añades</h3>
+<p>Después de una tanda de suelo, abre el mapa y mira que las técnicas nuevas salen junto a su posición y que las flechas llevan a donde tienen que llevar.</p>
+<div class="tip">En el móvil, si el mapa se te queda pequeño, usa «Ver como lista».</div>`
+},
+{
   id: "automatico", t: "Comprobaciones automáticas",
   r: "Qué comprueba GitHub solo, dónde verlo y qué hacer cuando sale en rojo.",
   html: `
@@ -364,6 +384,7 @@ ${M.SECCIONES.map(s => `<tr><td><code>cat</code> (${s.nombre.toLowerCase()})</td
 <tr><td><code>golpes</code></td><td>números del 1 al 6</td><td>Boxeo. 1 jab · 2 directo · 3 gancho delantero · 4 gancho trasero · 5 y 6 uppercuts</td></tr>
 <tr><td><code>gi</code></td><td><code>ambos</code> · <code>gi</code> · <code>nogi</code></td><td>Suelo</td></tr>
 <tr><td><code>desde</code> / <code>hasta</code></td><td><code>{ pos, lado }</code> con posiciones: ${(M.POSICIONES || []).map(p => `<code>${p.id}</code>`).join(" · ")}</td><td>Suelo. Lados: <code>arriba</code>, <code>abajo</code> o <code>neutral</code></td></tr>
+<tr><td><code>mapa</code></td><td><code>{ x, y }</code></td><td>Posiciones de suelo: su sitio en el mapa (lienzo de 1000 × 680)</td></tr>
 <tr><td><code>jju</code></td><td>id de capítulo (en <code>datos-comun.js</code>)</td><td>Suelo</td></tr>
 <tr><td><code>dosis</code> / <code>criterio</code></td><td>texto</td><td>Drills: rondas y tiempo / cuándo está superado</td></tr>
 <tr><td><code>videos</code></td><td><code>V(id, instructor, { inicio, fin, etiqueta, idioma, segmentos, verificado })</code></td><td>id = 11 caracteres; tiempos en segundos; <code>verificado: "AAAA-MM-DD"</code></td></tr>

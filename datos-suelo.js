@@ -21,6 +21,7 @@ MMA.POSICIONES = [
     "es": "Guardia cerrada",
     "en": "Closed guard",
     "pt": "Guarda fechada",
+    "mapa": { "x": 500, "y": 570 },
     "grupo": "suelo",
     "desc": "Estás de espaldas con las piernas cerradas alrededor de la cintura del rival. Es la guardia más básica y una de las más seguras.",
     "lados": {
@@ -33,6 +34,7 @@ MMA.POSICIONES = [
     "es": "Cien kilos",
     "en": "Side control",
     "pt": "Cem quilos",
+    "mapa": { "x": 500, "y": 250 },
     "grupo": "suelo",
     "desc": "Control lateral: el de arriba está atravesado sobre el pecho del de abajo, fuera de sus piernas.",
     "lados": {
@@ -45,6 +47,8 @@ MMA.POSICIONES = [
     "es": "Mariposa y guardia sentada",
     "en": "Butterfly / sit-up guard",
     "pt": "Guarda borboleta",
+    "grupo": "suelo",
+    "mapa": { "x": 520, "y": 430 },
     "desc": "Sentado, con los empeines por dentro de sus muslos. En MMA es la guardia puente para levantarse.",
     "lados": {
       "abajo": "Desequilibrar, raspar o levantarte (wrestle-up).",
@@ -56,6 +60,7 @@ MMA.POSICIONES = [
     "es": "Montada",
     "en": "Mount",
     "pt": "Montada",
+    "mapa": { "x": 380, "y": 80 },
     "grupo": "suelo",
     "desc": "Sentado sobre el torso del rival. Vale 4 puntos y en MMA es de las peores posiciones para estar abajo.",
     "lados": {
@@ -68,6 +73,7 @@ MMA.POSICIONES = [
     "es": "Espalda",
     "en": "Back control",
     "pt": "Pegada nas costas",
+    "mapa": { "x": 680, "y": 80 },
     "grupo": "suelo",
     "desc": "Pegado a la espalda del rival con ganchos o un triángulo de cuerpo. La posición más dominante del jiu-jitsu.",
     "lados": {
@@ -80,6 +86,8 @@ MMA.POSICIONES = [
     "es": "Media guardia",
     "en": "Half guard",
     "pt": "Meia-guarda",
+    "grupo": "suelo",
+    "mapa": { "x": 220, "y": 430 },
     "desc": "Una de tus piernas atrapa una de las suyas. En MMA es la guardia desde la que más se raspa y desde la que más se levanta.",
     "lados": {
       "abajo": "Ponerte de lado, ganar el underhook y salir a raspar, a la espalda o de pie.",
@@ -91,6 +99,7 @@ MMA.POSICIONES = [
     "es": "Guardias abiertas",
     "en": "Open guards",
     "pt": "Guardas abertas",
+    "mapa": { "x": 800, "y": 430 },
     "grupo": "suelo",
     "pronto": true
   },
@@ -99,6 +108,7 @@ MMA.POSICIONES = [
     "es": "Rodilla en el vientre",
     "en": "Knee on belly",
     "pt": "Joelho na barriga",
+    "mapa": { "x": 200, "y": 250 },
     "grupo": "suelo",
     "pronto": true
   },
@@ -107,6 +117,7 @@ MMA.POSICIONES = [
     "es": "Tortuga",
     "en": "Turtle",
     "pt": "Tartaruga",
+    "mapa": { "x": 820, "y": 250 },
     "grupo": "suelo",
     "pronto": true
   }

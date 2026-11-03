@@ -4,6 +4,22 @@ Web personal de Sergio para aprender MMA: biblioteca de técnicas y drills con v
 
 La web es HTML estático, sin frameworks ni proceso de compilación, y se publica con GitHub Pages desde la rama `main`. No añadas dependencias npm, bundlers ni frameworks: cualquier cambio tiene que seguir funcionando abriendo `index.html` desde un servidor estático.
 
+## Foco actual: solo Suelo
+
+Sergio quiere centrarse en **Suelo**. **Boxeo y Lucha están aparcados** hasta que él diga lo contrario. Mientras tanto:
+
+- **Orden de trabajo:**
+  1. el mapa de suelo (`planes/mapa-suelo.md`)
+  2. las tandas de suelo, en este orden: 1 (supervivencia), 4 (escapes), 6 (espalda y cabeza-brazo) y 8 (guardias)
+- **Tandas aparcadas:** la 2 y la 5 (Lucha) y la 3 y la 7 (Boxeo). Si `node scripts/huecos.js` o la página «Qué falta» las proponen, sáltatelas y dilo en una línea.
+- **`/tanda` sin número:** propone la siguiente tanda de suelo. **`/huecos` y la propuesta de tanda:** fíjate solo en los pendientes y huecos de Suelo, y resume los de Boxeo y Lucha en una línea («aparcados: N pendientes»).
+- **Pendientes nuevos:** si Sergio pide añadir uno de Boxeo o Lucha, añádelo a `pendientes.js` como `idea` sin tanda, y no hagas la ficha.
+- **Fichas de Boxeo y Lucha:** no las amplíes ni las reescribas. Sí puedes:
+  - arreglar errores que rompan la web o el validador
+  - cambiar vídeos caídos que detecte la comprobación semanal
+- **Si una ficha de suelo se relaciona con Boxeo o Lucha** (por ejemplo, en `combina`), enlaza solo fichas que ya existan.
+- **Cuando Sergio levante el foco,** borra este apartado y la nota de `planes/mapa-suelo.md`.
+
 ## Archivos
 
 | Archivo | Qué contiene |
@@ -18,6 +34,7 @@ La web es HTML estático, sin frameworks ni proceso de compilación, y se public
 | `scripts/huecos.js` | Qué falta y propuesta de tanda (`--tanda N`, `--todos`) |
 | `scripts/comprobar-videos.js` | Comprueba con oEmbed que los vídeos existen y se pueden incrustar |
 | `scripts/servir.js` | Servidor local en http://localhost:8000 |
+| `planes/mapa-suelo.md` | Plan del mapa de suelo, por fases |
 | `.github/workflows/` | Validación en cada push y comprobación semanal de vídeos |
 | `.claude/skills/` | Comandos: `/tanda`, `/pendiente`, `/huecos`, `/ficha`, `/verificar`, `/revisar-videos`, `/revision-trimestral` |
 
@@ -60,6 +77,7 @@ node scripts/servir.js           # ver la web en http://localhost:8000
 
 - **Boxeo:** `golpes: [1, 2, 3]` con la numeración 1 jab, 2 directo, 3 gancho delantero, 4 gancho trasero, 5 uppercut delantero, 6 uppercut trasero.
 - **Suelo:** `gi: "ambos" | "gi" | "nogi"`, `desde: { pos, lado }`, `hasta: { pos, lado } | null`, `jju: "<id de capítulo>"`. Las posiciones y sus lados están en `MMA.POSICIONES` (datos-suelo.js); los capítulos en `MMA.JJU` (datos-comun.js). Los drills de suelo usan `desde: { pos: "base", lado: "neutral" }`.
+- **Posiciones de suelo:** cada una (menos `base`) lleva `mapa: { x, y }`, su sitio fijo en el mapa, en un lienzo de 1000 × 680. Más arriba significa más dominante para el de arriba.
 - **Drills:** `tipo: "drill"`, `dosis: "3 × 2 min · 1 min de descanso"`, `criterio: "Cuándo está superado, medible"`. Los drills de boxeo y lucha no llevan `cat`. La relación con las técnicas se escribe solo en el campo `drills` de la técnica; la ficha del drill calcula «Técnicas que entrena». Si ningún drill sirve para una técnica nueva, crea uno.
 - **Progreso (Ni idea, Entrenando, Entrenada):** lo marca Sergio en la web y se guarda en `localStorage` del navegador. No va en los datos ni en el repositorio.
 - **Vídeos:** `V(id, instructor, extra)` está definida al principio de cada archivo de sección (en datos-suelo.js los vídeos están escritos como objetos completos: usa el mismo formato que las fichas vecinas). `segmentos: [{ t: "Nombre", inicio: 26, fin: 79 }]` divide un vídeo en partes. `verificado: "AAAA-MM-DD"` **solo lo pone Sergio** (o tú cuando él te diga que lo ha visto).
@@ -101,4 +119,4 @@ node scripts/servir.js           # ver la web en http://localhost:8000
 
 ## Al terminar cualquier tarea
 
-Di en pocas líneas qué has cambiado, qué tiene que revisar Sergio (vídeos nuevos con su enlace) y el enlace del PR.
+Di en pocas líneas qué has cambiado, qué tiene que revisar Sergio (vídeos nuevos con su enlace) y el enlace del PR. Si has añadido fichas de suelo, comprueba que salen en `#suelo-mapa`.

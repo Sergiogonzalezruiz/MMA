@@ -21,7 +21,8 @@ Prepara una tanda de fichas nuevas para la web. Argumento: $ARGUMENTS
    - Cambia el pendiente a `estado: "en-tanda"`.
 5. Si una ficha nueva llena una posición marcada `pronto: true` en datos-suelo.js, quita `pronto` y añade `desc` y `lados` como en las demás posiciones.
 6. Ejecuta `node scripts/validar.js` y corrige hasta que acabe en ✓.
-7. Commit «Tanda N: <tema> (X fichas)», push y `gh pr create`. En la descripción del PR, una lista con cada ficha y los enlaces `https://www.youtube.com/watch?v=ID` de sus vídeos, y debajo: «Revisa cada vídeo; dime cuáles no valen o qué inicio/fin poner con /verificar».
-8. Termina con: el enlace del PR, la lista de vídeos que Sergio tiene que ver y el recordatorio de que al fusionar el PR la web se publica sola.
+7. En las tandas de suelo, abre `#suelo-mapa` y comprueba que las técnicas nuevas salen y tienen bien `desde` y `hasta`.
+8. Commit «Tanda N: <tema> (X fichas)», push y `gh pr create`. En la descripción del PR, una lista con cada ficha y los enlaces `https://www.youtube.com/watch?v=ID` de sus vídeos, y debajo: «Revisa cada vídeo; dime cuáles no valen o qué inicio/fin poner con /verificar».
+9. Termina con: el enlace del PR, la lista de vídeos que Sergio tiene que ver y el recordatorio de que al fusionar el PR la web se publica sola.
 
 Cuando Sergio confirme que fusionó el PR, cambia esos pendientes a `estado: "publicada"` con `ficha: "<id>"` en una rama nueva y abre otro PR pequeño (o hazlo ya en el mismo PR antes de fusionar si te lo pide).
