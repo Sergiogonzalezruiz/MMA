@@ -105,19 +105,18 @@ MMA.add([
     fases: ["distancia", "entrada"], solo: "si", material: ["ninguno"],
     objetivo: "El golpe más importante: mide, molesta y prepara todo lo demás.",
     pasos: [
-      "Desde la guardia, extiende la mano delantera recta y gira el puño al final.",
-      "El hombro sube para proteger la barbilla.",
-      "La mano trasera se queda pegada a la cara.",
-      "Recoge rápido y por el mismo camino."
+      "Desde la guardia, extiende la mano izquierda recta y gira el puño al final, con la palma hacia el suelo.",
+      "Sube el hombro izquierdo para tapar la barbilla.",
+      "La mano derecha se queda pegada a la mejilla.",
+      "Recoge rápido por el mismo camino, sin bajar la mano."
     ],
-    detalles: ["Puedes acompañarlo de un pequeño paso adelante.", "Doblarlo (1-1) sirve para cerrar distancia."],
-    errores: ["Bajar la mano trasera mientras golpeas.", "Recoger la mano por abajo."],
+    detalles: ["Acompáñalo de un pequeño paso adelante con el pie izquierdo para llegar más lejos.", "Doblarlo (1-1) sirve para cerrar distancia."],
+    errores: ["Bajar la mano derecha mientras golpeas.", "Recoger la mano izquierda por abajo."],
     drills: ["box-espejo", "box-sombra", "box-4-drills"],
-    combina: ["box-1-2", "box-cuerpo-cabeza"],
+    combina: ["box-1-2", "box-1-1-2", "box-cuerpo-cabeza"],
     videos: [
-      V("ArQ50PXMCj4", "Tony Jeffries"),
-      V("AaIeEp84zrQ", "Jero García", { etiqueta: "En español", idioma: "es" }),
-      V("CoaUXNA0TNE", "Morales Box", { etiqueta: "En español 2", idioma: "es" })
+      V("ArQ50PXMCj4", "Tony Jeffries", { fuente: "jeffries" }),
+      V("O2ACs75TLRs", "Tony Jeffries Español", { etiqueta: "En español", idioma: "es", fuente: "jeffries" })
     ]
   },
   {
@@ -125,57 +124,80 @@ MMA.add([
     es: "Directo", en: "Cross", nivel: "F", mma: "alta",
     mmaNota: "Potente, pero si te inclinas quedas a tiro de un derribo.",
     fases: ["distancia"], solo: "si", material: ["ninguno"],
-    objetivo: "El golpe recto de la mano trasera, el más potente de los rectos.",
+    objetivo: "El golpe recto de la mano derecha, el más potente de los rectos.",
     pasos: [
-      "Gira la cadera y el pie trasero, como si apagaras un cigarro.",
-      "Extiende la mano trasera recta hacia la cara.",
-      "La mano delantera protege la cara.",
-      "Vuelve a la guardia."
+      "Gira la cadera y pivota sobre la punta del pie derecho, como si apagaras un cigarro.",
+      "Extiende la mano derecha recta hacia la cara y gira el puño al final.",
+      "La mano izquierda vuelve a la cara para protegerla.",
+      "Recoge por el mismo camino hasta la guardia."
     ],
-    detalles: ["La potencia sale de la rotación de cadera, no del brazo."],
-    errores: ["Inclinarse hacia delante.", "Levantar la barbilla."],
+    detalles: ["La potencia sale del giro de cadera, no del brazo.", "Al final del golpe, el hombro derecho llega hasta la barbilla."],
+    errores: ["Inclinarte hacia delante y pasarte del pie izquierdo.", "Levantar la barbilla o bajar la mano izquierda."],
     drills: ["box-espejo", "box-gomas", "box-4-drills"],
     combina: ["box-1-2"],
-    videos: [V("vyTaKpylOcU", "Tony Jeffries"), V("BF7V9qJzCjQ", "Jorge Blanco", { etiqueta: "En español", idioma: "es" })]
+    videos: [V("sK-6Ujp3KYY", "Tony Jeffries", { fuente: "jeffries" })]
   },
   {
     id: "box-gancho", seccion: "boxeo", tipo: "tecnica", cat: "golpes", golpes: [3],
-    es: "Gancho delantero", en: "Lead hook", nivel: "F", mma: "alta",
+    es: "Gancho izquierdo", en: "Lead hook", nivel: "F", mma: "alta",
     mmaNota: "Corto y muy eficaz contra el que entra.",
     fases: ["distancia", "clinch"], solo: "si", material: ["ninguno"],
-    objetivo: "Golpe curvo de la mano delantera a corta y media distancia.",
+    objetivo: "Golpe curvo de la mano izquierda a corta y media distancia.",
     pasos: [
-      "Gira la cadera y el pie delantero hacia dentro.",
-      "El brazo forma un ángulo de unos 90°, con el codo a la altura del puño.",
-      "El golpe sale con el giro del cuerpo, no con el brazo.",
-      "Vuelve a la guardia."
+      "Gira la cadera y la punta del pie izquierdo hacia dentro.",
+      "Dobla el brazo izquierdo a unos 90°, con el codo a la altura del puño.",
+      "Deja que el golpe salga con el giro del cuerpo, no con el brazo.",
+      "Mantén la mano derecha en la mejilla y vuelve a la guardia."
     ],
-    detalles: ["Después de un directo, el peso ya está cargado para el gancho."],
-    errores: ["Abrir el brazo antes de golpear: se ve venir.", "No girar el pie."],
+    detalles: ["Después de un directo, el peso ya está en la pierna izquierda: el gancho sale solo.", "Puedes golpear con el pulgar arriba o con la palma hacia abajo; Jeffries explica las dos en el vídeo."],
+    errores: ["Abrir el brazo antes de golpear: se ve venir.", "No girar el pie izquierdo."],
     drills: ["box-espejo", "box-sombra"],
-    combina: ["box-1-2-3"],
-    videos: [V("UFVDcNDnpoU", "Tony Jeffries"), V("i3G3HsI1GGU", "Cómo lanzar el gancho", { etiqueta: "Otra explicación" })]
+    combina: ["box-1-2-3", "box-gancho-derecho"],
+    videos: [
+      V("0gtMKaCJ5I8", "Tony Jeffries", { fuente: "jeffries" }),
+      V("UFVDcNDnpoU", "Tony Jeffries", { etiqueta: "Lo básico", canal: "Sanabul", fuente: "jeffries" }),
+      V("T_I_s8ZptC8", "Tony Jeffries Español", { etiqueta: "En español", idioma: "es", fuente: "jeffries" })
+    ]
+  },
+  {
+    id: "box-gancho-derecho", seccion: "boxeo", tipo: "tecnica", cat: "golpes", golpes: [4],
+    es: "Gancho derecho", en: "Rear hook", nivel: "I", mma: "alta",
+    mmaNota: "Muy potente a corta distancia, también contra la jaula.",
+    fases: ["distancia", "clinch"], solo: "si", material: ["ninguno"],
+    objetivo: "Golpe curvo de la mano derecha: más potente que el izquierdo, pero más lento en llegar.",
+    pasos: [
+      "Lleva un poco el peso a la pierna izquierda.",
+      "Gira la cadera hacia la izquierda y pivota sobre la punta del pie derecho.",
+      "El brazo derecho, doblado a unos 90°, viaja en horizontal con el giro del cuerpo.",
+      "Protege la cara con la mano izquierda y vuelve a la guardia."
+    ],
+    detalles: ["Funciona a corta distancia, más cerca que el directo.", "Suele salir después de un gancho izquierdo o de un uppercut izquierdo."],
+    errores: ["Echar el codo hacia atrás para cargarlo: se ve venir.", "Lanzarlo desde lejos y quedarte cruzado."],
+    drills: ["box-sombra", "box-espejo"],
+    combina: ["box-gancho", "box-uppercut"],
+    videos: [V("MJmHnyBjC6s", "Tony Jeffries", { fuente: "jeffries" })]
   },
   {
     id: "box-uppercut", seccion: "boxeo", tipo: "tecnica", cat: "golpes", golpes: [5, 6],
     es: "Uppercut", en: "Uppercut", nivel: "I", mma: "alta",
     mmaNota: "Castiga al que baja la cabeza para derribar o en el clinch.",
     fases: ["distancia", "clinch", "defensa"], solo: "si", material: ["ninguno"],
-    objetivo: "Golpe de abajo arriba a corta distancia.",
+    objetivo: "Golpe de abajo arriba a corta distancia: el 5 con la izquierda y el 6 con la derecha.",
     pasos: [
       "Dobla un poco las rodillas y baja el hombro del lado que golpea.",
-      "Empuja con las piernas y gira la cadera.",
-      "El puño sube con la palma mirando hacia ti.",
-      "Vuelve a la guardia."
+      "Gira la cadera y empuja con las piernas.",
+      "Sube el puño recto hacia arriba desde la altura de tu cara, con la palma hacia ti.",
+      "Vuelve a la guardia sin mover de la cara la otra mano."
     ],
-    detalles: ["Corto: no hace falta bajar la mano para cargarlo."],
+    detalles: ["El 5 sale girando la cadera a la derecha; el 6, girándola a la izquierda.", "Corto: no bajes la mano para cargarlo."],
     errores: ["Bajar la mano antes de lanzarlo.", "Lanzarlo desde lejos."],
     drills: ["box-espejo", "box-sombra"],
-    combina: ["box-1-2-3"],
+    combina: ["box-1-2-3", "box-gancho-derecho"],
     videos: [
-      V("zl2bZwxM_ws", "Uppercut delantero", { etiqueta: "Delantero" }),
-      V("iInkodqd5pE", "Uppercut trasero", { etiqueta: "Trasero" }),
-      V("QJxtfUr2zQM", "Uppercut en español", { etiqueta: "En español", idioma: "es" })
+      V("eBxn21FtqPg", "Tony Jeffries", { fuente: "jeffries" }),
+      V("zl2bZwxM_ws", "Tony Jeffries", { etiqueta: "Izquierdo (5)", fuente: "jeffries" }),
+      V("iInkodqd5pE", "Tony Jeffries", { etiqueta: "Derecho (6)", fuente: "jeffries" }),
+      V("QJxtfUr2zQM", "Tony Jeffries Español", { etiqueta: "En español", idioma: "es", fuente: "jeffries" })
     ]
   },
   {
@@ -275,29 +297,55 @@ MMA.add([
     fases: ["distancia"], solo: "si", material: ["ninguno"],
     objetivo: "La combinación base: el jab abre el camino al directo.",
     pasos: [
-      "Jab.",
-      "Cuando el jab vuelve, sale el directo con el giro de cadera.",
-      "Vuelve a la guardia.",
+      "Lanza el jab con la mano izquierda.",
+      "Mientras el jab vuelve, saca el directo con la derecha y el giro de cadera.",
+      "Vuelve a la guardia con las dos manos.",
       "Sal de la línea con un paso o un pivote."
     ],
-    detalles: ["El jab tapa la visión del rival justo cuando sale el directo."],
-    errores: ["Telegrafiar el directo.", "Quedarse quieto después."],
+    detalles: ["El jab tapa la visión del rival justo cuando sale el directo.", "Sin pausa entre los dos golpes: suenan como uno."],
+    errores: ["Telegrafiar el directo echando el hombro derecho atrás.", "Quedarte quieto después."],
     drills: ["box-sombra", "box-gomas", "box-sesion-16"],
-    combina: ["box-1-2-3", "box-1-2-nivel"],
-    videos: [V("vyTaKpylOcU", "Tony Jeffries")]
+    combina: ["box-1-1-2", "box-1-2-3", "box-1-2-nivel"],
+    videos: [
+      V("vyTaKpylOcU", "Tony Jeffries", { fuente: "jeffries" }),
+      V("eYwsZhfjb4s", "Tony Jeffries Español", { etiqueta: "En español", idioma: "es", fuente: "jeffries" })
+    ]
+  },
+  {
+    id: "box-1-1-2", seccion: "boxeo", tipo: "tecnica", cat: "combos", golpes: [1, 1, 2],
+    es: "1-1-2", en: "Double jab-cross", nivel: "F", mma: "alta",
+    mmaNota: "El jab doble cierra distancia sin cruzar los pies.",
+    fases: ["distancia", "entrada"], solo: "si", material: ["ninguno"],
+    objetivo: "Cerrar distancia con un jab doble y rematar con el directo.",
+    pasos: [
+      "Lanza un primer jab corto con un pequeño paso adelante del pie izquierdo.",
+      "Lanza el segundo jab, más largo, sin recoger del todo la mano entre los dos.",
+      "Saca el directo con la derecha mientras el segundo jab vuelve.",
+      "Vuelve a la guardia y sal de la línea."
+    ],
+    detalles: ["El primer jab mide y tapa la visión; el segundo es el que llega.", "Los dos jabs salen sin mover la mano derecha de la cara."],
+    errores: ["Bajar la mano izquierda entre los dos jabs.", "Dar un paso tan largo que el directo llega desequilibrado."],
+    drills: ["box-sombra", "box-espejo"],
+    combina: ["box-1-2", "box-jab"],
+    videos: [V("UjHH3mgQTVY", "Tony Jeffries", { canal: "Dynamic Striking", fuente: "jeffries" })]
   },
   {
     id: "box-1-2-3", seccion: "boxeo", tipo: "tecnica", cat: "combos", golpes: [1, 2, 3],
     es: "1-2-3", en: "Jab-cross-hook", nivel: "F", mma: "alta",
     mmaNota: "Clásica; en MMA termina siempre saliendo en ángulo.",
     fases: ["distancia"], solo: "si", material: ["ninguno"],
-    objetivo: "Añadir el gancho aprovechando el giro del directo.",
-    pasos: ["Jab.", "Directo: el giro deja el peso cargado delante.", "Gancho delantero aprovechando ese peso.", "Sal en ángulo."],
-    detalles: ["El gancho llega por fuera, justo donde el rival no mira tras dos rectos."],
+    objetivo: "Añadir el gancho izquierdo aprovechando el giro del directo.",
+    pasos: [
+      "Lanza el jab con la izquierda.",
+      "Saca el directo con la derecha: el giro deja el peso en la pierna izquierda.",
+      "Suelta el gancho izquierdo aprovechando ese peso.",
+      "Sal en ángulo."
+    ],
+    detalles: ["El gancho llega por fuera, justo donde el rival no mira tras dos rectos.", "Los tres golpes van seguidos: el gancho empieza cuando el directo vuelve."],
     errores: ["Abrir el gancho.", "Acabar en el sitio."],
     drills: ["box-sombra", "box-sesion-16"],
-    combina: ["box-pivote"],
-    videos: [V("awgP60rGSlw", "1-2-3"), V("C7IGPNANJjI", "Jab, directo y gancho", { etiqueta: "Otra explicación" })]
+    combina: ["box-pivote", "box-gancho"],
+    videos: [V("awgP60rGSlw", "Muay Thai Madness"), V("C7IGPNANJjI", "Final Round Training", { etiqueta: "Otra explicación" })]
   },
   {
     id: "box-cuerpo-cabeza", seccion: "boxeo", tipo: "tecnica", cat: "combos", golpes: [1, 1, 2],
@@ -337,16 +385,16 @@ MMA.add([
     fases: ["distancia"], solo: "si", material: ["ninguno", "espejo"],
     objetivo: "Trabajar la técnica por bloques, con un tema distinto en cada ronda.",
     pasos: [
-      "Elige un tema por ronda: solo 1-2, solo defensa, ángulo tras cada combinación, arriba-abajo, o cambio de nivel tras el 1-2.",
+      "Elige un tema por ronda: solo pies, solo rectos, solo curvos, salir en ángulo tras cada combinación o arriba-abajo.",
       "Muévete siempre e imagina un rival concreto.",
-      "Últimos 30 segundos de cada ronda, a ritmo alto."
+      "Empieza lento y sube a velocidad media; los últimos 30 segundos, a ritmo alto."
     ],
-    detalles: ["Lento y limpio vale más que rápido y sucio."],
+    detalles: ["Lento y limpio vale más que rápido y sucio.", "Un solo tema por ronda: si lo mezclas todo, no se fija nada."],
     errores: ["Golpear quieto en el sitio.", "Bajar las manos al cansarte."],
     dosis: "3–6 rondas × 3 min · 1 min de descanso",
     criterio: "Grabado de lado: no cruzas los pies y cada golpe vuelve a la guardia.",
     combina: ["box-1-2", "box-pivote"],
-    videos: [V("J4j3AOVWuHE", "Tony Jeffries")]
+    videos: [V("J4j3AOVWuHE", "Tony Jeffries", { fuente: "jeffries" })]
   },
   {
     id: "box-4-drills", seccion: "boxeo", tipo: "drill",
@@ -356,7 +404,7 @@ MMA.add([
     pasos: ["Sigue el vídeo parte por parte con los botones de abajo."],
     detalles: [], errores: [],
     dosis: "1 sesión siguiendo el vídeo",
-    videos: [V("BpiM3Sw4rFU", "Tony Jeffries", { segmentos: [
+    videos: [V("BpiM3Sw4rFU", "Tony Jeffries", { fuente: "jeffries", segmentos: [
       { t: "Drill 1", inicio: 26, fin: 79 }, { t: "Drill 2", inicio: 79, fin: 149 },
       { t: "Drill 3", inicio: 149, fin: 288 }, { t: "Drill 4", inicio: 288, fin: null }
     ] })]
@@ -446,13 +494,17 @@ MMA.add([
     id: "box-gomas", seccion: "boxeo", tipo: "drill",
     es: "Golpes con goma", en: "Resistance band punches", nivel: "I", mma: "media",
     fases: ["distancia"], solo: "si", material: ["goma"],
-    objetivo: "Velocidad y resistencia en los golpes.",
+    objetivo: "Notar el giro de cadera y la vuelta a la guardia con un poco de resistencia.",
     pasos: [
       "Ancla la goma detrás de ti a la altura del pecho y agarra un extremo con cada mano.",
-      "1-2 a velocidad controlada sin perder la técnica."
+      "Ponte en guardia y lanza golpes lentos: primero rectos, después curvos.",
+      "Aguanta un segundo con el brazo estirado y vuelve a la guardia controlando la goma.",
+      "Cambia de golpe cada 20 segundos."
     ],
-    detalles: [], errores: ["Perder la guardia por ir rápido."],
+    detalles: ["Goma suave: si te cambia la técnica, es demasiado dura.", "Es técnica, no fuerza: nada de series hasta el fallo."],
+    errores: ["Perder la guardia por ir rápido.", "Dejar que la goma te devuelva el brazo de golpe."],
     dosis: "3 × 1 min",
+    criterio: "1 minuto sin que la mano que no golpea se separe de la cara.",
     videos: []
   },
   {
@@ -462,7 +514,7 @@ MMA.add([
     objetivo: "Una sesión completa guiada cuando no tienes tiempo de preparar nada.",
     pasos: ["Ponla y síguela."], detalles: [], errores: [],
     dosis: "16 min",
-    videos: [V("aHScq60oTlM", "Tony Jeffries")]
+    videos: [V("aHScq60oTlM", "Tony Jeffries", { fuente: "jeffries" })]
   }
 ]);
 })();
