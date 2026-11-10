@@ -5,7 +5,7 @@ const path = require("path");
 const vm = require("vm");
 
 const RAIZ = path.join(__dirname, "..");
-const ARCHIVOS = ["datos-comun.js", "datos-boxeo.js", "datos-lucha.js", "datos-suelo.js", "pendientes.js", "huecos-calc.js"];
+const ARCHIVOS = ["datos-comun.js", "datos-boxeo.js", "datos-lucha.js", "datos-suelo.js", "datos-curso-boxeo.js", "pendientes.js", "huecos-calc.js"];
 
 function cargar() {
   const ctx = {};

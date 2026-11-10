@@ -4,21 +4,36 @@ Web personal de Sergio para aprender MMA: biblioteca de técnicas y drills con v
 
 La web es HTML estático, sin frameworks ni proceso de compilación, y se publica con GitHub Pages desde la rama `main`. No añadas dependencias npm, bundlers ni frameworks: cualquier cambio tiene que seguir funcionando abriendo `index.html` desde un servidor estático.
 
-## Foco actual: solo Suelo
+## Foco actual: Suelo y Boxeo
 
-Sergio quiere centrarse en **Suelo**. **Boxeo y Lucha están aparcados** hasta que él diga lo contrario. Mientras tanto:
+Sergio trabaja **Suelo** y el **curso de boxeo** en solitario. **Lucha está aparcada** hasta que él diga lo contrario. Mientras tanto:
 
 - **Orden de trabajo:**
-  1. el mapa de suelo (`planes/mapa-suelo.md`)
-  2. las tandas de suelo, en este orden: 1 (supervivencia), 4 (escapes), 6 (espalda y cabeza-brazo) y 8 (guardias)
-- **Tandas aparcadas:** la 2 y la 5 (Lucha) y la 3 y la 7 (Boxeo). Si `node scripts/huecos.js` o la página «Qué falta» las proponen, sáltatelas y dilo en una línea.
-- **`/tanda` sin número:** propone la siguiente tanda de suelo. **`/huecos` y la propuesta de tanda:** fíjate solo en los pendientes y huecos de Suelo, y resume los de Boxeo y Lucha en una línea («aparcados: N pendientes»).
-- **Pendientes nuevos:** si Sergio pide añadir uno de Boxeo o Lucha, añádelo a `pendientes.js` como `idea` sin tanda, y no hagas la ficha.
-- **Fichas de Boxeo y Lucha:** no las amplíes ni las reescribas. Sí puedes:
+  1. el curso de boxeo (`datos-curso-boxeo.js`), por ramas: `boxeo-curso-datos`, `boxeo-curso-ui`, `boxeo-curso-modulos-N` (de 2 en 2) y `boxeo-curso-guia`
+  2. el mapa de suelo (`planes/mapa-suelo.md`), fase 2
+  3. las tandas de suelo, en este orden: 1 (supervivencia), 4 (escapes), 6 (espalda y cabeza-brazo) y 8 (guardias)
+- **Tandas aparcadas:** la 2 y la 5 (Lucha). Si `node scripts/huecos.js` o la página «Qué falta» las proponen, sáltatelas y dilo en una línea. Las tandas 3 y 7 (Boxeo) entran en el curso.
+- **`/tanda` sin número:** propone la siguiente tanda de suelo o de boxeo. **`/huecos` y la propuesta de tanda:** fíjate en Suelo y Boxeo, y resume los de Lucha en una línea («aparcados: N pendientes»).
+- **Pendientes nuevos:** si Sergio pide añadir uno de Lucha, añádelo a `pendientes.js` como `idea` sin tanda, y no hagas la ficha.
+- **Fichas de Lucha:** no las amplíes ni las reescribas. Sí puedes:
   - arreglar errores que rompan la web o el validador
   - cambiar vídeos caídos que detecte la comprobación semanal
-- **Si una ficha de suelo se relaciona con Boxeo o Lucha** (por ejemplo, en `combina`), enlaza solo fichas que ya existan.
+- **Fichas de Boxeo:** sí puedes ampliarlas y reescribirlas para el curso. Las que tienen enfoque MMA (Guardia MMA, 1-2 y cambio de nivel, Overhand) se quedan como fichas de MMA, fuera del curso.
+- **Si una ficha de suelo o boxeo se relaciona con Lucha** (por ejemplo, en `combina`), enlaza solo fichas que ya existan.
 - **Cuando Sergio levante el foco,** borra este apartado y la nota de `planes/mapa-suelo.md`.
+
+## Curso de boxeo
+
+- **Para diestro (guardia ortodoxa).** Escribe «mano izquierda», «pie derecho»… y no «delantera/trasera» a secas cuando haya ambigüedad.
+- **Solo en casa, sin saco:** shadow, espejo, comba, cuerda de esquivas y pelota con goma. El saco solo como opción marcada «si tienes saco».
+- **Sin acondicionamiento extra:** las sesiones son técnicas (~40 min, asaltos de 3 min con 1 de descanso, un objetivo por asalto).
+- **Fuentes:** Tony Jeffries es la principal. Oracle Boxing solo en juego de pies avanzado, distancia, movimiento de cabeza, pull counter y fluidez. **Una sola fuente por tema**: la otra, como mucho, «otra forma de verlo». Marca cada vídeo con `fuente: "jeffries" | "oracle"`.
+- **Vídeos:** si existe la versión de **Tony Jeffries Español**, va como segundo vídeo (`idioma: "es"`, `etiqueta: "En español"`). Pasa `node scripts/comprobar-videos.js` para asegurar que se pueden incrustar.
+- **Modelo** (`MMA.CURSO_BOXEO` en `datos-curso-boxeo.js`): el curso referencia fichas por id y no repite su texto.
+  - `fases`: `{ id, titulo, semanas: [desde, hasta], objetivo }`
+  - `modulos`: `{ id, fase, n, titulo, fuente, objetivo, video: { ficha, n } | { id, instructor, inicio, fin, fuente }, claves (máx. 4), fichas, drills (mín. 1), checklist (4–6 preguntas de sí/no), dominio }`
+  - `sesiones`: `{ id, fase, titulo, duracion, tipo: "tecnica" | "cardio", asaltos: [{ min, descanso, objetivo, drill?, video? }] }`. La duración tiene que coincidir con la suma de asaltos y descansos (±2 min).
+- **Progreso del curso** (módulos dominados, sesiones hechas, grabaciones): en `localStorage`, no en el repositorio.
 
 ## Archivos
 
@@ -26,6 +41,7 @@ Sergio quiere centrarse en **Suelo**. **Boxeo y Lucha están aparcados** hasta q
 | --- | --- |
 | `index.html` | Toda la web: estilos, vistas, reproductor, buscador, progreso, guía y «Qué falta» |
 | `datos-comun.js` | Secciones y categorías, rutas por nivel, mapa del combate (FASES, TRANSICIONES), plan de casa, estructura de Jiu-Jitsu University (JJU) |
+| `datos-curso-boxeo.js` | Curso de boxeo en solitario: fases, módulos y sesiones (`MMA.CURSO_BOXEO`) |
 | `datos-boxeo.js`, `datos-lucha.js`, `datos-suelo.js` | Las fichas de cada sección. `datos-suelo.js` también tiene `MMA.POSICIONES` |
 | `pendientes.js` | Lista de todo lo que falta por añadir, con su puntuación |
 | `huecos-calc.js` | Cálculo de huecos y puntuación (lo usan la web y `scripts/huecos.js`) |

@@ -33,22 +33,51 @@ MMA.add([
     videos: [V("EKxYAvGGayI", "MMA Fundamentals", { etiqueta: "Guardia básica" }), V("pBIHzv3iWGo", "Boxeo vs MMA", { etiqueta: "Diferencias con boxeo" })]
   },
   {
+    id: "box-guardia-boxeo", seccion: "boxeo", tipo: "tecnica", cat: "guardia",
+    es: "Guardia de boxeo", en: "Orthodox boxing stance", nivel: "F", mma: "media",
+    mmaNota: "Es la guardia de referencia del curso de boxeo. En MMA se usa la Guardia MMA, más ancha y con las manos más abiertas.",
+    fases: ["distancia"], solo: "si", material: ["ninguno", "espejo"],
+    objetivo: "La guardia de boxeo para diestro: equilibrada, cerrada y lista para golpear y moverte.",
+    pasos: [
+      "Pie izquierdo delante y pie derecho detrás, un poco más separados que la anchura de los hombros.",
+      "Ponte de lado lo justo: el pie izquierdo y el hombro izquierdo miran al rival.",
+      "Flexiona un poco las rodillas, reparte el peso y levanta un poco el talón derecho.",
+      "Mano derecha pegada a la mejilla, mano izquierda a la altura de la cara y algo adelantada, codos cerca de las costillas.",
+      "Baja la barbilla y mira por encima de los guantes."
+    ],
+    detalles: [
+      "Los pies no van en la misma línea: el derecho queda un poco a la derecha de la línea del talón izquierdo. Así no te desequilibran de lado.",
+      "Relaja los hombros. La guardia se mantiene sin apretar."
+    ],
+    errores: [
+      "Quedarte de frente al rival, con los pies en paralelo: le enseñas todo el cuerpo.",
+      "Estar demasiado alto, con la barbilla levantada o los codos abiertos."
+    ],
+    drills: ["box-espejo", "box-patrones-pies", "box-sombra"],
+    combina: ["box-paso-arrastre", "box-jab"],
+    videos: [
+      V("g3Wl2XJMKzc", "Tony Jeffries", { etiqueta: "Cómo ponerte", canal: "Sanabul", fuente: "jeffries" }),
+      V("rU2MWIoVVos", "Tony Jeffries", { etiqueta: "5 errores", fuente: "jeffries" }),
+      V("tKBoeFXrUw0", "Tony Jeffries Español", { etiqueta: "En español", idioma: "es", fuente: "jeffries" })
+    ]
+  },
+  {
     id: "box-paso-arrastre", seccion: "boxeo", tipo: "tecnica", cat: "pies",
     es: "Paso-arrastre", en: "Step-drag", nivel: "F", mma: "alta",
     mmaNota: "Mantiene la base para defender el derribo en cualquier momento.",
     fases: ["distancia"], solo: "si", material: ["ninguno"],
     objetivo: "Moverte sin perder la guardia ni la distancia entre los pies.",
     pasos: [
-      "Para avanzar, empuja con el pie trasero y adelanta el delantero.",
-      "El pie trasero lo sigue la misma distancia.",
-      "Para retroceder, al revés: primero el pie trasero.",
-      "Para ir a un lado, se mueve primero el pie de ese lado."
+      "Para avanzar, empuja con el pie derecho y adelanta el izquierdo un paso corto.",
+      "El pie derecho lo sigue la misma distancia.",
+      "Para retroceder, al revés: empuja con el izquierdo y mueve primero el derecho.",
+      "Para ir a tu izquierda, mueve primero el pie izquierdo; para ir a tu derecha, primero el derecho."
     ],
     detalles: ["Pasos cortos; la distancia entre los pies no cambia.", "El golpe sigue al pie: primero el paso, luego la mano."],
     errores: ["Cruzar o juntar los pies.", "Saltar en vez de deslizar."],
     drills: ["box-patrones-pies", "box-comba"],
-    combina: ["box-pivote"],
-    videos: [V("v0y86288Wt0", "Tony Jeffries")]
+    combina: ["box-guardia-boxeo", "box-pivote"],
+    videos: [V("v0y86288Wt0", "Tony Jeffries", { fuente: "jeffries" })]
   },
   {
     id: "box-pivote", seccion: "boxeo", tipo: "tecnica", cat: "pies",
@@ -338,15 +367,20 @@ MMA.add([
     fases: ["distancia"], solo: "si", material: ["cinta"],
     objetivo: "Automatizar el paso-arrastre y el pivote.",
     pasos: [
-      "Pega en el suelo una cruz o un cuadrado de cinta.",
-      "Recorre las líneas: adelante-atrás, laterales, pivote y en «L».",
-      "Mantén la guardia y la distancia entre los pies en todo momento."
+      "Pega en el suelo una cruz o un cuadrado de cinta, de unos dos pasos de lado.",
+      "Recorre las líneas en guardia: adelante y atrás, a tu izquierda y a tu derecha, y en «L».",
+      "En cada cambio de dirección, mueve primero el pie del lado hacia el que vas.",
+      "Mantén la mano derecha en la mejilla y la misma distancia entre los pies todo el rato."
     ],
-    detalles: ["Mira al frente, no a los pies."], errores: ["Juntar los pies al cambiar de dirección."],
+    detalles: ["Mira al frente, no a los pies: la cinta la notas sin mirarla.", "Pasos cortos y sin prisa al principio; la velocidad llega sola."],
+    errores: ["Juntar o cruzar los pies al cambiar de dirección.", "Saltar en vez de deslizar."],
     dosis: "3 × 2 min",
-    criterio: "Una ronda completa sin cruzar los pies.",
+    criterio: "Una ronda completa sin cruzar los pies ni mirar al suelo.",
     combina: ["box-paso-arrastre", "box-pivote"],
-    videos: [V("M2EN9AH7cDc", "Boxstep y pivote")]
+    videos: [
+      V("H9OgSFaJuVM", "Tony Jeffries", { etiqueta: "Con marcas en el suelo", canal: "The Boxing Fitness Academy", fuente: "jeffries" }),
+      V("gvdWLS-Y-2M", "Tony Jeffries", { etiqueta: "Más ejercicios", fuente: "jeffries" })
+    ]
   },
   {
     id: "box-cuerda", seccion: "boxeo", tipo: "drill",
@@ -382,25 +416,31 @@ MMA.add([
     id: "box-comba", seccion: "boxeo", tipo: "drill",
     es: "Comba de boxeador", en: "Boxing jump rope", nivel: "F", mma: "media",
     fases: ["distancia"], solo: "si", material: ["comba"],
-    objetivo: "Ritmo, pies ligeros y resistencia.",
-    pasos: ["Básico a pies juntos.", "Paso alterno de boxeador.", "Cambios de ritmo.", "Dobles cuando lo domines."],
-    detalles: [], errores: ["Saltar alto: apenas despega los pies."],
+    objetivo: "Ritmo y pies ligeros. En el curso es el calentamiento, a ritmo suave.",
+    pasos: ["Empieza a pies juntos, con saltos pequeños.", "Pasa al paso de boxeador: alterna el apoyo de un pie al otro.", "Cambia de ritmo cada 30 segundos.", "Deja las dobles para cuando el resto salga sin tropezar."],
+    detalles: ["Gira la comba con las muñecas, no con los brazos.", "Ajusta la longitud: pisándola en el centro, los mangos llegan a la altura de las axilas."],
+    errores: ["Saltar alto: apenas tienes que despegar los pies.", "Caer sobre los talones."],
     dosis: "3 × 3 min",
-    videos: [V("9KkYFM21ke0", "Comba para boxeo, niveles 1–5")]
+    criterio: "3 minutos de paso de boxeador sin tropezar.",
+    videos: [V("wqN5bRkZPK0", "Tony Jeffries", { etiqueta: "De principiante a experto", fuente: "jeffries" })]
   },
   {
     id: "box-espejo", seccion: "boxeo", tipo: "drill",
     es: "Guardia frente al espejo", en: "Mirror work", nivel: "F", mma: "alta",
     fases: ["distancia"], solo: "si", material: ["espejo"],
-    objetivo: "Corregirte solo.",
+    objetivo: "Corregir tu guardia y tus golpes tú solo, viéndote.",
     pasos: [
-      "Golpes lentos mirando la barbilla, la mano que no golpea y el retorno a la guardia.",
-      "Después repite sin espejo, intentando sentir lo mismo."
+      "Ponte en guardia frente al espejo, a unos dos metros.",
+      "Primero muévete con paso-arrastre y revisa cada pocos segundos manos, codos y barbilla.",
+      "Después lanza golpes lentos: comprueba que salen rectos y que la otra mano no se separa de la cara.",
+      "Cada minuto, cierra los ojos 30 segundos manteniendo la guardia; ábrelos y compara."
     ],
-    detalles: [], errores: [],
-    dosis: "2 × 3 min",
-    combina: ["box-guardia"],
-    videos: []
+    detalles: ["Lento: el espejo sirve para ver, no para ir rápido.", "Ponte también de lado al espejo para ver el perfil y la altura."],
+    errores: ["Mirarte la cara en vez de las manos y los pies.", "Corregirte y olvidarlo en cuanto dejas de mirar."],
+    dosis: "2 × 3 min · 1 min de descanso",
+    criterio: "2 rondas sin que el espejo te pille la mano derecha lejos de la cara ni la barbilla levantada.",
+    combina: ["box-guardia-boxeo", "box-guardia"],
+    videos: [V("OEiE3fI8U10", "Tony Jeffries", { fuente: "jeffries" })]
   },
   {
     id: "box-gomas", seccion: "boxeo", tipo: "drill",

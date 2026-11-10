@@ -104,6 +104,63 @@ enMapa.forEach((a, i) => enMapa.slice(i + 1).forEach(b => {
   if (a.mapa && b.mapa && Math.hypot(a.mapa.x - b.mapa.x, a.mapa.y - b.mapa.y) < 140) aviso(`posición · ${a.id}`, `está a menos de 140 de ${b.id} en el mapa`);
 }));
 
+// ---------- Curso de boxeo ----------
+const FUENTES = new Set(["jeffries", "oracle"]);
+for (const f of M.FICHAS) f.videos.forEach((v, i) => { if (v.fuente && !FUENTES.has(v.fuente)) err(`${f.seccion} · ${f.id} · vídeo ${i + 1}`, `fuente «${v.fuente}» no válida (jeffries u oracle)`); });
+const C = M.CURSO_BOXEO;
+if (!C) err("curso", "falta MMA.CURSO_BOXEO en datos-curso-boxeo.js");
+else {
+  const fasesC = new Set(C.fases.map(f => f.id));
+  const ficha = id => M.FICHAS.find(f => f.id === id);
+  const videoCurso = (d, v) => {
+    if (!v) return;
+    if (v.ficha) {
+      const f = ficha(v.ficha);
+      if (!f) err(d, `el vídeo apunta a la ficha «${v.ficha}», que no existe`);
+      else if (!f.videos[v.n ?? 0]) err(d, `la ficha «${v.ficha}» no tiene el vídeo ${(v.n ?? 0) + 1}`);
+    } else {
+      if (!ID_YT.test(v.id || "")) err(d, `id de YouTube «${v.id}» no válido`);
+      if (typeof v.inicio !== "number") err(d, "el vídeo necesita «inicio» en segundos");
+      if (v.fuente && !FUENTES.has(v.fuente)) err(d, `fuente «${v.fuente}» no válida`);
+    }
+  };
+  C.fases.forEach(f => { if (!(Array.isArray(f.semanas) && f.semanas.length === 2 && f.semanas[0] <= f.semanas[1])) err(`curso · fase ${f.id}`, "semanas tiene que ser [desde, hasta]"); });
+  const idsMod = new Set();
+  for (const m of C.modulos) {
+    const d = `curso · módulo ${m.id}`;
+    if (idsMod.has(m.id)) err(d, "id de módulo repetido"); idsMod.add(m.id);
+    if (!fasesC.has(m.fase)) err(d, `la fase ${m.fase} no existe`);
+    if (!FUENTES.has(m.fuente)) err(d, `fuente «${m.fuente}» no válida (jeffries u oracle)`);
+    for (const k of ["titulo", "objetivo", "dominio"]) if (!m[k]) err(d, `falta «${k}»`);
+    if (!m.claves?.length || m.claves.length > 4) err(d, "claves: entre 1 y 4");
+    if (!m.checklist || m.checklist.length < 4 || m.checklist.length > 6) err(d, "checklist: entre 4 y 6 preguntas");
+    for (const q of m.checklist || []) if (!q.trim().endsWith("?")) err(d, `la pregunta «${q}» tiene que ser de sí o no y acabar en «?»`);
+    for (const id of m.fichas || []) if (!ficha(id)) err(d, `la ficha «${id}» no existe`);
+    if (!m.drills?.length) err(d, "necesita al menos un drill");
+    for (const id of m.drills || []) { const f = ficha(id); if (!f) err(d, `el drill «${id}» no existe`); else if (f.tipo !== "drill") err(d, `«${id}» no es un drill`); }
+    if (!m.video) err(d, "falta el vídeo de referencia"); else videoCurso(d, m.video);
+  }
+  const idsSes = new Set();
+  for (const s of C.sesiones) {
+    const d = `curso · sesión ${s.id}`;
+    if (idsSes.has(s.id)) err(d, "id de sesión repetido"); idsSes.add(s.id);
+    if (!fasesC.has(s.fase)) err(d, `la fase ${s.fase} no existe`);
+    if (!["tecnica", "cardio"].includes(s.tipo)) err(d, `tipo «${s.tipo}» no válido (tecnica o cardio)`);
+    if (!s.asaltos?.length) { err(d, "no tiene asaltos"); continue; }
+    s.asaltos.forEach((a, i) => {
+      const da = `${d} · asalto ${i + 1}`;
+      if (!a.objetivo) err(da, "falta el objetivo");
+      if (!(a.min > 0)) err(da, "min tiene que ser mayor que 0");
+      if (!(a.descanso >= 0)) err(da, "descanso tiene que ser 0 o más");
+      if (a.drill && !ficha(a.drill)) err(da, `el drill «${a.drill}» no existe`);
+      videoCurso(da, a.video);
+    });
+    const suma = s.asaltos.reduce((t, a) => t + a.min + a.descanso, 0);
+    if (Math.abs(suma - s.duracion) > 2) err(d, `dura ${s.duracion} min pero sus asaltos suman ${suma}`);
+  }
+  for (const f of C.fases) if (!C.sesiones.some(s => s.fase === f.id) && C.modulos.some(m => m.fase === f.id)) aviso(`curso · fase ${f.id}`, "tiene módulos pero ninguna sesión");
+}
+
 // ---------- Plan ----------
 for (const b of M.PLAN.sesion) for (const id of b.fichas) if (!ids.has(id)) err(`plan · ${b.t}`, `enlaza a la ficha «${id}», que no existe`);
 

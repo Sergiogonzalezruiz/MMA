@@ -12,6 +12,13 @@ for (const f of M.FICHAS) for (const v of f.videos) {
   if (!usos.has(v.id)) usos.set(v.id, []);
   usos.get(v.id).push(f);
 }
+// Vídeos escritos directamente en el curso de boxeo (no en una ficha)
+const C = M.CURSO_BOXEO;
+if (C) for (const [v, es] of [...C.modulos.map(m => [m.video, `Curso: ${m.titulo}`]), ...C.sesiones.flatMap(x => x.asaltos.map(a => [a.video, `Curso: ${x.titulo}`]))]) {
+  if (!v?.id) continue;
+  if (!usos.has(v.id)) usos.set(v.id, []);
+  usos.get(v.id).push({ es, id: "curso", seccion: "boxeo" });
+}
 
 async function comprobar(id) {
   const url = `https://www.youtube.com/oembed?format=json&url=${encodeURIComponent("https://www.youtube.com/watch?v=" + id)}`;
