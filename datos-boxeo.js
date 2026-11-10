@@ -86,15 +86,74 @@ MMA.add([
     fases: ["distancia", "jaula"], solo: "si", material: ["ninguno"],
     objetivo: "Girar fuera de la línea del rival sin dar pasos largos.",
     pasos: [
-      "Apoya el peso en la parte delantera del pie delantero.",
-      "Barre el pie trasero en arco para girar el cuerpo un cuarto de vuelta.",
-      "Termina en guardia, con el rival delante y tú fuera de su línea."
+      "Apoya el peso en la punta del pie izquierdo.",
+      "Gira hacia tu izquierda sobre esa punta: el pie derecho barre un arco por detrás.",
+      "Para con un cuarto de vuelta, más o menos.",
+      "Termina en guardia, mirando al rival y fuera de su línea."
     ],
-    detalles: ["Pivota justo después de golpear: el rival te busca donde estabas."],
+    detalles: ["Pivota justo después de golpear: el rival te busca donde estabas.", "Un cuarto de vuelta basta; si giras más, te quedas de espaldas a tu propio golpe."],
     errores: ["Girar sobre el talón.", "Abrir las manos al girar."],
     drills: ["box-patrones-pies", "box-sombra"],
-    combina: ["box-1-2-3"],
-    videos: [V("TSyV2i56BFA", "Pivote y ángulos (boxeo y MMA)")]
+    combina: ["box-angulos", "box-1-2-3"],
+    videos: [
+      V("72M0E5LM92M", "Tony Jeffries", { etiqueta: "Paso a paso", fuente: "jeffries" }),
+      V("hNclexRmDsY", "Tony Jeffries", { etiqueta: "Cuándo pivotar", fuente: "jeffries" }),
+      V("dEzUyW5_-RI", "Tony Jeffries Español", { etiqueta: "En español", idioma: "es", fuente: "jeffries" })
+    ]
+  },
+  {
+    id: "box-angulos", seccion: "boxeo", tipo: "tecnica", cat: "pies",
+    es: "Salir en ángulo tras la combinación", en: "Angling out", nivel: "I", mma: "muy alta",
+    mmaNota: "Salir en ángulo evita la respuesta del rival y te aleja de la jaula.",
+    fases: ["distancia", "jaula"], solo: "si", material: ["ninguno"],
+    objetivo: "No quedarte delante del rival después de golpear: acabar donde él tenga que girarse para encontrarte.",
+    pasos: [
+      "Termina la combinación con las dos manos en la cara.",
+      "Da un paso corto en diagonal hacia delante y a tu izquierda con el pie izquierdo; el derecho lo sigue.",
+      "O pivota sobre la punta del pie izquierdo hacia tu izquierda.",
+      "Desde el nuevo ángulo, lanza otro golpe o vuelve a la distancia larga."
+    ],
+    detalles: ["El ángulo vale si el rival tiene que girarse para volver a golpearte.", "Sal hacia tu izquierda: te alejas de su mano derecha."],
+    errores: ["Salir hacia atrás en línea recta: el rival te sigue.", "Cruzar los pies al salir."],
+    drills: ["box-sombra", "box-patrones-pies"],
+    combina: ["box-pivote", "box-1-2-3"],
+    videos: [V("oplciEKdU3E", "Tony Jeffries", { etiqueta: "Cambiar el ángulo en la corta", fuente: "jeffries" })]
+  },
+  {
+    id: "box-distancias", seccion: "boxeo", tipo: "tecnica", cat: "pies",
+    es: "Las tres distancias", en: "Boxing ranges", nivel: "F", mma: "alta",
+    mmaNota: "En MMA hay una distancia más, la de patada, y la corta acaba en clinch.",
+    fases: ["distancia"], solo: "si", material: ["ninguno"],
+    objetivo: "Saber en qué distancia estás y qué golpes llegan desde cada una.",
+    pasos: [
+      "Larga: llegas con el jab dando un paso. Es la distancia para medir y para salir.",
+      "Media: llegas con rectos sin dar paso. Aquí entran el 1-2 y el 1-2-3.",
+      "Corta: llegas con ganchos y uppercuts. Entra solo para golpear y sal.",
+      "Antes de golpear, decide en qué distancia estás."
+    ],
+    detalles: ["Fuera de distancia, ni te llegan ni llegas: es el sitio para descansar.", "La distancia cambia con cada paso, tuyo y del rival."],
+    errores: ["Quedarte en la media sin golpear: es donde más te pegan.", "Lanzar ganchos desde la larga."],
+    drills: ["box-drill-distancia", "box-sombra"],
+    combina: ["box-medir-jab", "box-paso-arrastre"],
+    videos: []
+  },
+  {
+    id: "box-medir-jab", seccion: "boxeo", tipo: "tecnica", cat: "golpes", golpes: [1],
+    es: "Medir la distancia con el jab", en: "Range-finding jab", nivel: "F", mma: "muy alta",
+    mmaNota: "El mismo jab rápido mide la distancia para entrar a derribar.",
+    fases: ["distancia", "entrada"], solo: "si", material: ["ninguno"],
+    objetivo: "Usar un jab rápido y suave para encontrar la distancia antes de soltar los golpes fuertes.",
+    pasos: [
+      "Lanza un jab rápido y relajado, sin cargar el peso.",
+      "Fíjate en dónde llega: si se queda corto, da medio paso; si llega con el brazo doblado, estás cerca.",
+      "Con la distancia buena, el siguiente golpe ya va en serio: jab firme o 1-2.",
+      "Vuelve a la guardia y sal, o vuelve a medir."
+    ],
+    detalles: ["Jeffries separa el jab rápido, para medir, del jab con potencia: aquí trabajas el rápido.", "Medir no es esperar: cada jab rápido también molesta."],
+    errores: ["Dejar el brazo estirado para medir.", "Dar un paso largo detrás del jab y meterte en la corta sin querer."],
+    drills: ["box-drill-distancia", "box-espejo"],
+    combina: ["box-jab", "box-distancias"],
+    videos: [V("DrGpGfvWN6U", "Tony Jeffries", { etiqueta: "Jab rápido y jab con potencia", fuente: "jeffries" })]
   },
 
   // ---------------- GOLPES ----------------
@@ -452,13 +511,32 @@ MMA.add([
     fases: ["distancia"], solo: "si", material: ["pelota", "cuerda"],
     objetivo: "Vista, reflejos y timing.",
     pasos: [
-      "Cuélgala de una cuerda a la altura de la cabeza: golpéala y esquiva la vuelta.",
-      "O lánzala contra la pared y atrápala en guardia."
+      "Cuélgala de una cuerda a la altura de la cabeza: golpéala con un jab y esquiva la vuelta.",
+      "O lánzala contra la pared con la mano izquierda y atrápala con la derecha, sin salir de la guardia."
     ],
-    detalles: [], errores: ["Seguirla con la cabeza en vez de con los ojos."],
+    detalles: ["Golpea suave: cuanto más fuerte, más rápida vuelve.", "Mira la pelota con los ojos, no con la cabeza."],
+    errores: ["Seguirla con la cabeza en vez de con los ojos.", "Bajar las manos para esperarla."],
     dosis: "3 × 2 min",
     criterio: "2 minutos sin que la pelota te toque a la vuelta.",
-    videos: [V("EqU7R2HbIrI", "4 drills con pelota de tenis"), V("rJ5hvJ8-TOs", "Pelota con goma en la cabeza", { etiqueta: "Pelota en la cabeza" })]
+    videos: [V("EqU7R2HbIrI", "El Yuyu", { etiqueta: "4 drills con pelota" })]
+  },
+  {
+    id: "box-drill-distancia", seccion: "boxeo", tipo: "drill",
+    es: "Medir la distancia en la pared", en: "Wall range drill", nivel: "F", mma: "alta",
+    fases: ["distancia"], solo: "si", material: ["pared", "cinta"],
+    objetivo: "Aprender sin compañero dónde llega tu jab y cuánto cambia con un paso.",
+    pasos: [
+      "Pega un trozo de cinta en la pared a la altura de tu barbilla: es la barbilla del rival.",
+      "Busca dónde la toca tu jab con el brazo casi estirado y sin dar paso: esa es la media. Márcala en el suelo.",
+      "Sal medio paso atrás (larga) y vuelve con paso y jab; entra medio paso (corta) y suelta ganchos sin tocar la pared con el codo.",
+      "Cambia de distancia cada 20 segundos sin mirar al suelo."
+    ],
+    detalles: ["Toca la cinta, no la golpees: solo mides.", "Con los ojos en la cinta, notarás la distancia por los pies."],
+    errores: ["Mirar la marca del suelo en vez de la cinta.", "Inclinarte para llegar en vez de dar el paso."],
+    dosis: "3 × 2 min · 1 min de descanso",
+    criterio: "10 jabs seguidos tocando la cinta, cada uno desde la distancia correcta y sin inclinarte.",
+    combina: ["box-distancias", "box-medir-jab"],
+    videos: []
   },
   {
     id: "box-comba", seccion: "boxeo", tipo: "drill",

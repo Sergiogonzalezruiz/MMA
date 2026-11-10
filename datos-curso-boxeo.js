@@ -77,6 +77,48 @@ MMA.CURSO_BOXEO = {
         "¿Después del 1-2-3 sales en ángulo y no te quedas cruzado?"
       ],
       dominio: "3 asaltos de 3 min de sombra con 3, 4, 5, 6 y 1-2-3, grabados de lado, girando el pie en cada curvo y sin abrir el codo antes de golpear."
+    },
+    {
+      id: "m4", fase: 2, n: 4, titulo: "Juego de pies y pivotes", fuente: "oracle",
+      objetivo: "Moverte con pasos cortos, pivotar y salir en ángulo después de cada combinación.",
+      video: { id: "CMgghWxHMIc", instructor: "Oracle Boxing", canal: "Oliver Betts Boxing", inicio: 0, fin: null, idioma: "en", fuente: "oracle" },
+      claves: [
+        "Pasos cortos y siempre en guardia: los pies nunca se juntan ni se cruzan.",
+        "El pivote se hace sobre la punta del pie izquierdo; el derecho barre un arco por detrás.",
+        "Después de cada combinación sales en ángulo, hacia tu izquierda, no hacia atrás en línea recta.",
+        "Primero se mueven los pies y después las manos: el paso, y luego el golpe."
+      ],
+      fichas: ["box-pivote", "box-angulos", "box-paso-arrastre"],
+      drills: ["box-patrones-pies", "box-comba", "box-sombra"],
+      checklist: [
+        "¿Pivotas sobre la punta del pie izquierdo y no sobre el talón?",
+        "¿Las manos se quedan en guardia mientras giras?",
+        "¿Después de cada combinación sales en ángulo y no hacia atrás en línea recta?",
+        "¿Los pies nunca se cruzan al cambiar de dirección?",
+        "¿Los pasos son cortos y la distancia entre los pies no cambia?"
+      ],
+      dominio: "3 asaltos de 3 min de sombra saliendo en ángulo o pivotando después de cada combinación, grabados de lado, sin cruzar los pies ni bajar las manos."
+    },
+    {
+      id: "m5", fase: 2, n: 5, titulo: "Distancia", fuente: "jeffries",
+      objetivo: "Saber en qué distancia estás, medirla con el jab y cambiarla con los pies, no con la cintura.",
+      video: { ficha: "box-medir-jab", n: 0 },
+      claves: [
+        "Larga: llegas con el jab dando un paso. Media: llegas con rectos. Corta: ganchos y uppercuts.",
+        "Mide con un jab rápido y suave antes de soltar los golpes de verdad.",
+        "Entra en la corta solo para golpear y sal; no te quedes en la media sin hacer nada.",
+        "La distancia la ponen los pies: no te inclines para llegar."
+      ],
+      fichas: ["box-distancias", "box-medir-jab"],
+      drills: ["box-drill-distancia", "box-pelota", "box-patrones-pies"],
+      checklist: [
+        "¿Llegas a la cinta dando el paso, sin inclinar la espalda?",
+        "¿El jab de medir vuelve rápido, sin quedarse estirado?",
+        "¿Después de medir, el siguiente golpe llega con la distancia buena?",
+        "¿Sales de la corta en cuanto terminas de golpear?",
+        "¿Cambias de distancia sin mirar al suelo?"
+      ],
+      dominio: "2 asaltos de 3 min del drill de la pared tocando la cinta desde la distancia correcta en cada cambio, y 1 asalto de sombra cambiando de distancia sin inclinarte, grabados de lado."
     }
   ],
 
@@ -134,6 +176,31 @@ MMA.CURSO_BOXEO = {
         { min: 3, descanso: 1, objetivo: "Goma: ganchos lentos notando el giro de cadera.", drill: "box-gomas" },
         { min: 3, descanso: 1, objetivo: "Sombra libre mezclando rectos y curvos, un golpe limpio cada vez.", drill: "box-sombra" },
         { min: 3, descanso: 0, objetivo: "Shadow libre grabándote de lado: el pie gira en cada curvo." }
+      ]
+    },
+    {
+      id: "f2-pies-distancia", fase: 2, titulo: "Pies, ángulos y distancia", duracion: 40, tipo: "tecnica",
+      asaltos: [
+        { min: 3, descanso: 1, objetivo: "Comba suave con paso de boxeador para entrar en calor.", drill: "box-comba" },
+        { min: 4, descanso: 0, objetivo: "Movilidad de hombros, cadera y tobillos, sin prisa." },
+        { min: 3, descanso: 1, objetivo: "Repaso en el espejo: ganchos con el codo a la altura del puño.", drill: "box-espejo" },
+        { min: 3, descanso: 1, objetivo: "Cinta: pivotes sobre la punta del pie izquierdo, un cuarto de vuelta cada vez.", drill: "box-patrones-pies" },
+        { min: 3, descanso: 1, objetivo: "Sombra: después de cada 1-2, sal en ángulo hacia tu izquierda.", drill: "box-sombra" },
+        { min: 3, descanso: 1, objetivo: "Pared: mide con un jab rápido y toca la cinta sin inclinarte.", drill: "box-drill-distancia" },
+        { min: 3, descanso: 1, objetivo: "Pared: cambia de distancia cada 20 segundos y lanza el golpe que toca.", drill: "box-drill-distancia" },
+        { min: 3, descanso: 1, objetivo: "Pelota: golpéala con el jab y esquiva la vuelta sin bajar las manos.", drill: "box-pelota" },
+        { min: 3, descanso: 1, objetivo: "Sombra: imagina al rival entrando y saliendo; elige el golpe según la distancia.", drill: "box-sombra" },
+        { min: 3, descanso: 0, objetivo: "Shadow libre grabándote de lado: ángulos, pivotes y distancia." }
+      ]
+    },
+    {
+      id: "f2-cardio", fase: 2, titulo: "Cardio de tren superior: shadow con curvos y pies", duracion: 30, tipo: "cardio",
+      asaltos: [
+        { min: 4, descanso: 0, objetivo: "Shadow muy suave para entrar en calor: solo pies y guardia.", drill: "box-sombra" },
+        { min: 6, descanso: 1, objetivo: "Shadow continuo con rectos y ganchos, a un ritmo en el que podrías hablar.", drill: "box-sombra" },
+        { min: 6, descanso: 1, objetivo: "Shadow continuo pivotando después de cada combinación.", drill: "box-sombra" },
+        { min: 6, descanso: 1, objetivo: "Shadow continuo cambiando de distancia: entra, golpea y sal.", drill: "box-sombra" },
+        { min: 4, descanso: 0, objetivo: "Shadow muy suave para bajar pulsaciones." }
       ]
     }
   ]
