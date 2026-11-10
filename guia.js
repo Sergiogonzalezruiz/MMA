@@ -251,6 +251,42 @@ ${sh("git pull\n# edita el archivo\nnode scripts/validar.js\ngit commit -am \"Co
 <p>Los valores que admite cada campo están en <a href="#guia-campos">Referencia de campos</a>.</p>`
 },
 {
+  id: "curso-boxeo", t: "Curso de boxeo",
+  r: "Cómo funciona el curso, cómo marcar un módulo como dominado y cómo usar el modo entrenamiento.",
+  html: `
+<p class="glead">Está en <a href="#boxeo">Boxeo</a>, pestaña Curso. Son 9 módulos en 4 fases para 24 semanas, pensados para diestro, en casa y sin saco.</p>
+<h3>Cómo se aprende cada módulo</h3>
+<ol class="gsteps">
+<li><b>Ver:</b> un vídeo de referencia, de Tony Jeffries o de Oracle Boxing.</li>
+<li><b>Entender:</b> 3 o 4 claves y las fichas del módulo.</li>
+<li><b>Practicar:</b> los drills, de lento a rápido: shadow lento ante el espejo, velocidad media y después dentro de combinaciones.</li>
+<li><b>Comprobar:</b> te grabas y respondes la checklist mirando el vídeo.</li>
+<li><b>Aplicar:</b> lo nuevo entra en el shadow libre y en las sesiones siguientes.</li>
+</ol>
+<h3>Dominio, no calendario</h3>
+<ul>
+<li>Cada módulo tiene un <b>criterio de dominio</b> que se ve en vídeo. El calendario de 24 semanas es orientativo.</li>
+<li>«Marcar como dominado» solo se activa cuando respondes «Sí» a todas las preguntas de la checklist.</li>
+<li>El módulo siguiente se abre al dominar el anterior. Si ya lo sabes, usa «Saltar hasta aquí»: los anteriores quedan como saltados, no como dominados.</li>
+<li>Si te equivocas, en el módulo tienes «Desmarcar».</li>
+</ul>
+<h3>Modo entrenamiento</h3>
+<ul>
+<li>Pulsa «Empezar» en la sesión de hoy. La pantalla se pone oscura y con letra grande para leerla a un metro.</li>
+<li>Cada asalto tiene un solo objetivo. En el descanso ves el objetivo del siguiente y, si tiene drill, su vídeo ya cargado.</li>
+<li>Suena un pitido doble a 10 segundos del final y uno largo al acabar. Sube el volumen del móvil.</li>
+<li>«Pausa» para y sigue; con teclado, también la barra espaciadora. «Saltar» pasa al siguiente asalto.</li>
+<li>La pantalla no se apaga mientras entrenas, si el navegador lo permite.</li>
+<li>Al terminar, la sesión se guarda como hecha. La primera sesión marca el inicio de la semana 1.</li>
+</ul>
+<h3>Grabarte</h3>
+<p>En <a href="#boxeo-revisar">Revisar</a> tienes los ángulos (de frente y de lado), la checklist de cada fase y el registro de las grabaciones de las semanas 1, 4, 8, 16 y 24. Los vídeos se quedan en tu móvil: aquí solo apuntas la fecha.</p>
+<div class="tip">Tu progreso del curso se guarda solo en este navegador, como el de las fichas. Para pasarlo a otro dispositivo, usa <a href="#copia">Copia de seguridad</a>.</div>
+<h3>Cambiar el curso</h3>
+<p>Los módulos y las sesiones están en <code>datos-curso-boxeo.js</code> y citan las fichas por su id. El validador comprueba que todo cuadre: fichas que existen, al menos un drill por módulo y sesiones cuya duración coincide con sus asaltos.</p>
+${pr("Añade al curso de boxeo una sesión de la fase 2 centrada en el gancho derecho")}`
+},
+{
   id: "mapa-suelo", t: "El mapa de suelo",
   r: "Cómo se dibuja, cómo mover una posición y cómo comprobar lo que añades.",
   html: `
@@ -381,7 +417,7 @@ ${M.SECCIONES.map(s => `<tr><td><code>cat</code> (${s.nombre.toLowerCase()})</td
 <tr><td><code>fases</code></td><td>${M.FASES.map(f => `<code>${f.id}</code>`).join(" · ")}</td><td>Una o varias</td></tr>
 <tr><td><code>solo</code></td><td><code>si</code> · <code>parcial</code> · <code>no</code></td><td>Parcial: solo el patrón sin compañero</td></tr>
 <tr><td><code>material</code></td><td>${Object.keys(M.MATERIAL).map(m => `<code>${m}</code>`).join(" · ")}</td><td>Lista; <code>ninguno</code> si no hace falta nada</td></tr>
-<tr><td><code>golpes</code></td><td>números del 1 al 6</td><td>Boxeo. 1 jab · 2 directo · 3 gancho delantero · 4 gancho trasero · 5 y 6 uppercuts</td></tr>
+<tr><td><code>golpes</code></td><td>números del 1 al 6</td><td>Boxeo, para diestro. 1 jab · 2 directo · 3 gancho izquierdo · 4 gancho derecho · 5 uppercut izquierdo · 6 uppercut derecho</td></tr>
 <tr><td><code>gi</code></td><td><code>ambos</code> · <code>gi</code> · <code>nogi</code></td><td>Suelo</td></tr>
 <tr><td><code>desde</code> / <code>hasta</code></td><td><code>{ pos, lado }</code> con posiciones: ${(M.POSICIONES || []).map(p => `<code>${p.id}</code>`).join(" · ")}</td><td>Suelo. Lados: <code>arriba</code>, <code>abajo</code> o <code>neutral</code></td></tr>
 <tr><td><code>mapa</code></td><td><code>{ x, y }</code></td><td>Posiciones de suelo: su sitio en el mapa (lienzo de 1000 × 680)</td></tr>

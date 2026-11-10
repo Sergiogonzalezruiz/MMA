@@ -399,6 +399,7 @@ code{font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;backgrou
 .cmod strong{display:block;font:700 20px/1.15 var(--display);text-transform:uppercase;letter-spacing:.02em}
 .cmod small{color:var(--muted)}
 .cmod .btn{position:relative;z-index:1}
+.note .btn{margin-left:6px;border-color:var(--acc);color:var(--acc);font-weight:600}
 .cmod.e-dominado::before{background:var(--ok);border-color:var(--ok)}
 .cmod.e-curso{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}
 .cmod.e-curso::before{background:var(--acc);border-color:var(--acc)}
@@ -1288,7 +1289,7 @@ function renderRevisar() {
         <button class="btn${curso.grabaciones[w] ? "" : " solid"}" type="button" data-grab="${w}">${curso.grabaciones[w] ? "Deshacer" : "Hecha hoy"}</button></div>`).join("")}</div></div>
     <div class="section"><h2>Checklist de la fase</h2>
       <div class="seg" role="group" aria-label="Fase">${CB.fases.map(f => `<button type="button" data-revfase="${f.id}" aria-pressed="${f.id === fase}">Fase ${f.id}</button>`).join("")}</div>
-      ${ms.length ? ms.map(m => `<div class="panel" style="margin-top:10px"><div class="k">Módulo ${m.n} · ${esc(m.titulo)}</div><ul class="plain">${m.checklist.map(q => `<li>${esc(q)}</li>`).join("")}</ul><p style="margin:8px 0 0"><a href="#boxeo-curso/${m.id}#c-comprobar">Responder en el módulo →</a></p></div>`).join("")
+      ${ms.length ? ms.map(m => `<div class="panel" style="margin-top:10px"><div class="k">Módulo ${m.n} · ${esc(m.titulo)}</div><ul class="plain">${m.checklist.map(q => `<li>${esc(q)}</li>`).join("")}</ul><p style="margin:8px 0 0"><a href="#boxeo-curso/${m.id}">Responder en el módulo →</a></p></div>`).join("")
         : `<p class="muted">Los módulos de esta fase están en preparación.</p>`}</div>
     ${glosario()}`;
 }

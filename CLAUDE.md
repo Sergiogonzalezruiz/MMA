@@ -91,7 +91,7 @@ node scripts/servir.js           # ver la web en http://localhost:8000
 }
 ```
 
-- **Boxeo:** `golpes: [1, 2, 3]` con la numeración 1 jab, 2 directo, 3 gancho delantero, 4 gancho trasero, 5 uppercut delantero, 6 uppercut trasero.
+- **Boxeo:** `golpes: [1, 2, 3]` con la numeración, para diestro, 1 jab, 2 directo, 3 gancho izquierdo, 4 gancho derecho, 5 uppercut izquierdo, 6 uppercut derecho.
 - **Suelo:** `gi: "ambos" | "gi" | "nogi"`, `desde: { pos, lado }`, `hasta: { pos, lado } | null`, `jju: "<id de capítulo>"`. Las posiciones y sus lados están en `MMA.POSICIONES` (datos-suelo.js); los capítulos en `MMA.JJU` (datos-comun.js). Los drills de suelo usan `desde: { pos: "base", lado: "neutral" }`.
 - **Posiciones de suelo:** cada una (menos `base`) lleva `mapa: { x, y }`, su sitio fijo en el mapa, en un lienzo de 1000 × 680. Más arriba significa más dominante para el de arriba.
 - **Drills:** `tipo: "drill"`, `dosis: "3 × 2 min · 1 min de descanso"`, `criterio: "Cuándo está superado, medible"`. Los drills de boxeo y lucha no llevan `cat`. La relación con las técnicas se escribe solo en el campo `drills` de la técnica; la ficha del drill calcula «Técnicas que entrena». Si ningún drill sirve para una técnica nueva, crea uno.

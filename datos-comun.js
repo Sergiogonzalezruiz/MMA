@@ -29,9 +29,9 @@ window.MMA = {
         { id: "contras", n: "Contraataques" },
         { id: "mma", n: "Boxeo con amenaza MMA" }
       ],
-      nota: "Numeración de golpes: 1 jab · 2 directo · 3 gancho delantero · 4 gancho trasero · 5 uppercut delantero · 6 uppercut trasero. Es la más extendida, pero algunos gimnasios usan otra.",
+      nota: "Numeración de golpes, para diestro: 1 jab · 2 directo · 3 gancho izquierdo · 4 gancho derecho · 5 uppercut izquierdo · 6 uppercut derecho. Es la más extendida, pero algunos gimnasios usan otra.",
       ruta: {
-        F: { cuando: "0–3 meses", que: "Guardia MMA, paso-arrastre en cuatro direcciones, pivote, 1, 2, 1-2, gancho delantero, parada y esquiva básica. El orden clásico: guardia → golpe parado → golpe con paso → combinación → defensa.",
+        F: { cuando: "0–3 meses", que: "Guardia de boxeo, paso-arrastre en cuatro direcciones, pivote, 1, 2, 1-2, gancho izquierdo, parada y esquiva básica. El orden clásico: guardia → golpe parado → golpe con paso → combinación → defensa.",
              criterio: ["Grábate de lado y de frente: 3 rondas de 3 min de sombra sin cruzar los pies ni bajar la mano que no golpea.", "Cada golpe vuelve a la guardia y la barbilla no se levanta en toda la ronda."] },
         I: { cuando: "3–9 meses", que: "Uppercuts, overhand, jab al cuerpo, combinaciones de 3–4 golpes, contras (esquiva y directo, retroceso y contra), ángulos al terminar la combinación y cuerda de esquivas.",
              criterio: ["6 rondas de sombra temática saliendo en ángulo tras cada combinación.", "Pelota colgada: 2 min sin que te toque la vuelta."] },

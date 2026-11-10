@@ -15,9 +15,9 @@ MMA.add([
     fases: ["distancia"], solo: "si", material: ["ninguno", "espejo"],
     objetivo: "La posición desde la que sale todo: golpear, defender, derribar y defender el derribo.",
     pasos: [
-      "Pies algo más separados que los hombros, el delantero apuntando al rival.",
+      "Pies algo más separados que los hombros, el izquierdo apuntando al rival.",
       "Rodillas flexionadas y el peso repartido entre las dos piernas.",
-      "Mano trasera en la mejilla, la delantera a la altura de la cara y algo adelantada.",
+      "Mano derecha en la mejilla, la izquierda a la altura de la cara y algo adelantada.",
       "Codos cerca del cuerpo y barbilla baja."
     ],
     detalles: [
@@ -25,7 +25,7 @@ MMA.add([
       "Las manos un poco más abiertas que en boxeo para parar golpes y agarrar."
     ],
     errores: [
-      "Guardia larga y estrecha de boxeo con el pie delantero hacia dentro: deja la pierna expuesta a patadas bajas.",
+      "Guardia larga y estrecha de boxeo con el pie izquierdo hacia dentro: deja la pierna expuesta a patadas bajas.",
       "Bajar las manos al moverte."
     ],
     drills: ["box-espejo", "box-sombra", "box-4-drills"],
@@ -264,12 +264,12 @@ MMA.add([
     es: "Overhand", en: "Overhand", nivel: "I", mma: "alta",
     mmaNota: "Muy MMA: pasa por encima de la guardia y combina con el cambio de nivel.",
     fases: ["distancia", "entrada"], solo: "si", material: ["ninguno"],
-    objetivo: "Golpe de la mano trasera en arco, por encima de la guardia del rival.",
+    objetivo: "Golpe de la mano derecha en arco, por encima de la guardia del rival.",
     pasos: [
       "Saca la cabeza de la línea con un pequeño paso o flexión lateral.",
       "Baja un poco el nivel.",
-      "El brazo trasero viaja en arco por encima y cae en diagonal.",
-      "La mano delantera protege mientras tanto."
+      "El brazo derecho viaja en arco por encima y cae en diagonal.",
+      "La mano izquierda protege mientras tanto."
     ],
     detalles: ["Funciona muy bien justo después de amenazar con un cambio de nivel."],
     errores: ["Lanzarlo con la cabeza en el centro.", "Cargar todo el peso y quedar desequilibrado."],
