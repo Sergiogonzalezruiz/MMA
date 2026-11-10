@@ -379,6 +379,109 @@ code{font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;backgrou
 }
 @media (prefers-reduced-motion:reduce){.mn .e,.mn .n{transition:none}}
 
+/* ---------- Curso de boxeo ---------- */
+.hoy{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--acc);border-radius:14px;padding:18px;margin-top:18px}
+.hoy-top{display:flex;justify-content:space-between;gap:6px 12px;flex-wrap:wrap;color:var(--muted);font:600 14px/1.2 var(--display);letter-spacing:.08em;text-transform:uppercase}
+.hoy-top b{color:var(--ink)}
+.hoy h2{font-size:30px;margin:10px 0 4px}
+.hoy .sub{color:var(--muted);margin:0 0 14px}
+.hoy .prog{max-width:none;margin-top:16px}
+.btn.grande{width:100%;justify-content:center;min-height:58px;font:700 22px var(--display);letter-spacing:.06em;text-transform:uppercase}
+.btn[disabled]{opacity:.45;cursor:not-allowed;pointer-events:none}
+.siguiente{margin:14px 0 0;font-size:15px}
+.porsemana{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:14px;font-size:15px;color:var(--muted)}
+.camino{list-style:none;margin:12px 0 0 10px;padding:0 0 0 22px;border-left:3px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.cfase{font:600 13px/1.3 var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.cmod{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.cmod::before{content:"";position:absolute;left:-33px;top:16px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--line)}
+.cmod a{flex:1 1 220px;color:var(--ink);text-decoration:none}
+.cmod a::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.cmod strong{display:block;font:700 20px/1.15 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.cmod small{color:var(--muted)}
+.cmod .btn{position:relative;z-index:1}
+.cmod.e-dominado::before{background:var(--ok);border-color:var(--ok)}
+.cmod.e-curso{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}
+.cmod.e-curso::before{background:var(--acc);border-color:var(--acc)}
+.cmod.e-saltado::before{border-color:var(--lu)}
+.cmod.e-bloqueado{opacity:.65}
+.cmod.e-pronto{border-style:dashed;color:var(--muted)}
+.estado-m{font:600 12px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:5px;background:var(--surface-2);color:var(--muted)}
+.e-dominado .estado-m{background:var(--ok-soft);color:var(--ok)}
+.e-curso .estado-m{background:var(--acc-soft);color:var(--acc)}
+.e-saltado .estado-m{background:var(--lu-soft);color:var(--lu)}
+.ses-row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:8px}
+.ses-row b{display:block;font:700 19px/1.15 var(--display);text-transform:uppercase}
+.ses-row small{color:var(--muted)}
+.ses-row .btn{min-height:46px;flex:none}
+.fuente{display:inline-block;font:600 11px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;padding:4px 7px;border-radius:4px;background:var(--surface-2);color:var(--muted);vertical-align:middle;white-space:nowrap}
+.fuente.f-jeffries{background:var(--box-soft);color:var(--box)}
+.fuente.f-oracle{background:var(--su-soft);color:var(--su)}
+.glosario{margin-top:26px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.glosario summary{cursor:pointer;font-weight:600;min-height:28px}
+.glosario ul{list-style:none;padding:0;margin:10px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.glosario li{display:flex;gap:10px;align-items:center}
+.ciclo{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-top:16px;padding-bottom:2px}
+.ciclo button{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:9px 14px;font:600 14px var(--body);color:var(--ink);cursor:pointer}
+.ciclo button:hover{border-color:var(--acc);color:var(--acc)}
+.paso-c{scroll-margin-top:80px;margin-top:30px}
+.paso-c > h2{display:flex;align-items:center;gap:10px}
+.pnum{display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;height:32px;border-radius:50%;background:var(--acc);color:#fff;font-size:18px}
+.claves{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px;max-width:70ch}
+.vslot{margin-top:10px;max-width:680px}
+.vthumb{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;border-radius:12px;overflow:hidden;background:#000;cursor:pointer}
+.vthumb img{display:block;width:100%;height:100%;object-fit:cover;opacity:.8}
+.vthumb span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgb(0 0 0/.72);color:#fff;border-radius:999px;padding:12px 20px;font:700 18px var(--display);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.vthumb:hover span{background:var(--acc)}
+.vslot .player-wrap{margin-top:0;border-radius:12px}
+.vslot .credit{display:block;margin:6px 0 0;font-size:13px}
+.vpie{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin-top:6px;font-size:13px;color:var(--muted)}
+.dcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-top:10px}
+.dcard summary{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;padding:14px 44px 14px 14px;cursor:pointer;list-style:none;min-height:60px;position:relative}
+.dcard summary::-webkit-details-marker{display:none}
+.dcard summary::after{content:"+";position:absolute;right:14px;top:50%;transform:translateY(-50%);font:700 26px/1 var(--display);color:var(--muted)}
+.dcard[open] summary::after{content:"−"}
+.dcard summary b{flex:1 1 100%;font:700 20px/1.15 var(--display);text-transform:uppercase}
+.dcard summary small{color:var(--muted)}
+.dcard .dbody{padding:0 14px 16px}
+.dcard h3{margin:14px 0 8px}
+.chk{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.chk:first-child{border-top:0}
+.chk .seg{flex:none}
+.chk .seg button{padding:11px 16px;font-size:15px}
+.chk .seg button[data-r="si"][aria-pressed="true"]{background:var(--ok);color:#fff}
+.chk .seg button[data-r="no"][aria-pressed="true"]{background:var(--box);color:#fff}
+.dominado-ok{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:12px 14px;margin-top:14px;font-weight:600}
+.angulos{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:10px}
+.angulos .panel + .panel{margin-top:0}
+.grab{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.grab:first-child{border-top:0}
+.grab b{font:700 19px var(--display);text-transform:uppercase}
+.grab small{display:block;color:var(--muted)}
+.grab.toca b{color:var(--acc)}
+/* Modo entrenamiento: siempre oscuro y con letra grande, para leerlo a un metro */
+.ent{position:fixed;inset:0;z-index:60;background:#0b0f14;color:#f1f4f6;display:flex;flex-direction:column;overflow:auto;padding:max(14px,env(safe-area-inset-top,0px)) 18px max(18px,env(safe-area-inset-bottom,0px))}
+.ent.descanso{background:#0d2119}
+.ent-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font:700 20px var(--display);letter-spacing:.08em;text-transform:uppercase;color:#a9b8c4}
+.ent-x{width:48px;height:48px;border-radius:50%;border:2px solid #36424e;background:#18212b;color:#f1f4f6;font-size:26px;line-height:1;cursor:pointer;flex:none}
+.ent-tit{color:#f1f4f6;text-align:center;margin-top:3vh}
+.ent-sub{text-align:center;color:#a9b8c4;font-size:18px;margin:8px 0 0}
+.ent-lista{list-style:none;padding:0;margin:20px auto 0;max-width:640px;width:100%;display:flex;flex-direction:column;gap:8px}
+.ent-lista li{display:grid;grid-template-columns:52px 1fr;gap:10px;font-size:17px;line-height:1.35;color:#d7e0e6}
+.ent-lista b{font:700 20px var(--display);color:#ffb4a6}
+.ent-reloj{font:700 clamp(110px,32vw,280px)/1 var(--display);text-align:center;font-variant-numeric:tabular-nums;margin:3vh 0 2vh;letter-spacing:.02em}
+.ent.aviso .ent-reloj{color:#ffcf5a}
+.ent.pausado .ent-reloj{opacity:.45}
+.ent-etq{font:700 18px var(--display);letter-spacing:.12em;text-transform:uppercase;color:#7fd1a8;text-align:center;margin-bottom:10px}
+.ent-obj{font:600 clamp(26px,6.5vw,46px)/1.2 var(--body);text-align:center;max-width:24ch;margin:0 auto}
+.ent.descanso .ent-obj{font-size:clamp(22px,5vw,34px)}
+.ent-drill{text-align:center;color:#a9b8c4;font-size:18px;margin:12px 0 0}
+.ent .vslot{margin:16px auto 0;width:100%;max-width:560px}
+.ent .credit,.ent .credit a{color:#a9b8c4}
+.ent-ctl{display:flex;gap:12px;justify-content:center;margin-top:auto;padding-top:24px;flex-wrap:wrap}
+.ent .bt{flex:1 1 140px;max-width:260px;min-height:70px;border-radius:16px;border:2px solid #36424e;background:#18212b;color:#f1f4f6;font:700 24px var(--display);text-transform:uppercase;letter-spacing:.05em;cursor:pointer}
+.ent .bt.prim{background:#e8553f;border-color:#e8553f}
+.ent .bt:focus-visible,.ent-x:focus-visible{outline:3px solid #ffcf5a;outline-offset:2px}
+
 /* ---------- Tema y pie ---------- */
 .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;flex:none;border:0;border-radius:8px;background:color-mix(in srgb,var(--head-fg) 14%,var(--head-bg));color:var(--head-fg);cursor:pointer}
 .icon-btn:hover{background:color-mix(in srgb,var(--head-fg) 24%,var(--head-bg))}
@@ -646,10 +749,11 @@ function renderSeccion(id, tab = "tecnicas", sel = null) {
   const tecnicas = fichas.filter(f => f.tipo === "tecnica");
   const drills = fichas.filter(f => f.tipo === "drill");
   const tabs = [
-    ["tecnicas", "Técnicas", `#${id}`, "Todas las técnicas, por tema. Debajo de cada una, sus drills."],
+    ["tecnicas", "Técnicas", id === "boxeo" ? "#boxeo-tecnicas" : `#${id}`, "Todas las técnicas, por tema. Debajo de cada una, sus drills."],
     ["entrenar", "Drills", `#${id}-entrenar`, "Ejercicios para repetir en casa, con rondas y tiempos."],
     ["ruta", "Ruta", `#${id}-ruta`, "Qué aprender primero, nivel por nivel."]
   ];
+  if (id === "boxeo") tabs.unshift(["curso", "Curso", "#boxeo", "Tu curso de boxeo en solitario: la sesión de hoy, los módulos y tus grabaciones."]);
   if (id === "suelo") tabs.splice(1, 0, ["mapa", "Mapa", "#suelo-mapa", "Cada posición con sus técnicas. Toca un punto o una caja para ver el vídeo y lo básico."]);
   let body = "";
   if (tab === "tecnicas") {
@@ -662,6 +766,8 @@ function renderSeccion(id, tab = "tecnicas", sel = null) {
     body = barraFiltros() + `<div class="grupos">${grupo("Sin material", g1)}${grupo("Con material de casa", g2)}${grupo("Con compañero o gimnasio", g3)}</div>`;
   } else if (tab === "mapa") {
     body = mapaHTML();
+  } else if (tab === "curso") {
+    body = cursoHTML();
   } else {
     body = Object.entries(s.ruta).map(([n, r]) => `<section class="level">
         <header><span class="chip acc">${D.NIVELES[n]}</span><h2>${esc(r.cuando)}</h2></header>
@@ -1044,6 +1150,269 @@ window.addEventListener("resize", () => {
   pintarVista();
 });
 
+/* ---------- Curso de boxeo ---------- */
+// El progreso del curso se guarda solo en este navegador, como el de las fichas
+const CB = D.CURSO_BOXEO;
+const CLAVE_CURSO = "mapa-mma-curso";
+const cursoVacio = () => ({ inicio: null, porSemana: 2, dominados: {}, saltados: {}, checks: {}, sesiones: [], grabaciones: {} });
+let curso = Object.assign(cursoVacio(), leer(CLAVE_CURSO, {}));
+const guardarCurso = () => guardar(CLAVE_CURSO, curso);
+const FUENTE_TXT = { jeffries: "Tony Jeffries", oracle: "Oracle Boxing" };
+const etiquetaFuente = f => f ? `<span class="fuente f-${f}">${FUENTE_TXT[f] ?? esc(f)}</span>` : "";
+const fuenteDe = f => f?.videos.find(v => v.fuente)?.fuente;
+const GOLPES = [[1, "Jab", "recto de la mano izquierda"], [2, "Directo", "recto de la mano derecha"], [3, "Gancho izquierdo", "curvo de la mano izquierda"],
+  [4, "Gancho derecho", "curvo de la mano derecha"], [5, "Uppercut izquierdo", "de abajo arriba, mano izquierda"], [6, "Uppercut derecho", "de abajo arriba, mano derecha"]];
+const glosario = () => `<details class="glosario"><summary>Numeración de golpes 1–6 (para diestro)</summary>
+  <ul>${GOLPES.map(([n, t, d]) => `<li>${nums([n])}<span><b>${t}</b> · <span class="muted">${d}</span></span></li>`).join("")}</ul></details>`;
+const mmss = s => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+const semanaDe = fecha => Math.floor((new Date(fecha) - new Date(curso.inicio)) / 6048e5) + 1;
+const semanaCurso = () => curso.inicio ? Math.max(1, semanaDe(hoy())) : 1;
+const hechoMod = id => curso.dominados[id] || curso.saltados[id];
+const moduloActual = () => CB.modulos.find(m => !hechoMod(m.id)) ?? null;
+// Con todo dominado, la fase es la del último módulo publicado
+const faseActual = () => CB.fases.find(f => f.id === (moduloActual() ?? CB.modulos.at(-1)).fase);
+const estadoMod = m => curso.dominados[m.id] ? "dominado" : curso.saltados[m.id] ? "saltado" : m === moduloActual() ? "curso" : "bloqueado";
+const ESTADO_TXT = { dominado: "Dominado", saltado: "Saltado", curso: "En curso", bloqueado: "Bloqueado" };
+const vecesHecha = id => curso.sesiones.filter(s => s.id === id).length;
+function sesionQueToca() {
+  const f = faseActual().id;
+  const l = CB.sesiones.filter(s => s.tipo === "tecnica" && s.fase === f);
+  const lista = l.length ? l : CB.sesiones.filter(s => s.tipo === "tecnica" && s.fase <= f);
+  return [...lista].sort((a, b) => vecesHecha(a.id) - vecesHecha(b.id))[0] ?? null;
+}
+
+/* Huecos de vídeo: enseñan la miniatura hasta que los abres, y solo hay un reproductor a la vez */
+let huecos = [];
+const hueco = (v, abierto = false) => {
+  if (!v) return "";
+  const i = huecos.push(v) - 1;
+  return `<div class="vslot${abierto ? " abierto" : ""}" data-vslot="${i}">${abierto ? "" : miniatura(v)}</div>`;
+};
+const miniatura = v => `<button class="vthumb" type="button" aria-label="Ver vídeo de ${esc(v.instructor || "")}"><img src="${thumb(v.id)}" alt="" loading="lazy"><span>▶ Ver vídeo</span></button>
+  <div class="vpie">${etiquetaFuente(v.fuente)}<span>${esc(v.instructor || "")}${v.idioma === "es" ? " · en español" : ""}</span></div>`;
+function abrirHueco(el) {
+  $$(".vslot.abierto").forEach(x => { if (x !== el) { x.classList.remove("abierto"); x.innerHTML = miniatura(huecos[x.dataset.vslot]); } });
+  pararVideo();
+  const v = huecos[el.dataset.vslot];
+  el.classList.add("abierto");
+  el.innerHTML = `<div class="player-wrap"><div class="player" id="player"></div></div><span class="credit" id="credit"></span>`;
+  mountPlayer(v.segmentos ? { ...v, inicio: v.segmentos[0].inicio, fin: v.segmentos[0].fin } : v);
+}
+const videoDe = v => v?.ficha ? F[v.ficha]?.videos[v.n ?? 0] : v;
+// Vuelve a pintar la vista sin perder el sitio en la página
+const repintar = fn => { const y = scrollY; fn(); pintarEstados(); scrollTo(0, y); };
+
+/* Pestaña Curso: hoy, mapa del curso y sesiones */
+function cursoHTML() {
+  huecos = [];
+  const fa = faseActual(), mAct = moduloActual(), ses = sesionQueToca();
+  const enFase = CB.modulos.filter(m => m.fase === fa.id), dom = enFase.filter(m => curso.dominados[m.id]).length;
+  const semana = semanaCurso(), estaSemana = curso.inicio ? curso.sesiones.filter(s => semanaDe(s.fecha) === semana).length : 0;
+  return `<section class="hoy" aria-label="Hoy">
+      <div class="hoy-top"><span>Fase ${fa.id} · ${esc(fa.titulo)}</span><b>${curso.inicio ? `Semana ${Math.min(semana, 24)}${semana > 24 ? "+" : ""} de 24` : "Semana 1 de 24"}</b></div>
+      ${ses ? `<h2>${esc(ses.titulo)}</h2><p class="sub">${ses.duracion} min · ${ses.asaltos.length} asaltos${vecesHecha(ses.id) ? ` · la has hecho ${vecesHecha(ses.id)} ${vecesHecha(ses.id) === 1 ? "vez" : "veces"}` : ""}</p>
+        <a class="btn solid grande" href="#boxeo-sesion/${ses.id}">Empezar</a>` : `<h2>Sin sesiones todavía</h2>`}
+      <div class="prog"><div class="bar"><i class="h" style="width:${enFase.length ? dom / enFase.length * 100 : 0}%"></i></div><small>Fase ${fa.id}: ${dom} de ${enFase.length} ${enFase.length === 1 ? "módulo dominado" : "módulos dominados"}</small></div>
+      <p class="siguiente">${mAct ? `<b>Siguiente criterio de dominio</b> (<a href="#boxeo-curso/${mAct.id}">módulo ${mAct.n}</a>): ${esc(mAct.dominio)}` : "Has terminado todos los módulos publicados."}</p>
+      <div class="porsemana"><span>${curso.inicio ? `Esta semana: ${estaSemana} de ${curso.porSemana}` : "Sesiones por semana"}</span>
+        <div class="seg" role="group" aria-label="Sesiones por semana">${[1, 2].map(n => `<button type="button" data-porsemana="${n}" aria-pressed="${curso.porSemana === n}">${n} por semana</button>`).join("")}</div></div>
+    </section>
+    <div class="section"><h2>Mapa del curso</h2><ol class="camino">
+      ${CB.fases.map(f => {
+        const ms = CB.modulos.filter(m => m.fase === f.id);
+        return `<li class="cfase">Fase ${f.id} · ${esc(f.titulo)} · semanas ${f.semanas[0]}–${f.semanas[1]}</li>` + (ms.length ? ms.map(m => {
+          const e = estadoMod(m);
+          return `<li class="cmod e-${e}"><a href="#boxeo-curso/${m.id}"><strong>${m.n}. ${esc(m.titulo)}</strong><small>${esc(m.objetivo)}</small></a>
+            <span class="estado-m">${ESTADO_TXT[e]}</span>${e === "bloqueado" ? `<button class="btn" type="button" data-saltar="${m.id}">Saltar hasta aquí</button>` : ""}</li>`;
+        }).join("") : `<li class="cmod e-pronto">En preparación</li>`);
+      }).join("")}</ol></div>
+    <div class="section"><h2>Sesiones</h2>
+      ${CB.sesiones.map(s => `<div class="ses-row"><div><b>${esc(s.titulo)}</b><small>Fase ${s.fase} · ${s.duracion} min · ${s.tipo === "cardio" ? "cardio de tren superior" : "técnica"}${vecesHecha(s.id) ? ` · hecha ${vecesHecha(s.id)}×` : ""}</small></div><a class="btn" href="#boxeo-sesion/${s.id}">Empezar</a></div>`).join("")}
+      <div class="acciones"><a class="btn" href="#boxeo-revisar">Revisar grabaciones</a></div></div>
+    ${glosario()}`;
+}
+
+/* Vista de módulo: ver → entender → practicar → comprobar → aplicar */
+function renderModulo(id) {
+  const m = CB.modulos.find(x => x.id === id); if (!m) return renderSeccion("boxeo", "curso");
+  setSec("boxeo"); huecos = [];
+  const e = estadoMod(m), fa = CB.fases.find(f => f.id === m.fase), checks = curso.checks[m.id] || [];
+  const todos = m.checklist.every((_, i) => checks[i] === true);
+  const sig = CB.modulos[CB.modulos.indexOf(m) + 1];
+  const drill = d => { const f = F[d]; return `<details class="dcard"><summary><b>${esc(f.es)}</b><small>${esc(f.dosis || "")} · ${D.NIVELES[f.nivel]}</small>${etiquetaFuente(fuenteDe(f))}</summary>
+      <div class="dbody"><p style="margin:0">${esc(f.objetivo)}</p>
+        <h3>Cómo se hace</h3><ol class="steps">${f.pasos.map(p => `<li><span>${esc(p)}</span></li>`).join("")}</ol>
+        ${f.errores?.length ? `<h3>Errores</h3><ul class="plain err">${f.errores.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
+        ${f.criterio ? `<h3>Progresión</h3><p style="margin:0">Empieza lento ante el espejo, sube a velocidad media y mételo en combinaciones. Lo has superado cuando: ${esc(f.criterio)}</p>` : ""}
+        ${f.videos[0] ? `<h3>Vídeo</h3>${hueco(f.videos[0])}` : ""}
+        <p style="margin:12px 0 0"><a href="#f-${f.id}">Ficha completa →</a></p></div></details>`; };
+  $("#main").innerHTML = `${fileBanner()}
+    <div class="crumb"><a href="#boxeo">Boxeo</a><span>/</span><a href="#boxeo">Curso</a><span>/</span><span>Módulo ${m.n}</span></div>
+    <h1>${esc(m.titulo)}</h1><p class="lead">${esc(m.objetivo)}</p>
+    <div class="chips"><span class="chip">Fase ${fa.id} · ${esc(fa.titulo)}</span><span class="estado-m e-${e}">${ESTADO_TXT[e]}</span>${etiquetaFuente(m.fuente)}</div>
+    ${e === "bloqueado" ? `<div class="note">Este módulo se abre al dominar el anterior. Puedes verlo ya o <button class="btn" type="button" data-saltar="${m.id}">saltar hasta aquí</button></div>` : ""}
+    <nav class="ciclo" aria-label="Partes del módulo">${[["c-ver", "1 Ver"], ["c-entender", "2 Entender"], ["c-practicar", "3 Practicar"], ["c-comprobar", "4 Comprobar"], ["c-aplicar", "5 Aplicar"]].map(([a, t]) => `<button type="button" data-ir="${a}">${t}</button>`).join("")}</nav>
+    <section class="paso-c" id="c-ver"><h2><span class="pnum">1</span>Ver</h2>${hueco(videoDe(m.video), true)}</section>
+    <section class="paso-c" id="c-entender"><h2><span class="pnum">2</span>Entender</h2><ol class="claves">${m.claves.map(c => `<li>${esc(c)}</li>`).join("")}</ol>
+      ${m.fichas.length ? `<h3 style="margin-top:18px">Fichas del módulo</h3>${grid(m.fichas.map(i => F[i]))}` : ""}</section>
+    <section class="paso-c" id="c-practicar"><h2><span class="pnum">3</span>Practicar</h2><p class="muted" style="margin:-4px 0 0">De lento a rápido: shadow lento ante el espejo, velocidad media y después dentro de combinaciones.</p>${m.drills.map(drill).join("")}</section>
+    <section class="paso-c" id="c-comprobar" data-mod="${m.id}"><h2><span class="pnum">4</span>Comprobar</h2>
+      <p style="margin:0 0 6px">Grábate y responde mirando el vídeo. Ángulos y registro en <a href="#boxeo-revisar">Revisar</a>.</p>
+      <div class="panel">${m.checklist.map((q, i) => `<div class="chk"><span>${esc(q)}</span><div class="seg" role="group" aria-label="Respuesta">${["si", "no"].map(r => `<button type="button" data-chk="${i}" data-r="${r}" aria-pressed="${checks[i] === (r === "si")}">${r === "si" ? "Sí" : "No"}</button>`).join("")}</div></div>`).join("")}</div>
+      <div class="panel"><div class="k">Criterio de dominio</div>${esc(m.dominio)}</div>
+      ${curso.dominados[m.id] ? `<div class="dominado-ok">Dominado el ${curso.dominados[m.id].split("-").reverse().join("/")}.</div><div class="acciones"><button class="btn" type="button" data-desdominar="${m.id}">Desmarcar</button></div>`
+        : `<div class="acciones"><button class="btn solid grande" type="button" id="btnDominar" data-dominar="${m.id}" ${todos ? "" : "disabled"}>Marcar como dominado</button></div>`}</section>
+    <section class="paso-c" id="c-aplicar"><h2><span class="pnum">5</span>Aplicar</h2>
+      <p style="margin:0;max-width:70ch">Lo de este módulo entra en el shadow libre y en las sesiones siguientes. Haz las de la fase ${fa.id}:</p>
+      ${CB.sesiones.filter(s => s.fase === m.fase).map(s => `<div class="ses-row"><div><b>${esc(s.titulo)}</b><small>${s.duracion} min</small></div><a class="btn" href="#boxeo-sesion/${s.id}">Empezar</a></div>`).join("")}
+      ${sig ? `<p style="margin:16px 0 0">Siguiente: <a href="#boxeo-curso/${sig.id}">módulo ${sig.n}, ${esc(sig.titulo)}</a></p>` : ""}</section>
+    ${glosario()}`;
+  abrirHueco($("#c-ver .vslot"));
+}
+
+/* Revisar: ángulos, checklist de la fase y registro de grabaciones */
+const SEMANAS_GRAB = [1, 4, 8, 16, 24];
+let revFase = null;
+function renderRevisar() {
+  setSec("boxeo");
+  const fase = revFase ?? faseActual().id, ms = CB.modulos.filter(m => m.fase === fase), semana = semanaCurso();
+  const toca = SEMANAS_GRAB.find(w => !curso.grabaciones[w] && w <= Math.max(semana, 1));
+  $("#main").innerHTML = `${fileBanner()}
+    <div class="crumb"><a href="#boxeo">Boxeo</a><span>/</span><a href="#boxeo">Curso</a><span>/</span><span>Revisar</span></div>
+    <h1>Revisar</h1><p class="lead">Grábate, mírate con calma y compara con la grabación anterior. Los vídeos se quedan en tu móvil; aquí solo apuntas cuándo los hiciste.</p>
+    <div class="section"><h2>Cómo grabarte</h2><div class="angulos">
+      <div class="panel"><div class="k">De frente</div>La guardia, si la mano que no golpea vuelve a la cara y si la barbilla se queda baja.</div>
+      <div class="panel"><div class="k">De lado</div>La base y la distancia entre los pies, el giro de cadera y del pie al golpear, y si las esquivas salen de las rodillas o de la espalda.</div></div></div>
+    <div class="section"><h2>Registro de grabaciones</h2><div class="panel">
+      ${SEMANAS_GRAB.map(w => `<div class="grab${w === toca ? " toca" : ""}"><div><b>Semana ${w}</b><small>${curso.grabaciones[w] ? `Hecha el ${curso.grabaciones[w].split("-").reverse().join("/")}` : w === toca ? "Toca ahora" : "Pendiente"}</small></div>
+        <button class="btn${curso.grabaciones[w] ? "" : " solid"}" type="button" data-grab="${w}">${curso.grabaciones[w] ? "Deshacer" : "Hecha hoy"}</button></div>`).join("")}</div></div>
+    <div class="section"><h2>Checklist de la fase</h2>
+      <div class="seg" role="group" aria-label="Fase">${CB.fases.map(f => `<button type="button" data-revfase="${f.id}" aria-pressed="${f.id === fase}">Fase ${f.id}</button>`).join("")}</div>
+      ${ms.length ? ms.map(m => `<div class="panel" style="margin-top:10px"><div class="k">Módulo ${m.n} · ${esc(m.titulo)}</div><ul class="plain">${m.checklist.map(q => `<li>${esc(q)}</li>`).join("")}</ul><p style="margin:8px 0 0"><a href="#boxeo-curso/${m.id}#c-comprobar">Responder en el módulo →</a></p></div>`).join("")
+        : `<p class="muted">Los módulos de esta fase están en preparación.</p>`}</div>
+    ${glosario()}`;
+}
+
+/* Modo entrenamiento: temporizador por asaltos, pitidos y pantalla siempre encendida */
+let ent = null;
+function limpiarEntreno() {
+  if (!ent) return;
+  clearInterval(ent.timer);
+  try { ent.wake?.release(); } catch {}
+  try { ent.ctx?.close(); } catch {}
+  if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {});
+  document.body.style.overflow = "";
+  ent = null;
+}
+function pitar(freq, dur, veces = 1) {
+  try {
+    const c = ent?.ctx; if (!c) return;
+    let t = c.currentTime + .02;
+    for (let i = 0; i < veces; i++, t += dur + .12) {
+      const o = c.createOscillator(), g = c.createGain();
+      o.frequency.value = freq;
+      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.35, t + .015); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+      o.connect(g).connect(c.destination); o.start(t); o.stop(t + dur + .03);
+    }
+  } catch {}
+}
+async function pedirPantalla() { try { ent.wake = await navigator.wakeLock?.request("screen"); } catch {} }
+document.addEventListener("visibilitychange", () => { if (ent?.corriendo && document.visibilityState === "visible") pedirPantalla(); });
+function renderEntreno(id) {
+  const s = CB.sesiones.find(x => x.id === id); if (!s) return renderSeccion("boxeo", "curso");
+  setSec("boxeo"); huecos = [];
+  ent = { s, pasos: s.asaltos.flatMap((a, k) => [{ tipo: "asalto", k, seg: a.min * 60 }, ...(a.descanso ? [{ tipo: "descanso", k, seg: a.descanso * 60 }] : [])]), i: 0, fin: 0, resto: 0, pausa: false, corriendo: false, aviso: false, ultimo: -1 };
+  document.body.style.overflow = "hidden";
+  $("#main").innerHTML = `<div class="ent" id="ent" role="dialog" aria-label="Modo entrenamiento">
+    <div class="ent-top"><span>Modo entrenamiento</span><button class="ent-x" type="button" data-ent="salir" aria-label="Salir">×</button></div>
+    <h1 class="ent-tit">${esc(s.titulo)}</h1><p class="ent-sub">${s.duracion} min · ${s.asaltos.length} asaltos</p>
+    <ol class="ent-lista">${s.asaltos.map(a => `<li><b>${a.min}′</b><span>${esc(a.objetivo)}</span></li>`).join("")}</ol>
+    <div class="ent-ctl"><button class="bt prim" type="button" data-ent="empezar">Empezar</button></div></div>`;
+  $("#ent [data-ent=empezar]").focus({ preventScroll: true });
+}
+function irPaso(i) {
+  pararVideo(); huecos = [];
+  if (i >= ent.pasos.length) return terminarEntreno();
+  const p = ent.pasos[i], a = ent.s.asaltos[p.k], sig = ent.s.asaltos[p.k + 1], desc = p.tipo === "descanso";
+  Object.assign(ent, { i, fin: performance.now() + p.seg * 1000, pausa: false, aviso: false, ultimo: -1 });
+  const v = desc && sig ? (sig.video ?? F[sig.drill]?.videos[0]) : null;
+  const e = $("#ent"); e.className = "ent" + (desc ? " descanso" : "");
+  e.innerHTML = `<div class="ent-top"><span>${desc ? "Descanso" : `Asalto ${p.k + 1}/${ent.s.asaltos.length}`}</span><button class="ent-x" type="button" data-ent="salir" aria-label="Salir">×</button></div>
+    <div class="ent-reloj" id="entReloj" role="timer" aria-live="off">${mmss(p.seg)}</div>
+    ${desc ? `<div class="ent-etq">Siguiente: asalto ${p.k + 2}</div><p class="ent-obj">${esc(sig?.objetivo ?? "")}</p>
+        ${sig?.drill ? `<p class="ent-drill">${esc(F[sig.drill].es)} ${etiquetaFuente(fuenteDe(F[sig.drill]))}</p>` : ""}${v ? hueco(v, true) : ""}`
+      : `<p class="ent-obj">${esc(a.objetivo)}</p>${a.drill ? `<p class="ent-drill">${esc(F[a.drill].es)}</p>` : ""}`}
+    <div class="ent-ctl"><button class="bt" type="button" data-ent="pausa" id="entPausa">Pausa</button><button class="bt" type="button" data-ent="saltar">Saltar</button></div>`;
+  if (v) abrirHueco($("#ent .vslot"));
+}
+function tic() {
+  if (!ent?.corriendo || ent.pausa) return;
+  const r = Math.max(0, Math.ceil((ent.fin - performance.now()) / 1000));
+  if (r !== ent.ultimo) { ent.ultimo = r; $("#entReloj").textContent = mmss(r); $("#ent").classList.toggle("aviso", r <= 10 && ent.pasos[ent.i].tipo === "asalto"); }
+  if (r <= 10 && !ent.aviso && ent.pasos[ent.i].seg > 10) { ent.aviso = true; pitar(880, .12, 2); }
+  if (r === 0) { pitar(660, .5); irPaso(ent.i + 1); }
+}
+function pausarEntreno() {
+  ent.pausa = !ent.pausa;
+  if (ent.pausa) ent.resto = ent.fin - performance.now(); else ent.fin = performance.now() + ent.resto;
+  $("#entPausa").textContent = ent.pausa ? "Seguir" : "Pausa";
+  $("#ent").classList.toggle("pausado", ent.pausa);
+}
+function terminarEntreno() {
+  ent.corriendo = false; clearInterval(ent.timer);
+  curso.sesiones.push({ id: ent.s.id, fecha: hoy() });
+  if (!curso.inicio) curso.inicio = hoy();
+  guardarCurso();
+  pitar(660, .2, 3);
+  try { ent.wake?.release(); } catch {}
+  const n = vecesHecha(ent.s.id);
+  $("#ent").className = "ent descanso";
+  $("#ent").innerHTML = `<div class="ent-top"><span>Sesión hecha</span><button class="ent-x" type="button" data-ent="salir" aria-label="Salir">×</button></div>
+    <h1 class="ent-tit" style="margin-top:12vh">¡Hecha!</h1><p class="ent-sub">${esc(ent.s.titulo)} · la has hecho ${n} ${n === 1 ? "vez" : "veces"}</p>
+    <p class="ent-obj" style="margin-top:4vh">Mira tu grabación del final con la checklist del módulo.</p>
+    <div class="ent-ctl"><a class="bt prim" href="#boxeo" style="display:flex;align-items:center;justify-content:center;text-decoration:none">Volver al curso</a><a class="bt" href="#boxeo-revisar" style="display:flex;align-items:center;justify-content:center;text-decoration:none">Revisar</a></div>`;
+}
+
+/* Clics del curso */
+document.addEventListener("click", async e => {
+  const t = e.target.closest("[data-ent],.vthumb,[data-saltar],[data-chk],[data-dominar],[data-desdominar],[data-porsemana],[data-grab],[data-revfase],[data-ir]");
+  if (!t) return;
+  const d = t.dataset;
+  if (t.classList.contains("vthumb")) return abrirHueco(t.closest(".vslot"));
+  if (d.ir) return document.getElementById(d.ir)?.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion:reduce)").matches ? "auto" : "smooth" });
+  if (d.ent === "empezar") {
+    try { ent.ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch {}
+    document.documentElement.requestFullscreen?.().catch(() => {});
+    pedirPantalla();
+    ent.corriendo = true; irPaso(0); ent.timer = setInterval(tic, 200);
+    return;
+  }
+  if (d.ent === "pausa") return pausarEntreno();
+  if (d.ent === "saltar") return irPaso(ent.i + 1);
+  if (d.ent === "salir") { if (ent?.corriendo && !confirm("¿Salir del entrenamiento? Esta sesión no se guardará como hecha.")) return; location.hash = "#boxeo"; return; }
+  if (d.saltar) {
+    const m = CB.modulos.find(x => x.id === d.saltar), i = CB.modulos.indexOf(m);
+    if (!confirm(`¿Saltar hasta el módulo ${m.n}? Los anteriores quedan como saltados, no como dominados.`)) return;
+    CB.modulos.slice(0, i).forEach(x => { if (!hechoMod(x.id)) curso.saltados[x.id] = hoy(); });
+    guardarCurso(); return route();
+  }
+  if (d.chk !== undefined) {
+    const id = t.closest("[data-mod]").dataset.mod, m = CB.modulos.find(x => x.id === id);
+    (curso.checks[id] ??= [])[+d.chk] = d.r === "si"; guardarCurso();
+    t.parentNode.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b === t));
+    const btn = $("#btnDominar"); if (btn) btn.disabled = !m.checklist.every((_, i) => curso.checks[id][i] === true);
+    return;
+  }
+  if (d.dominar) { curso.dominados[d.dominar] = hoy(); delete curso.saltados[d.dominar]; guardarCurso(); return repintar(() => renderModulo(d.dominar)); }
+  if (d.desdominar) { delete curso.dominados[d.desdominar]; guardarCurso(); return repintar(() => renderModulo(d.desdominar)); }
+  if (d.porsemana) { curso.porSemana = +d.porsemana; guardarCurso(); return repintar(() => renderSeccion("boxeo", "curso")); }
+  if (d.grab) { if (curso.grabaciones[d.grab]) delete curso.grabaciones[d.grab]; else curso.grabaciones[d.grab] = hoy(); guardarCurso(); return repintar(renderRevisar); }
+  if (d.revfase) { revFase = +d.revfase; return repintar(renderRevisar); }
+});
+document.addEventListener("keydown", e => {
+  if (ent?.corriendo && e.key === " " && !e.target.closest("button,a,input")) { e.preventDefault(); pausarEntreno(); }
+});
+
 /* ---------- Posición de suelo ---------- */
 function renderPos(id, ladoSel) {
   const p = P[id]; if (!p || p.pronto) return renderSeccion("suelo");
@@ -1107,7 +1476,7 @@ function renderCopia() {
       <button class="btn" type="button" id="resetBtn">Borrar progreso</button>
     </div><p class="aviso-e" id="impMsg" hidden></p>`;
   $("#expBtn").addEventListener("click", () => {
-    const url = URL.createObjectURL(new Blob([JSON.stringify({ version: 1, fecha: hoy(), progreso }, null, 2)], { type: "application/json" }));
+    const url = URL.createObjectURL(new Blob([JSON.stringify({ version: 2, fecha: hoy(), progreso, curso }, null, 2)], { type: "application/json" }));
     const a = document.createElement("a");
     a.href = url; a.download = `mapa-mma-progreso-${hoy()}.json`; a.click();
     URL.revokeObjectURL(url);
@@ -1118,15 +1487,17 @@ function renderCopia() {
       const j = JSON.parse(await file.text());
       const limpio = {};
       for (const [id, v] of Object.entries(j.progreso)) if (F[id] && (v?.e === "entrenando" || v?.e === "hecha")) limpio[id] = { e: v.e, t: v.t || hoy() };
-      progreso = limpio; guardar(CLAVE, progreso); location.hash = "#inicio";
+      progreso = limpio; guardar(CLAVE, progreso);
+      if (j.curso && typeof j.curso === "object") { curso = Object.assign(cursoVacio(), j.curso); guardarCurso(); }
+      location.hash = "#inicio";
     } catch {
       $("#impMsg").textContent = "Ese archivo no es una copia de progreso de esta web.";
       $("#impMsg").hidden = false;
     }
   });
   $("#resetBtn").addEventListener("click", () => {
-    if (!confirm("¿Borrar todo tu progreso en este navegador? Todas las fichas volverán a «Ni idea».")) return;
-    progreso = {}; guardar(CLAVE, progreso); location.hash = "#inicio";
+    if (!confirm("¿Borrar todo tu progreso en este navegador? Todas las fichas volverán a «Ni idea» y el curso de boxeo empezará de cero.")) return;
+    progreso = {}; guardar(CLAVE, progreso); curso = cursoVacio(); guardarCurso(); location.hash = "#inicio";
   });
 }
 
@@ -1230,7 +1601,7 @@ function renderFicha(id) {
   const s = S[f.seccion]; setSec(f.seccion);
   const vs = f.videos;
   const v0 = vs[0];
-  const crumbCat = f.tipo === "drill" ? `<a href="#${s.id}-entrenar">Drills</a>` : `<a href="#${s.id}">${esc(catName(f))}</a>`;
+  const crumbCat = f.tipo === "drill" ? `<a href="#${s.id}-entrenar">Drills</a>` : `<a href="#${s.id}-tecnicas">${esc(catName(f))}</a>`;
   const material = f.material.map(m => D.MATERIAL[m]).join(" · ");
   const rel = f.tipo === "drill" ? tecnicasDe(f) : drillsDe(f);
   const encadena = (f.combina || []).filter(c => F[c] && !rel.includes(F[c]));
@@ -1327,7 +1698,7 @@ function loadYT() {
 const ytUrl = v => `https://www.youtube.com/watch?v=${v.id}${v.inicio ? "&t=" + v.inicio + "s" : ""}`;
 function setCredit(v) {
   const c = $("#credit");
-  if (c) c.innerHTML = `${v.verificado ? "" : `<a class="unrev" href="#guia-videos" title="Todavía no lo has revisado">Sin revisar</a> `}${esc(v.instructor || "")}${v.canal && v.canal !== v.instructor ? " · " + esc(v.canal) : ""}${v.idioma === "es" ? " · en español" : ""} · <a href="${ytUrl(v)}" target="_blank" rel="noopener">Abrir en YouTube</a>`;
+  if (c) c.innerHTML = `${v.fuente ? etiquetaFuente(v.fuente) + " " : ""}${v.verificado ? "" : `<a class="unrev" href="#guia-videos" title="Todavía no lo has revisado">Sin revisar</a> `}${esc(v.instructor || "")}${v.canal && v.canal !== v.instructor ? " · " + esc(v.canal) : ""}${v.idioma === "es" ? " · en español" : ""} · <a href="${ytUrl(v)}" target="_blank" rel="noopener">Abrir en YouTube</a>`;
 }
 async function mountPlayer(v) {
   cur = v; setCredit(v);
@@ -1424,9 +1795,13 @@ function route() {
   const atras = pila.at(-2) === h;
   if (atras) pila.pop(); else if (pila.at(-1) !== h) pila.push(h);
   try { player?.destroy?.(); } catch {} player = null; cur = null;
+  limpiarEntreno();
   let navOn = null;
-  const m = h.match(/^(boxeo|lucha|suelo)(?:-(entrenar|ruta))?$/);
-  if (m) { renderSeccion(m[1], m[2] || "tecnicas"); navOn = m[1]; }
+  const m = h.match(/^(boxeo|lucha|suelo)(?:-(tecnicas|entrenar|ruta))?$/);
+  if (m) { renderSeccion(m[1], m[2] || (m[1] === "boxeo" ? "curso" : "tecnicas")); navOn = m[1]; }
+  else if (h.startsWith("boxeo-curso/")) { renderModulo(h.slice(12).split("#")[0]); navOn = "boxeo"; }
+  else if (h === "boxeo-revisar") { renderRevisar(); navOn = "boxeo"; }
+  else if (h.startsWith("boxeo-sesion/")) { renderEntreno(h.slice(13)); navOn = "boxeo"; }
   else if (h === "suelo-mapa" || h.startsWith("suelo-mapa/")) { renderSeccion("suelo", "mapa", h.slice(11) || null); navOn = "suelo"; }
   else if (h.startsWith("f-")) { renderFicha(h.slice(2)); navOn = F[h.slice(2)]?.seccion; }
   else if (h.startsWith("p-")) { renderPos(h.slice(2)); navOn = "suelo"; }

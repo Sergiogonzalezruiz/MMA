@@ -66,7 +66,7 @@ M.calcularHuecos = () => {
   const cats = M.SECCIONES.flatMap(s => s.categorias.map(c => ({ s, c, n: F.filter(f => f.seccion === s.id && f.cat === c.id).length })))
     .filter(x => x.n <= M.UMBRALES.categoria);
   out.push({ id: "categorias", titulo: "Categorías casi vacías", como: `${M.UMBRALES.categoria} ficha o ninguna en la categoría.`,
-    resumen: `${cats.length}`, n: cats.length, items: cats.map(x => ({ txt: `${x.s.nombre} · ${x.c.n} (${x.n})`, href: "#" + x.s.id })) });
+    resumen: `${cats.length}`, n: cats.length, items: cats.map(x => ({ txt: `${x.s.nombre} · ${x.c.n} (${x.n})`, href: "#" + x.s.id + "-tecnicas" })) });
 
   const resp = F.flatMap(f => (f.reacciones || []).filter(r => !r.ref).map(r => ({ f, r })));
   out.push({ id: "reacciones", titulo: "Respuestas sin ficha", como: "Un «Si el rival reacciona» que no enlaza a ninguna ficha.",
