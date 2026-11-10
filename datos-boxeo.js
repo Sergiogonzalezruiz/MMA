@@ -303,32 +303,79 @@ MMA.add([
     fases: ["distancia"], solo: "parcial", material: ["ninguno"],
     objetivo: "Desviar el golpe recto con un gesto mínimo.",
     pasos: [
-      "Cuando llega el jab, la mano trasera lo desvía hacia abajo o a un lado con la palma.",
-      "El movimiento es corto: la mano vuelve enseguida a la cara.",
+      "Espera su jab con la mano derecha cerca de la cara.",
+      "Cuando llegue, desvíalo con la palma derecha hacia abajo o hacia tu izquierda.",
+      "Que el gesto sea corto: la mano vuelve enseguida a la mejilla.",
       "Contraataca mientras su brazo está fuera."
     ],
-    detalles: ["Espera el golpe cerca de tu cara; no salgas a buscarlo."],
+    detalles: ["Espera el golpe cerca de tu cara; no salgas a buscarlo.", "Solo con la palma y la muñeca: el codo casi no se mueve."],
     errores: ["Estirar el brazo para buscar el golpe.", "Desviar y dejar la cara abierta."],
-    drills: ["box-pelota", "box-sombra"],
-    combina: ["box-pull-counter"],
-    videos: [V("HL261oRyURE", "Cómo hacer paradas")]
+    drills: ["box-sombra-defensa", "box-pelota", "box-espejo"],
+    combina: ["box-catch-pitch", "box-pull-counter"],
+    videos: [
+      V("ReD58z0jFJM", "Tony Jeffries", { etiqueta: "Desde la parada", inicio: 59, fuente: "jeffries" }),
+      V("8kfBOQb3SnE", "Tony Jeffries Español", { etiqueta: "En español", idioma: "es", fuente: "jeffries" })
+    ]
+  },
+  {
+    id: "box-bloqueo", seccion: "boxeo", tipo: "tecnica", cat: "defensa",
+    es: "Bloqueo y cubrirse", en: "Block and cover", nivel: "F", mma: "media",
+    mmaNota: "Con guantes de 4 oz el bloqueo cubre poco: en MMA, mejor parar, esquivar o salir.",
+    fases: ["distancia", "clinch"], solo: "si", material: ["ninguno"],
+    objetivo: "Parar con los guantes y los codos los golpes que no da tiempo a esquivar.",
+    pasos: [
+      "Contra un gancho izquierdo, sube el guante derecho pegado a la sien y el codo pegado al cuerpo.",
+      "Contra un gancho derecho, haz lo mismo con el guante izquierdo.",
+      "Contra un golpe al cuerpo, baja el codo de ese lado hasta las costillas sin bajar el guante.",
+      "Mira entre los guantes y responde en cuanto acabe su golpe."
+    ],
+    detalles: ["El guante se queda pegado a la cabeza: si lo separas, el golpe lo empuja contra ti.", "Bloquear sirve para salir del apuro, no para quedarte: después, muévete o contraataca."],
+    errores: ["Cerrar los ojos o esconder la cabeza detrás de los guantes.", "Quedarte quieto bloqueando golpe tras golpe."],
+    drills: ["box-sombra-defensa", "box-espejo"],
+    combina: ["box-rodar", "box-parada"],
+    videos: [V("a07NnmSmJqU", "Tony Jeffries", { etiqueta: "Bloquear, rodar o echarse atrás", fuente: "jeffries" })]
   },
   {
     id: "box-esquiva", seccion: "boxeo", tipo: "tecnica", cat: "defensa",
     es: "Esquiva lateral", en: "Slip", nivel: "I", mma: "media",
     mmaNota: "Corta y sin bajar la cabeza por debajo de la cintura: ahí esperan rodillazos y front headlock.",
     fases: ["distancia"], solo: "si", material: ["cuerda"],
-    objetivo: "Sacar la cabeza de la línea del golpe y quedar listo para contraatacar.",
+    objetivo: "Sacar la cabeza de la línea del golpe recto y quedar listo para contraatacar.",
     pasos: [
       "Gira un poco los hombros y flexiona la rodilla del lado hacia el que esquivas.",
-      "La cabeza sale lo justo de la línea central.",
+      "Contra su jab, sal hacia tu derecha; contra su directo, hacia tu izquierda.",
+      "Saca la cabeza lo justo de la línea central, con las manos en la cara.",
       "Vuelve a la guardia o contraataca desde ahí."
     ],
-    detalles: ["En MMA, unos pocos centímetros bastan; en boxeo se esquiva más."],
+    detalles: ["Unos centímetros bastan: la esquiva pequeña te deja golpear.", "Sale de las rodillas y la cintura, no de doblar la espalda."],
     errores: ["Esquivar demasiado y desequilibrarte.", "Mirar al suelo."],
-    drills: ["box-cuerda", "box-pelota"],
-    combina: ["box-1-2"],
-    videos: [V("3WJos-OAPQc", "Esquiva para kickboxing y MMA"), V("i17tNtv8N2I", "Esquivas para principiantes", { etiqueta: "Otra explicación" })]
+    drills: ["box-cuerda", "box-pelota", "box-sombra-defensa"],
+    combina: ["box-slip-cross", "box-1-2"],
+    videos: [
+      V("DOWc7NMSuEQ", "Tony Jeffries", { fuente: "jeffries" }),
+      V("MeyThGDkIMY", "Tony Jeffries Español", { etiqueta: "En español", idioma: "es", fuente: "jeffries" })
+    ]
+  },
+  {
+    id: "box-rodar", seccion: "boxeo", tipo: "tecnica", cat: "defensa",
+    es: "Rodar", en: "Roll", nivel: "I", mma: "media",
+    mmaNota: "Rodar bajo un gancho funciona, pero en MMA no bajes la cabeza a la cintura: ahí llegan los rodillazos.",
+    fases: ["distancia", "clinch"], solo: "si", material: ["cuerda"],
+    objetivo: "Pasar por debajo de un gancho y salir por el otro lado listo para responder.",
+    pasos: [
+      "Flexiona las rodillas cuando venga un gancho a la cabeza.",
+      "Pasa la cabeza por debajo del golpe dibujando una «U», de un lado al otro.",
+      "Sube por el otro lado con las manos en la cara.",
+      "Desde ahí, contraataca con el gancho del lado por el que subes."
+    ],
+    detalles: ["Baja con las piernas, no doblando la espalda: los ojos siguen al rival.", "Rueda lo justo para que el golpe pase por encima."],
+    errores: ["Agacharte mirando al suelo.", "Bajar las manos al rodar."],
+    drills: ["box-cuerda", "box-sombra-defensa"],
+    combina: ["box-bloqueo", "box-gancho"],
+    videos: [
+      V("XIja1S9SXI4", "Tony Jeffries", { fuente: "jeffries" }),
+      V("vVg0BSTy9Ew", "Tony Jeffries Español", { etiqueta: "En español", idioma: "es", fuente: "jeffries" })
+    ]
   },
   {
     id: "box-pull-counter", seccion: "boxeo", tipo: "tecnica", cat: "contras",
@@ -337,15 +384,79 @@ MMA.add([
     fases: ["distancia"], solo: "parcial", material: ["ninguno"],
     objetivo: "Hacer que el golpe se quede corto y responder al instante.",
     pasos: [
-      "Cuando llega el jab, lleva el peso a la pierna trasera y retrasa la cabeza lo justo.",
-      "El golpe se queda corto.",
-      "En cuanto lo recoge, vuelve con el peso delante y suelta el directo."
+      "Cuando llegue su jab, lleva el peso a la pierna derecha y retrasa la cabeza lo justo.",
+      "Mantén las dos manos en la cara: su golpe se queda corto.",
+      "En cuanto recoge el jab, devuelve el peso a la pierna izquierda.",
+      "Suelta el directo con ese mismo impulso."
     ],
-    detalles: ["Solo se mueve el peso; los pies casi no cambian de sitio."],
+    detalles: ["Solo se mueve el peso: el pie izquierdo no se va atrás.", "La barbilla sigue baja aunque te eches atrás."],
     errores: ["Retroceder con todo el cuerpo y quedarte lejos.", "Echarte atrás con la barbilla levantada."],
-    drills: ["box-pelota", "box-sombra"],
-    combina: ["box-directo"],
-    videos: [V("g0UkYHewzNc", "Pull counter para MMA"), V("elvLNRqCycc", "El pull counter explicado", { etiqueta: "Boxeo" })]
+    drills: ["box-sombra-defensa", "box-pelota"],
+    combina: ["box-directo", "box-catch-pitch"],
+    videos: [
+      V("7Pli4dauWSE", "Tony Jeffries", { etiqueta: "Echarse atrás y contragolpear", fuente: "jeffries" }),
+      V("WWO3YTEWLHM", "Tony Jeffries Español", { etiqueta: "En español", idioma: "es", fuente: "jeffries" })
+    ]
+  },
+  {
+    id: "box-slip-cross", seccion: "boxeo", tipo: "tecnica", cat: "contras", golpes: [2],
+    es: "Esquiva y directo", en: "Slip and cross", nivel: "I", mma: "muy alta",
+    mmaNota: "La contra más fiable contra el jab, también en MMA.",
+    fases: ["distancia"], solo: "parcial", material: ["ninguno"],
+    objetivo: "Esquivar su jab y responder con el directo mientras su brazo sigue estirado.",
+    pasos: [
+      "Esquiva su jab con un giro corto de hombros y rodillas, como en la esquiva lateral.",
+      "El giro te deja con el peso cargado: no vuelvas al centro antes de golpear.",
+      "Suelta el directo con la derecha mientras su brazo sigue estirado.",
+      "Vuelve a la guardia y sal en ángulo."
+    ],
+    detalles: ["Esquiva y golpe casi a la vez: si esperas, su brazo ya ha vuelto.", "La esquiva es pequeña para que el directo llegue."],
+    errores: ["Esquivar tanto que el directo no llega.", "Bajar la mano izquierda al esquivar."],
+    drills: ["box-sombra-defensa", "box-cuerda"],
+    combina: ["box-esquiva", "box-directo"],
+    videos: [V("DOWc7NMSuEQ", "Tony Jeffries", { etiqueta: "Esquivar para contragolpear", fuente: "jeffries" })]
+  },
+  {
+    id: "box-catch-pitch", seccion: "boxeo", tipo: "tecnica", cat: "contras", golpes: [1],
+    es: "Parar y devolver", en: "Catch and pitch", nivel: "F", mma: "alta",
+    mmaNota: "Sencilla y segura: no obliga a mover la cabeza.",
+    fases: ["distancia"], solo: "parcial", material: ["ninguno"],
+    objetivo: "Recibir su golpe en el guante y devolverle uno al instante.",
+    pasos: [
+      "Recibe su jab en la palma de la mano derecha, cerca de tu cara.",
+      "Sin bajar esa mano, lanza tu jab al momento.",
+      "Si llega su directo, recógelo con el guante izquierdo y devuelve tu directo.",
+      "Vuelve a la guardia."
+    ],
+    detalles: ["La mano que para se queda en la cara mientras devuelves con la otra.", "Devuelve rápido: el ritmo de recibir y devolver es lo que confunde."],
+    errores: ["Salir a buscar el golpe con la palma.", "Parar y quedarte quieto sin devolver."],
+    drills: ["box-sombra-defensa", "box-pelota"],
+    combina: ["box-parada", "box-jab"],
+    videos: [
+      V("yfpXTRFnYX0", "Tony Jeffries", { etiqueta: "10 formas de contragolpear el jab", fuente: "jeffries" }),
+      V("WWO3YTEWLHM", "Tony Jeffries Español", { etiqueta: "En español", idioma: "es", fuente: "jeffries" })
+    ]
+  },
+  {
+    id: "box-fintas", seccion: "boxeo", tipo: "tecnica", cat: "contras",
+    es: "Fintas", en: "Feints", nivel: "I", mma: "muy alta",
+    mmaNota: "En MMA la finta de golpe abre el derribo y la de derribo abre el golpe.",
+    fases: ["distancia", "entrada"], solo: "si", material: ["ninguno"],
+    objetivo: "Hacer que el rival reaccione a un golpe que no lanzas, y golpear donde deja el hueco.",
+    pasos: [
+      "Amaga el jab: un tirón corto del hombro izquierdo sin estirar el brazo.",
+      "Amaga con los pies: un paso corto y rápido hacia delante, como si entraras, y para.",
+      "Imagina la reacción: si sube las manos, golpea abajo; si se echa atrás, entra.",
+      "Después de cada finta, golpea de verdad o sal."
+    ],
+    detalles: ["La finta tiene que parecer el golpe de verdad: el mismo hombro y la misma cara.", "Una finta y un golpe: no encadenes tres amagos seguidos."],
+    errores: ["Fintar con todo el cuerpo y quedarte desequilibrado.", "Fintar quieto, sin moverte después."],
+    drills: ["box-sombra", "box-espejo"],
+    combina: ["box-jab", "box-angulos"],
+    videos: [
+      V("WHxOy3QXbaM", "Tony Jeffries", { etiqueta: "Fintas con los pies", fuente: "jeffries" }),
+      V("dlGjS23f89Q", "Tony Jeffries Español", { etiqueta: "En español", idioma: "es", fuente: "jeffries" })
+    ]
   },
 
   // ---------------- COMBINACIONES ----------------
@@ -493,17 +604,39 @@ MMA.add([
     id: "box-cuerda", seccion: "boxeo", tipo: "drill",
     es: "Cuerda de esquivas", en: "Slip rope", nivel: "I", mma: "media",
     fases: ["distancia"], solo: "si", material: ["cuerda"],
-    objetivo: "Esquivar con ritmo sin perder la guardia.",
+    objetivo: "Esquivar y rodar con ritmo sin perder la guardia.",
     pasos: [
-      "Ata una cuerda tensa de pared a pared, a la altura del hombro.",
+      "Ata una cuerda tensa de pared a pared, o a dos puntos fijos, a la altura del hombro.",
       "Avanza y retrocede pasando por debajo en forma de «U».",
       "Lanza un 1-2 cada vez que sales por el otro lado."
     ],
-    detalles: ["Para MMA, pasa por debajo lo justo: sin bajar la cabeza a la cintura."],
-    errores: ["Doblar la espalda en vez de las rodillas."],
+    detalles: ["Pasa por debajo con las rodillas, con la espalda casi recta.", "Mira al frente, no a la cuerda."],
+    errores: ["Doblar la espalda en vez de las rodillas.", "Esquivar sin guardia."],
     dosis: "3 × 3 min",
-    combina: ["box-esquiva"],
-    videos: [V("jA9mE8qNXrI", "Slip line drill"), V("TRTKAX48UpI", "Drills de esquiva en casa", { etiqueta: "En casa" })]
+    criterio: "3 minutos sin tocar la cuerda con la cabeza ni bajar las manos.",
+    combina: ["box-esquiva", "box-rodar"],
+    videos: [
+      V("jA9mE8qNXrI", "World Class Boxing Channel", { etiqueta: "Slip line" }),
+      V("RsKuLCSGOeQ", "Tony Jeffries Español", { etiqueta: "En español", idioma: "es", fuente: "jeffries" })
+    ]
+  },
+  {
+    id: "box-sombra-defensa", seccion: "boxeo", tipo: "drill",
+    es: "Sombra solo de defensa", en: "Defensive shadowboxing", nivel: "I", mma: "alta",
+    fases: ["distancia", "defensa"], solo: "si", material: ["ninguno", "espejo"],
+    objetivo: "Automatizar paradas, bloqueos, esquivas y rodar sin golpear, imaginando los golpes del rival.",
+    pasos: [
+      "Imagina un rival concreto y di en voz baja el golpe que te lanza.",
+      "Defiende cada uno: parada para el jab, esquiva para el directo, bloqueo o rodar para los ganchos.",
+      "Después de cada defensa, vuelve a la guardia y muévete.",
+      "El último minuto, devuelve un golpe después de cada defensa."
+    ],
+    detalles: ["Defensas pequeñas: lo justo para que el golpe no llegue.", "Los ojos siempre al frente, nunca al suelo."],
+    errores: ["Defender con los ojos cerrados o mirando abajo.", "Defenderlo todo con el mismo gesto."],
+    dosis: "3 × 3 min · 1 min de descanso",
+    criterio: "Un asalto entero grabado en el que cada defensa vuelve a la guardia y no bajas la mirada.",
+    combina: ["box-sombra", "box-cuerda"],
+    videos: [V("2AB280hssh0", "Tony Jeffries", { etiqueta: "Drills de defensa", fuente: "jeffries" })]
   },
   {
     id: "box-pelota", seccion: "boxeo", tipo: "drill",

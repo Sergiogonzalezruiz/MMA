@@ -100,14 +100,14 @@ MMA.PENDIENTES = [
   P("p-lu-sumi-gaeshi", "lucha", "Sumi-gaeshi", "Informe MMA", [1, 1, 0, 0]),
 
   // ---------------- BOXEO ----------------
-  P("p-box-bloqueo", "boxeo", "Bloqueo y cubrirse", "AIBA", [2, 2, 2, 2], { tanda: 3 }),
-  P("p-box-slip-cross", "boxeo", "Esquiva y directo", "Informe MMA", [3, 2, 2, 2], { tanda: 3 }),
-  P("p-box-roll-hook", "boxeo", "Rodar y gancho", "Informe MMA", [1, 2, 2, 1], { tanda: 3 }),
-  P("p-box-catch-pitch", "boxeo", "Parar y devolver (catch and pitch)", "Informe MMA", [2, 2, 1, 2], { tanda: 3 }),
+  P("p-box-bloqueo", "boxeo", "Bloqueo y cubrirse", "AIBA", [2, 2, 2, 2], { tanda: 3, estado: "publicada", ficha: "box-bloqueo" }),
+  P("p-box-slip-cross", "boxeo", "Esquiva y directo", "Informe MMA", [3, 2, 2, 2], { tanda: 3, estado: "publicada", ficha: "box-slip-cross" }),
+  P("p-box-roll-hook", "boxeo", "Rodar y gancho", "Informe MMA", [1, 2, 2, 1], { tanda: 3, estado: "publicada", ficha: "box-rodar" }),
+  P("p-box-catch-pitch", "boxeo", "Parar y devolver (catch and pitch)", "Informe MMA", [2, 2, 1, 2], { tanda: 3, estado: "publicada", ficha: "box-catch-pitch" }),
   P("p-box-2-3-2", "boxeo", "2-3-2", "Informe MMA", [2, 1, 2, 2], { tanda: 3 }),
   P("p-box-1-2-3-2", "boxeo", "1-2-3-2", "Informe MMA", [2, 1, 2, 2], { tanda: 3 }),
   P("p-box-angulos", "boxeo", "Salir en ángulo tras la combinación", "Informe MMA", [3, 2, 2, 2], { tanda: 3, estado: "publicada", ficha: "box-angulos" }),
-  P("p-box-fintas", "boxeo", "Fintas", "Informe MMA", [3, 2, 2, 1], { tanda: 7 }),
+  P("p-box-fintas", "boxeo", "Fintas", "Informe MMA", [3, 2, 2, 1], { tanda: 7, estado: "publicada", ficha: "box-fintas" }),
   P("p-box-cambio-guardia", "boxeo", "Cambio de guardia", "Informe MMA", [2, 2, 2, 1], { tanda: 7 }),
   P("p-box-contra-nivel", "boxeo", "Uppercut al que entra a derribar", "Informe MMA", [3, 2, 1, 2], { tanda: 7 }),
   P("p-box-overhand-nivel", "boxeo", "Overhand y cambio de nivel", "Informe MMA", [3, 1, 2, 2], { tanda: 7 }),
@@ -118,6 +118,6 @@ MMA.PENDIENTES = [
   P("p-box-3-6", "boxeo", "Gancho y uppercut corto (3-6)", "Informe MMA", [1, 1, 2, 1]),
   P("p-box-medir-jab", "boxeo", "Medir la distancia con el jab", "Informe MMA", [2, 1, 2, 2], { estado: "publicada", ficha: "box-medir-jab" }),
   P("p-box-cortar-jaula", "boxeo", "Cortar la jaula", "Informe MMA", [2, 2, 1, 1]),
-  P("p-box-sombra-defensa", "boxeo", "Sombra solo de defensa (drill)", "Informe MMA", [2, 1, 2, 2])
+  P("p-box-sombra-defensa", "boxeo", "Sombra solo de defensa (drill)", "Informe MMA", [2, 1, 2, 2], { estado: "publicada", ficha: "box-sombra-defensa" })
 ];
 })();

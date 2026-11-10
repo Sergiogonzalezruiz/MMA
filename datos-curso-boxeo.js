@@ -119,6 +119,48 @@ MMA.CURSO_BOXEO = {
         "¿Cambias de distancia sin mirar al suelo?"
       ],
       dominio: "2 asaltos de 3 min del drill de la pared tocando la cinta desde la distancia correcta en cada cambio, y 1 asalto de sombra cambiando de distancia sin inclinarte, grabados de lado."
+    },
+    {
+      id: "m6", fase: 3, n: 6, titulo: "Defensa", fuente: "jeffries",
+      objetivo: "Parar, bloquear, esquivar y rodar con gestos pequeños, sin perder la vista ni la guardia.",
+      video: { id: "ReD58z0jFJM", instructor: "Tony Jeffries", inicio: 0, fin: null, idioma: "en", fuente: "jeffries" },
+      claves: [
+        "Parada: desvía el jab con la palma derecha, con un gesto corto, y la mano vuelve a la cara.",
+        "Bloqueo: el guante pegado a la sien y el codo a las costillas; después, sal o responde.",
+        "Esquivar y rodar salen de las rodillas y la cintura, no de doblar la espalda.",
+        "Defiende lo justo y mira siempre al frente."
+      ],
+      fichas: ["box-parada", "box-bloqueo", "box-esquiva", "box-rodar"],
+      drills: ["box-sombra-defensa", "box-cuerda", "box-pelota", "box-espejo"],
+      checklist: [
+        "¿La parada es corta y la mano vuelve enseguida a la cara?",
+        "¿En el bloqueo el guante se queda pegado a la cabeza?",
+        "¿Las esquivas salen de las rodillas y no de la espalda?",
+        "¿Al rodar, los ojos siguen mirando al frente?",
+        "¿Después de cada defensa vuelves a la guardia?"
+      ],
+      dominio: "3 asaltos de sombra solo de defensa grabados de lado, con las cuatro defensas, sin doblar la espalda ni bajar la mirada, y 3 minutos de cuerda sin tocarla."
+    },
+    {
+      id: "m7", fase: 3, n: 7, titulo: "Contragolpe y fintas", fuente: "jeffries",
+      objetivo: "Convertir cada defensa en un golpe y engañar al rival con fintas cortas.",
+      video: { ficha: "box-catch-pitch", n: 0 },
+      claves: [
+        "Cada defensa deja un hueco: contraataca mientras su brazo sigue estirado.",
+        "Retroceso y contra: solo se mueve el peso; el pie izquierdo no se va atrás.",
+        "Parar y devolver: recibe en la palma y devuelve sin bajar esa mano.",
+        "Finta corta y creíble, y después un golpe de verdad o salir."
+      ],
+      fichas: ["box-pull-counter", "box-slip-cross", "box-catch-pitch", "box-fintas"],
+      drills: ["box-sombra-defensa", "box-pelota", "box-sombra"],
+      checklist: [
+        "¿El contragolpe sale mientras el golpe imaginario todavía está estirado?",
+        "¿En el retroceso el pie izquierdo no se mueve?",
+        "¿Al parar y devolver, la mano que para no baja?",
+        "¿Las fintas son cortas y no te desequilibran?",
+        "¿Después de cada contragolpe vuelves a la guardia o sales?"
+      ],
+      dominio: "3 asaltos de sombra de defensa y contragolpe grabados de frente, con cada contra saliendo justo después de la defensa y sin bajar las manos."
     }
   ],
 
@@ -200,6 +242,46 @@ MMA.CURSO_BOXEO = {
         { min: 6, descanso: 1, objetivo: "Shadow continuo con rectos y ganchos, a un ritmo en el que podrías hablar.", drill: "box-sombra" },
         { min: 6, descanso: 1, objetivo: "Shadow continuo pivotando después de cada combinación.", drill: "box-sombra" },
         { min: 6, descanso: 1, objetivo: "Shadow continuo cambiando de distancia: entra, golpea y sal.", drill: "box-sombra" },
+        { min: 4, descanso: 0, objetivo: "Shadow muy suave para bajar pulsaciones." }
+      ]
+    },
+    {
+      id: "f3-defensa", fase: 3, titulo: "Defensa", duracion: 40, tipo: "tecnica",
+      asaltos: [
+        { min: 3, descanso: 1, objetivo: "Comba suave con paso de boxeador para entrar en calor.", drill: "box-comba" },
+        { min: 4, descanso: 0, objetivo: "Movilidad de hombros, cadera, cuello y tobillos, sin prisa." },
+        { min: 3, descanso: 1, objetivo: "Repaso: sombra de rectos y curvos saliendo en ángulo.", drill: "box-sombra" },
+        { min: 3, descanso: 1, objetivo: "Espejo: paradas lentas del jab con la palma derecha.", drill: "box-espejo" },
+        { min: 3, descanso: 1, objetivo: "Espejo: bloqueos con el guante pegado a la sien y el codo a las costillas.", drill: "box-espejo" },
+        { min: 3, descanso: 1, objetivo: "Cuerda: esquiva por debajo doblando las rodillas, no la espalda.", drill: "box-cuerda" },
+        { min: 3, descanso: 1, objetivo: "Cuerda: rodar dibujando una «U» y subir con las manos en la cara.", drill: "box-cuerda" },
+        { min: 3, descanso: 1, objetivo: "Pelota: golpéala y esquiva la vuelta mirándola con los ojos.", drill: "box-pelota" },
+        { min: 3, descanso: 1, objetivo: "Sombra solo de defensa: cada golpe imaginario, con su defensa.", drill: "box-sombra-defensa" },
+        { min: 3, descanso: 0, objetivo: "Shadow libre grabándote de lado: defensas pequeñas y vuelta a la guardia." }
+      ]
+    },
+    {
+      id: "f3-contras", fase: 3, titulo: "Contragolpe y fintas", duracion: 40, tipo: "tecnica",
+      asaltos: [
+        { min: 3, descanso: 1, objetivo: "Comba suave con paso de boxeador para entrar en calor.", drill: "box-comba" },
+        { min: 4, descanso: 0, objetivo: "Movilidad de hombros, cadera, cuello y tobillos, sin prisa." },
+        { min: 3, descanso: 1, objetivo: "Repaso: sombra solo de defensa.", drill: "box-sombra-defensa" },
+        { min: 3, descanso: 1, objetivo: "Sombra: retroceso con el peso y directo, sin mover el pie izquierdo.", drill: "box-sombra" },
+        { min: 3, descanso: 1, objetivo: "Sombra: esquiva su jab y suelta el directo casi a la vez.", drill: "box-sombra" },
+        { min: 3, descanso: 1, objetivo: "Sombra: para con la palma y devuelve sin bajar esa mano.", drill: "box-sombra" },
+        { min: 3, descanso: 1, objetivo: "Sombra: una finta y un golpe de verdad, nunca dos fintas seguidas.", drill: "box-sombra" },
+        { min: 3, descanso: 1, objetivo: "Pelota: golpea, esquiva la vuelta y devuelve otro golpe.", drill: "box-pelota" },
+        { min: 3, descanso: 1, objetivo: "Sombra libre de defensa y contragolpe.", drill: "box-sombra-defensa" },
+        { min: 3, descanso: 0, objetivo: "Shadow libre grabándote de frente: cada contra justo después de la defensa." }
+      ]
+    },
+    {
+      id: "f3-cardio", fase: 3, titulo: "Cardio de tren superior: shadow con defensa", duracion: 30, tipo: "cardio",
+      asaltos: [
+        { min: 4, descanso: 0, objetivo: "Shadow muy suave para entrar en calor: solo pies y guardia.", drill: "box-sombra" },
+        { min: 6, descanso: 1, objetivo: "Shadow continuo esquivando y respondiendo, a un ritmo en el que podrías hablar.", drill: "box-sombra-defensa" },
+        { min: 6, descanso: 1, objetivo: "Shadow continuo con fintas y salidas en ángulo.", drill: "box-sombra" },
+        { min: 6, descanso: 1, objetivo: "Shadow continuo: rueda bajo un gancho imaginario y responde con otro.", drill: "box-sombra-defensa" },
         { min: 4, descanso: 0, objetivo: "Shadow muy suave para bajar pulsaciones." }
       ]
     }
