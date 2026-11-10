@@ -161,6 +161,48 @@ MMA.CURSO_BOXEO = {
         "¿Después de cada contragolpe vuelves a la guardia o sales?"
       ],
       dominio: "3 asaltos de sombra de defensa y contragolpe grabados de frente, con cada contra saliendo justo después de la defensa y sin bajar las manos."
+    },
+    {
+      id: "m8", fase: 3, n: 8, titulo: "Cuerpo", fuente: "jeffries",
+      objetivo: "Golpear al cuerpo bajando con las piernas y mezclar arriba y abajo en las combinaciones.",
+      video: { id: "PIvTJheRF5g", instructor: "Tony Jeffries", inicio: 0, fin: null, idioma: "en", fuente: "jeffries" },
+      claves: [
+        "Al cuerpo bajas con las rodillas, nunca doblando la espalda.",
+        "La cabeza queda a un lado de su línea, y la mano que no golpea, en la cara.",
+        "El gancho izquierdo va a su costado derecho, al hígado; el directo, al estómago.",
+        "Arriba y abajo: golpea el cuerpo para que baje las manos y remata arriba."
+      ],
+      fichas: ["box-jab-cuerpo", "box-directo-cuerpo", "box-gancho-cuerpo", "box-cuerpo-cabeza", "box-arriba-abajo"],
+      drills: ["box-sombra", "box-espejo", "box-gomas"],
+      checklist: [
+        "¿Bajas de nivel doblando las rodillas y no la espalda?",
+        "¿La mano que no golpea se queda en la cara en los golpes al cuerpo?",
+        "¿Vuelves arriba enseguida después de cada golpe al cuerpo?",
+        "¿El gancho al cuerpo sale con el codo cerca y no con el brazo estirado?",
+        "¿En las combinaciones arriba-abajo cambias de nivel sin perder la guardia?"
+      ],
+      dominio: "3 asaltos de 3 min de sombra mezclando golpes arriba y al cuerpo, grabados de lado, bajando siempre con las rodillas y volviendo arriba con las manos en la cara."
+    },
+    {
+      id: "m9", fase: 4, n: 9, titulo: "Fluidez y shadow táctico", fuente: "oracle",
+      objetivo: "Boxear suelto, encadenar combinaciones largas y hacer shadow con un plan contra un rival concreto.",
+      video: { id: "8gz73LjkdS8", instructor: "Oracle Boxing", canal: "Oliver Betts Boxing", inicio: 0, fin: null, idioma: "en", fuente: "oracle" },
+      claves: [
+        "Suelto y respirando: los hombros bajos y un soplido por golpe.",
+        "Cada golpe carga el siguiente: combinaciones sin pausas ni pasos de más.",
+        "Un plan por asalto: imagina un rival concreto y boxea contra él.",
+        "Termina siempre en guardia y fuera de su línea."
+      ],
+      fichas: ["box-relajacion", "box-1-2-3-2", "box-2-3-2"],
+      drills: ["box-shadow-tactico", "box-sombra-defensa", "box-sesion-16"],
+      checklist: [
+        "¿Los hombros se quedan bajos y sueltos durante todo el asalto?",
+        "¿Respiras con cada golpe en vez de aguantar el aire?",
+        "¿Las combinaciones de cuatro golpes salen sin pausas?",
+        "¿Se reconoce en la grabación qué rival estás imaginando?",
+        "¿Después de cada combinación terminas en guardia y fuera de la línea?"
+      ],
+      dominio: "4 asaltos de 3 min de shadow táctico grabados, uno contra cada tipo de rival y uno libre, sueltos, sin bajar las manos y terminando cada combinación fuera de la línea."
     }
   ],
 
@@ -282,6 +324,58 @@ MMA.CURSO_BOXEO = {
         { min: 6, descanso: 1, objetivo: "Shadow continuo esquivando y respondiendo, a un ritmo en el que podrías hablar.", drill: "box-sombra-defensa" },
         { min: 6, descanso: 1, objetivo: "Shadow continuo con fintas y salidas en ángulo.", drill: "box-sombra" },
         { min: 6, descanso: 1, objetivo: "Shadow continuo: rueda bajo un gancho imaginario y responde con otro.", drill: "box-sombra-defensa" },
+        { min: 4, descanso: 0, objetivo: "Shadow muy suave para bajar pulsaciones." }
+      ]
+    },
+    {
+      id: "f3-cuerpo", fase: 3, titulo: "Cuerpo", duracion: 40, tipo: "tecnica",
+      asaltos: [
+        { min: 3, descanso: 1, objetivo: "Comba suave con paso de boxeador para entrar en calor.", drill: "box-comba" },
+        { min: 4, descanso: 0, objetivo: "Movilidad de hombros, cadera, rodillas y tobillos, sin prisa." },
+        { min: 3, descanso: 1, objetivo: "Repaso: sombra solo de defensa.", drill: "box-sombra-defensa" },
+        { min: 3, descanso: 1, objetivo: "Espejo: jab al cuerpo bajando con las rodillas, no con la espalda.", drill: "box-espejo" },
+        { min: 3, descanso: 1, objetivo: "Espejo: directo al cuerpo con la mano izquierda en la cara.", drill: "box-espejo" },
+        { min: 3, descanso: 1, objetivo: "Sombra: gancho izquierdo al cuerpo con el codo cerca.", drill: "box-sombra" },
+        { min: 3, descanso: 1, objetivo: "Sombra: jab arriba, directo al cuerpo y gancho arriba.", drill: "box-sombra" },
+        { min: 3, descanso: 1, objetivo: "Goma: golpes al cuerpo lentos, notando el giro de cadera.", drill: "box-gomas" },
+        { min: 3, descanso: 1, objetivo: "Sombra libre de defensa con contras al cuerpo.", drill: "box-sombra-defensa" },
+        { min: 3, descanso: 0, objetivo: "Shadow libre grabándote de lado: bajas con las rodillas y vuelves arriba." }
+      ]
+    },
+    {
+      id: "f4-fluidez", fase: 4, titulo: "Fluidez y combinaciones largas", duracion: 40, tipo: "tecnica",
+      asaltos: [
+        { min: 3, descanso: 1, objetivo: "Comba suave con paso de boxeador para entrar en calor.", drill: "box-comba" },
+        { min: 4, descanso: 0, objetivo: "Movilidad de hombros, cadera y tobillos, sin prisa." },
+        { min: 3, descanso: 1, objetivo: "Repaso: sombra de defensa y contragolpe.", drill: "box-sombra-defensa" },
+        { min: 3, descanso: 1, objetivo: "Sombra lenta y suelta: hombros bajos y un soplido por golpe.", drill: "box-sombra" },
+        { min: 3, descanso: 1, objetivo: "Sombra: 1-2-3-2 sin pausas, saliendo en ángulo.", drill: "box-sombra" },
+        { min: 3, descanso: 1, objetivo: "Sombra: 2-3-2 a media y corta distancia.", drill: "box-sombra" },
+        { min: 3, descanso: 1, objetivo: "Shadow táctico: rival que presiona.", drill: "box-shadow-tactico" },
+        { min: 3, descanso: 1, objetivo: "Shadow táctico: rival que se aleja.", drill: "box-shadow-tactico" },
+        { min: 3, descanso: 1, objetivo: "Shadow táctico: rival que se cubre.", drill: "box-shadow-tactico" },
+        { min: 3, descanso: 0, objetivo: "Shadow libre grabándote: suelto, con un plan y fuera de la línea." }
+      ]
+    },
+    {
+      id: "f4-tactico", fase: 4, titulo: "Sesión guiada y shadow táctico", duracion: 40, tipo: "tecnica",
+      asaltos: [
+        { min: 3, descanso: 1, objetivo: "Comba suave con paso de boxeador para entrar en calor.", drill: "box-comba" },
+        { min: 4, descanso: 0, objetivo: "Movilidad de hombros, cadera y tobillos, sin prisa." },
+        { min: 3, descanso: 1, objetivo: "Repaso: sombra solo de defensa.", drill: "box-sombra-defensa" },
+        { min: 16, descanso: 1, objetivo: "Sigue la sesión de 16 minutos de Jeffries, suelto y con técnica limpia.", drill: "box-sesion-16" },
+        { min: 3, descanso: 1, objetivo: "Shadow táctico: elige tú el rival y no lo cambies en todo el asalto.", drill: "box-shadow-tactico" },
+        { min: 3, descanso: 1, objetivo: "Shadow táctico: el rival contrario al del asalto anterior.", drill: "box-shadow-tactico" },
+        { min: 3, descanso: 0, objetivo: "Shadow libre grabándote: compáralo con tu grabación de la semana 1." }
+      ]
+    },
+    {
+      id: "f4-cardio", fase: 4, titulo: "Cardio de tren superior: shadow táctico continuo", duracion: 30, tipo: "cardio",
+      asaltos: [
+        { min: 4, descanso: 0, objetivo: "Shadow muy suave para entrar en calor: solo pies y guardia.", drill: "box-sombra" },
+        { min: 6, descanso: 1, objetivo: "Shadow continuo con combinaciones de cuatro golpes, suelto y respirando.", drill: "box-sombra" },
+        { min: 6, descanso: 1, objetivo: "Shadow continuo: cambia de rival imaginario cada minuto.", drill: "box-shadow-tactico" },
+        { min: 6, descanso: 1, objetivo: "Shadow continuo con golpes arriba y abajo y salidas en ángulo.", drill: "box-sombra" },
         { min: 4, descanso: 0, objetivo: "Shadow muy suave para bajar pulsaciones." }
       ]
     }

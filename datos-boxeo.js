@@ -285,14 +285,54 @@ MMA.add([
     objetivo: "Golpear abajo para abrir arriba.",
     pasos: [
       "Baja de nivel doblando las rodillas, no la cintura.",
-      "Jab al estómago con la mano trasera protegiendo la cara.",
-      "Vuelve arriba enseguida."
+      "Lanza el jab con la izquierda al estómago, con la mano derecha en la mejilla.",
+      "Deja la cabeza a un lado de su línea, no delante.",
+      "Sube enseguida a la guardia."
     ],
-    detalles: ["La cabeza sigue alta y fuera de la línea."],
-    errores: ["Inclinar la espalda: te expone a un rodillazo o una guillotina.", "Quedarse abajo."],
-    drills: ["box-sombra"],
-    combina: ["box-cuerpo-cabeza"],
-    videos: [V("HXJz_gEPHDw", "Jab al cuerpo"), V("MfIvF3OIjNU", "El jab para abrir el cuerpo", { etiqueta: "Otra explicación" })]
+    detalles: ["Bajas entero, con las piernas: no solo la cabeza.", "Úsalo para que baje las manos y después golpea arriba."],
+    errores: ["Doblar la espalda: quedas a tiro de un uppercut.", "Quedarte abajo después del golpe."],
+    drills: ["box-sombra", "box-espejo"],
+    combina: ["box-cuerpo-cabeza", "box-arriba-abajo"],
+    videos: [V("Xy54UGeUDyM", "Tony Jeffries", { fuente: "jeffries" })]
+  },
+  {
+    id: "box-directo-cuerpo", seccion: "boxeo", tipo: "tecnica", cat: "golpes", golpes: [2],
+    es: "Directo al cuerpo", en: "Cross to the body", nivel: "I", mma: "alta",
+    mmaNota: "Al bajar parece un derribo: el rival duda entre defender abajo o arriba.",
+    fases: ["distancia", "entrada"], solo: "si", material: ["ninguno"],
+    objetivo: "El golpe recto de la mano derecha al estómago: potente y difícil de ver.",
+    pasos: [
+      "Baja de nivel doblando las rodillas, con el pie izquierdo un poco adelantado.",
+      "Gira la cadera y pivota sobre la punta del pie derecho, como en el directo.",
+      "Lleva el puño derecho al estómago, con el hombro derecho tapando la barbilla.",
+      "Deja la mano izquierda en la cara y vuelve arriba, a la guardia."
+    ],
+    detalles: ["La potencia sale de las piernas y la cadera, igual que en el directo a la cabeza.", "Lánzalo cuando suba las manos, por ejemplo después de un jab a la cabeza."],
+    errores: ["Doblar la cintura en vez de las rodillas.", "Bajar la mano izquierda al golpear."],
+    drills: ["box-sombra", "box-gomas"],
+    combina: ["box-arriba-abajo", "box-directo"],
+    videos: [V("-zywYc6XzO4", "Tony Jeffries", { fuente: "jeffries" })]
+  },
+  {
+    id: "box-gancho-cuerpo", seccion: "boxeo", tipo: "tecnica", cat: "golpes", golpes: [3],
+    es: "Gancho al cuerpo", en: "Lead hook to the body", nivel: "I", mma: "alta",
+    mmaNota: "En el clinch y contra la jaula es de los golpes que más desgastan.",
+    fases: ["distancia", "clinch"], solo: "si", material: ["ninguno"],
+    objetivo: "Gancho izquierdo al costado derecho del rival, a la altura del hígado.",
+    pasos: [
+      "Da un paso pequeño a tu izquierda y baja de nivel con las rodillas.",
+      "Carga el peso en la pierna izquierda.",
+      "Gira la cadera y la punta del pie izquierdo hacia dentro: el brazo, doblado, golpea su costado.",
+      "Vuelve arriba con la mano izquierda a la cara."
+    ],
+    detalles: ["El codo cerca del cuerpo y el puño a la altura de sus costillas.", "Prepáralo con golpes arriba: si sube la guardia, el costado queda libre."],
+    errores: ["Lanzarlo desde lejos, con el brazo estirado.", "Bajar la mano derecha al golpear."],
+    drills: ["box-sombra", "box-espejo"],
+    combina: ["box-gancho", "box-arriba-abajo"],
+    videos: [
+      V("uXsOssBwLoA", "Tony Jeffries", { fuente: "jeffries" }),
+      V("e94rVp3ciec", "Tony Jeffries Español", { etiqueta: "En español", idioma: "es", fuente: "jeffries" })
+    ]
   },
 
   // ---------------- DEFENSA Y CONTRAS ----------------
@@ -523,12 +563,108 @@ MMA.add([
     mmaNota: "Arriba y abajo: el primero imita un derribo.",
     fases: ["distancia", "entrada"], solo: "si", material: ["ninguno"],
     objetivo: "Bajar la guardia del rival con el jab al cuerpo y golpear arriba.",
-    pasos: ["Jab al cuerpo bajando de nivel con las rodillas.", "Sube y jab a la cabeza.", "Directo.", "Sal de la línea."],
-    detalles: ["Cambia el nivel con las piernas; la espalda sigue recta."],
-    errores: ["Inclinarse hacia delante en el primer golpe."],
+    pasos: [
+      "Baja con las rodillas y lanza un jab al estómago.",
+      "Sube y lanza un jab a la cabeza.",
+      "Suelta el directo con la derecha.",
+      "Sal de la línea."
+    ],
+    detalles: ["Cambia el nivel con las piernas; la espalda sigue recta.", "El jab al cuerpo hace que baje las manos para los de arriba."],
+    errores: ["Inclinarte hacia delante en el primer golpe.", "Subir la cabeza antes que el cuerpo."],
     drills: ["box-sombra"],
-    combina: ["box-jab-cuerpo"],
+    combina: ["box-jab-cuerpo", "box-arriba-abajo"],
     videos: [V("HXJz_gEPHDw", "Jab al cuerpo y combinación")]
+  },
+  {
+    id: "box-arriba-abajo", seccion: "boxeo", tipo: "tecnica", cat: "combos", golpes: [1, 2, 3],
+    es: "Jab arriba, directo al cuerpo, gancho arriba", en: "Head-body-head combination", nivel: "I", mma: "alta",
+    mmaNota: "El directo al cuerpo se confunde con una entrada a las piernas.",
+    fases: ["distancia"], solo: "si", material: ["ninguno"],
+    objetivo: "Cambiar de nivel en mitad de la combinación para que el rival no sepa dónde defender.",
+    pasos: [
+      "Lanza el jab a la cabeza.",
+      "Baja con las rodillas y suelta el directo al estómago.",
+      "Sube y remata con el gancho izquierdo a la cabeza.",
+      "Sal en ángulo."
+    ],
+    detalles: ["El directo al cuerpo le hace bajar las manos: el gancho de arriba llega por el hueco.", "Cambias de nivel con las piernas, nunca doblando la espalda."],
+    errores: ["Quedarte abajo después del directo.", "Abrir el gancho al subir."],
+    drills: ["box-sombra"],
+    combina: ["box-directo-cuerpo", "box-gancho"],
+    videos: [V("MwLAbXnpyu8", "Tony Jeffries", { fuente: "jeffries" })]
+  },
+  {
+    id: "box-1-2-3-2", seccion: "boxeo", tipo: "tecnica", cat: "combos", golpes: [1, 2, 3, 2],
+    es: "1-2-3-2", en: "Jab-cross-hook-cross", nivel: "I", mma: "alta",
+    mmaNota: "Larga para MMA: úsala solo si el rival no amenaza con derribo.",
+    fases: ["distancia"], solo: "si", material: ["ninguno"],
+    objetivo: "Una combinación de cuatro golpes que alterna las manos y te deja cargado para el último directo.",
+    pasos: [
+      "Lanza el jab.",
+      "Suelta el directo con la derecha.",
+      "Saca el gancho izquierdo con el giro del directo.",
+      "Vuelve con otro directo: el gancho te devuelve el peso a la pierna derecha.",
+      "Sal en ángulo."
+    ],
+    detalles: ["Cada golpe carga el siguiente: sin pausas ni pasos entre ellos.", "Si te quedas sin aire, vuelve al 1-2-3: mejor tres limpios que cuatro sucios."],
+    errores: ["Abrir el gancho y llegar tarde con el último directo.", "Acabar cuadrado delante del rival."],
+    drills: ["box-shadow-tactico", "box-sombra"],
+    combina: ["box-1-2-3", "box-2-3-2"],
+    videos: []
+  },
+  {
+    id: "box-2-3-2", seccion: "boxeo", tipo: "tecnica", cat: "combos", golpes: [2, 3, 2],
+    es: "2-3-2", en: "Cross-hook-cross", nivel: "I", mma: "media",
+    mmaNota: "Empezar con la derecha deja ver el golpe: en MMA, solo de cerca.",
+    fases: ["distancia"], solo: "si", material: ["ninguno"],
+    objetivo: "Empezar con el directo, seguir con el gancho y volver al directo, a media y corta distancia.",
+    pasos: [
+      "Suelta el directo con la derecha, sin jab antes.",
+      "Saca el gancho izquierdo con el giro de vuelta.",
+      "Vuelve con otro directo.",
+      "Vuelve a la guardia y sal."
+    ],
+    detalles: ["Empezar con la derecha sorprende, pero solo si estás cerca.", "Los tres golpes siguen el vaivén de la cadera: derecha, izquierda, derecha."],
+    errores: ["Lanzar el primer directo desde lejos.", "Bajar la mano izquierda en el primer directo."],
+    drills: ["box-shadow-tactico", "box-sombra"],
+    combina: ["box-1-2-3-2", "box-gancho"],
+    videos: []
+  },
+  {
+    id: "box-relajacion", seccion: "boxeo", tipo: "tecnica", cat: "guardia",
+    es: "Relajación y respiración", en: "Relaxation and breathing", nivel: "F", mma: "alta",
+    mmaNota: "Sin relajarte, en MMA te quedas sin aire en el primer asalto.",
+    fases: ["distancia"], solo: "si", material: ["ninguno"],
+    objetivo: "Boxear suelto: los golpes salen más rápidos y aguantas más.",
+    pasos: [
+      "Suelta los hombros y abre un poco los puños entre golpe y golpe.",
+      "Saca el aire con un soplido corto en cada golpe.",
+      "Aprieta el puño solo al llegar al golpe.",
+      "Si notas los hombros en las orejas, para, sacúdelos y sigue."
+    ],
+    detalles: ["Tenso no es más fuerte: la potencia sale del giro, no de apretar.", "La respiración marca el ritmo: un soplido por golpe."],
+    errores: ["Aguantar la respiración durante la combinación.", "Llevar los puños apretados todo el asalto."],
+    drills: ["box-shadow-tactico", "box-sombra"],
+    combina: ["box-guardia-boxeo"],
+    videos: [V("Vpai9rd3Kvs", "Oracle Boxing", { etiqueta: "3 analogías", canal: "Oliver Betts Boxing", fuente: "oracle" })]
+  },
+  {
+    id: "box-shadow-tactico", seccion: "boxeo", tipo: "drill",
+    es: "Shadow táctico por escenarios", en: "Tactical shadowboxing", nivel: "I", mma: "alta",
+    fases: ["distancia", "defensa"], solo: "si", material: ["ninguno"],
+    objetivo: "Unir todo lo del curso en un shadow con un plan, como si tuvieras delante un rival concreto.",
+    pasos: [
+      "Elige un rival por asalto: uno que presiona, uno que se aleja o uno que se cubre.",
+      "Contra el que presiona: pivota, sal en ángulo y contragolpea.",
+      "Contra el que se aleja: mide con el jab, corta el paso y entra con el 1-2.",
+      "Contra el que se cubre: golpes arriba y abajo y fintas para abrirlo."
+    ],
+    detalles: ["Un plan por asalto: si mezclas los tres rivales, no entrenas ninguno.", "Suelto y respirando, como en un asalto de verdad."],
+    errores: ["Lanzar combinaciones al aire sin imaginar la respuesta del rival.", "Quedarte siempre a la misma distancia."],
+    dosis: "3–4 × 3 min · 1 min de descanso",
+    criterio: "3 asaltos grabados en los que se reconoce el plan contra cada rival y vuelves siempre a la guardia.",
+    combina: ["box-sombra", "box-sombra-defensa"],
+    videos: [V("8gz73LjkdS8", "Oracle Boxing", { etiqueta: "Fluidez", canal: "Oliver Betts Boxing", fuente: "oracle" })]
   },
   {
     id: "box-1-2-nivel", seccion: "boxeo", tipo: "tecnica", cat: "mma", golpes: [1, 2],
